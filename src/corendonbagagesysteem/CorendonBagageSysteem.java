@@ -36,7 +36,7 @@ public class CorendonBagageSysteem extends Application {
         
         Scene scene = new Scene(root, 300, 250);
         
-        primaryStage.setTitle("Test3");
+        primaryStage.setTitle("ayy");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
