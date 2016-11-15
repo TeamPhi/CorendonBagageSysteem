@@ -22,12 +22,12 @@ public class CorendonBagageSysteem extends Application {
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button();
-        btn.setText("Say 'Ayy lmao'");
+        btn.setText("Say Test1");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("ayy lmao!");
+                System.out.println("Test2");
             }
         });
         
@@ -36,7 +36,7 @@ public class CorendonBagageSysteem extends Application {
         
         Scene scene = new Scene(root, 300, 250);
         
-        primaryStage.setTitle("Ayy lmao!");
+        primaryStage.setTitle("Test3");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
