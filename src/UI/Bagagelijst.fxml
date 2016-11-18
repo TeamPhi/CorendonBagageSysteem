@@ -19,7 +19,22 @@
                         <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
                         <Text layoutX="300.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
                         <Text layoutX="439.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
-                        <Text layoutX="541.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
+                        <Text layoutX="561.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
+                        <Text layoutX="684.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wijzigen" />
+                        <Text layoutX="803.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toevoegen" />
+                        <TableView layoutX="14.0" layoutY="49.0" prefHeight="307.0" prefWidth="887.0">
+                          <columns>
+                            <TableColumn prefWidth="98.0" text="Labelnummer" />
+                            <TableColumn prefWidth="99.0" text="Luchthaven" />
+                              <TableColumn prefWidth="99.0" text="Vluchtnummer" />
+                              <TableColumn prefWidth="99.0" text="Bestemming" />
+                              <TableColumn prefWidth="99.0" text="Type" />
+                              <TableColumn prefWidth="99.0" text="Merk" />
+                              <TableColumn prefWidth="99.0" text="Kleur" />
+                              <TableColumn prefWidth="99.0" text="Datum" />
+                              <TableColumn prefWidth="99.0" text="Status" />
+                          </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
             </content>
