@@ -7,9 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="400.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Gevonden">
             <content>
@@ -18,6 +18,8 @@
                         <TextField layoutX="14.0" layoutY="14.0" />
                         <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
                         <Text layoutX="300.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
+                        <Text layoutX="439.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
+                        <Text layoutX="541.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
                      </children>
                   </AnchorPane>
             </content>
