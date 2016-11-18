@@ -1,2 +1,8 @@
 /build/
 /dist/
+/nbproject/private/
+/WS_libraries_PDFBOX/nbproject/private/
+/CSVWriter/nbproject/private/
+/CSVWriter/build/
+/CSVWriter/dist/
+/WS_JFreeChart/nbproject/private/
