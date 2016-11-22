@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.LanguageBox.LanguageBoxController">
+   <children>
+      <ImageView fx:id="buttonEnglish" fitHeight="63.0" fitWidth="64.0" onMouseClicked="#changeLanguageEnglish" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="buttonDutch" fitHeight="63.0" fitWidth="64.0" onMouseClicked="#changeLanguageDutch" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="buttonTurkish" fitHeight="63.0" fitWidth="64.0" onMouseClicked="#changeLanguageTurkish" pickOnBounds="true" preserveRatio="true" />
+      <Button mnemonicParsing="false" text="Button" />
+   </children>
+</HBox>
