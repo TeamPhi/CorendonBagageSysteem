@@ -33,7 +33,7 @@ public class TestMenuController implements Initializable {
     
     public TestMenuController() throws IOException{
         this.scene1 = FXMLLoader.load(getClass().getResource("testScene1.fxml"));
-        this.scene2 = FXMLLoader.load(getClass().getResource("testScene2.fxml"));
+        this.scene2 = FXMLLoader.load(getClass().getResource("Main.fxml"));
     }
     
     
