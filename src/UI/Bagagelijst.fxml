@@ -7,13 +7,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="1230.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="502.0" prefWidth="1244.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Gevonden">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
                      <children>
                         <TextField layoutX="14.0" layoutY="14.0" />
                         <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
@@ -22,7 +22,7 @@
                         <Text layoutX="561.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
                         <Text layoutX="684.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wijzigen" />
                         <Text layoutX="803.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toevoegen" />
-                        <TableView layoutX="14.0" layoutY="49.0" prefHeight="307.0" prefWidth="887.0">
+                        <TableView layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
                           <columns>
                             <TableColumn prefWidth="98.0" text="Labelnummer" />
                             <TableColumn prefWidth="99.0" text="Luchthaven" />
@@ -32,17 +32,73 @@
                               <TableColumn prefWidth="99.0" text="Merk" />
                               <TableColumn prefWidth="99.0" text="Kleur" />
                               <TableColumn prefWidth="99.0" text="Datum" />
-                              <TableColumn prefWidth="99.0" text="Status" />
+                              <TableColumn prefWidth="109.0" text="Status" />
                           </columns>
                         </TableView>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Vermist" />
+            <Tab text="Vermist">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
+                     <children>
+                        <TextField layoutX="14.0" layoutY="14.0" />
+                        <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
+                        <Text layoutX="300.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
+                        <Text layoutX="439.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
+                        <Text layoutX="561.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
+                        <Text layoutX="684.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wijzigen" />
+                        <Text layoutX="803.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toevoegen" />
+                        <TableView layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
+                           <columns>
+                              <TableColumn prefWidth="98.0" text="Labelnummer" />
+                              <TableColumn prefWidth="99.0" text="Luchthaven" />
+                              <TableColumn prefWidth="99.0" text="Vluchtnummer" />
+                              <TableColumn prefWidth="99.0" text="Bestemming" />
+                              <TableColumn prefWidth="99.0" text="Type" />
+                              <TableColumn prefWidth="99.0" text="Merk" />
+                              <TableColumn prefWidth="99.0" text="Kleur" />
+                              <TableColumn prefWidth="99.0" text="Datum" />
+                              <TableColumn prefWidth="109.0" text="Status" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             <Tab text="Matches">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
+                     <children>
+                        <TextField layoutX="14.0" layoutY="14.0" />
+                        <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
+                        <Text layoutX="710.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
+                        <Text layoutX="849.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
+                        <Text layoutX="971.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
+                        <Text layoutX="1094.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DHL formulier versturen" />
+                        <TableView layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
+                           <columns>
+                              <TableColumn prefWidth="98.0" text="Labelnummer" />
+                              <TableColumn prefWidth="99.0" text="Luchthaven" />
+                              <TableColumn prefWidth="99.0" text="Vluchtnummer" />
+                              <TableColumn prefWidth="99.0" text="Bestemming" />
+                              <TableColumn prefWidth="99.0" text="Datum" />
+                              <TableColumn prefWidth="99.0" text="Status" />
+                           </columns>
+                        </TableView>
+                        <TableView layoutX="633.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
+                           <columns>
+                              <TableColumn prefWidth="98.0" text="Labelnummer" />
+                              <TableColumn prefWidth="99.0" text="Luchthaven" />
+                              <TableColumn prefWidth="99.0" text="Vluchtnummer" />
+                              <TableColumn prefWidth="99.0" text="Bestemming" />
+                              <TableColumn prefWidth="99.0" text="Datum" />
+                              <TableColumn prefWidth="99.0" text="Status" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
         </tabs>
