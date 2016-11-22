@@ -16,7 +16,7 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
                      <children>
                         <TextField layoutX="14.0" layoutY="14.0" />
-                        <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
+                        <Button layoutX="174.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
                         <Text layoutX="300.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
                         <Text layoutX="439.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
                         <Text layoutX="561.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
