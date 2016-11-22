@@ -18,7 +18,7 @@ public class CorendonBagageSysteem extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/UI/TestMenu.fxml"));
         
         Scene scene = new Scene(root);
-        
+        primaryStage.setTitle("Corendon Bagage Systeem");
         primaryStage.setScene(scene);
         primaryStage.show();
         
