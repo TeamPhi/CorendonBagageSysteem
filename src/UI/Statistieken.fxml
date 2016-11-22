@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fysprototyping.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.StatistiekenController">
    <children>
       <AnchorPane layoutY="400.0" prefHeight="200.0" prefWidth="200.0" />
       <AnchorPane layoutX="600.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" />
@@ -19,12 +18,12 @@
       </AnchorPane>
       <AnchorPane layoutX="600.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ComboBox layoutX="57.0" layoutY="61.0" prefHeight="39.0" prefWidth="129.0" promptText="All-time" />
+            <ComboBox fx:id="comboBoxSelectedTime" layoutX="57.0" layoutY="61.0" prefHeight="39.0" prefWidth="129.0" promptText="All-time" />
          </children>
       </AnchorPane>
-      <DatePicker layoutX="200.0" layoutY="61.0" prefHeight="39.0" prefWidth="229.0" />
-      <ComboBox layoutX="441.0" layoutY="61.0" prefHeight="39.0" prefWidth="200.0" promptText="Alle luchthavens" />
-      <LineChart layoutX="51.0" layoutY="200.0">
+      <DatePicker fx:id="datumPicker" layoutX="200.0" layoutY="61.0" prefHeight="39.0" prefWidth="229.0" />
+      <ComboBox fx:id="comboBoxAlleLuchthavens" layoutX="441.0" layoutY="61.0" prefHeight="39.0" prefWidth="200.0" promptText="Alle luchthavens" />
+      <LineChart fx:id="graphRegisteredLuggage" layoutX="51.0" layoutY="200.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
