@@ -16,6 +16,6 @@
       <Label layoutX="200.0" layoutY="273.0" text="Wachtwoord:" />
       <PasswordField fx:id="passwordFieldWachtwoord" layoutX="357.0" layoutY="267.0" prefHeight="39.0" prefWidth="263.0" />
       <TextField fx:id="textFieldGebruikersnaam" layoutX="357.0" layoutY="167.0" prefHeight="39.0" prefWidth="263.0" />
-      <Button fx:id="buttonInloggen" layoutX="486.0" layoutY="361.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="134.0" text="Inloggen" />
+      <Button layoutX="486.0" layoutY="361.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="134.0" text="Inloggen" />
    </children>
 </AnchorPane>
