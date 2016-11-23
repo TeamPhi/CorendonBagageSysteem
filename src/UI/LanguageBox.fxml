@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.LanguageBox.LanguageBoxController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LanguageBox.LanguageBoxController">
    <children>
       <ImageView fx:id="buttonEnglish" fitHeight="63.0" fitWidth="64.0" onMouseClicked="#changeLanguageEnglish" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="buttonDutch" fitHeight="63.0" fitWidth="64.0" onMouseClicked="#changeLanguageDutch" pickOnBounds="true" preserveRatio="true" />

@@ -4,13 +4,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.TestMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.TestMenuController">
    <left>
       <AnchorPane prefHeight="379.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" text="scene 1" onAction="#goScene1" />
-            <Button layoutX="14.0" layoutY="27.0" mnemonicParsing="false" text="scene 2" onAction="#goScene2" />
+            <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#goScene1" text="scene 1" />
+            <Button layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#goScene2" text="scene 2" />
          </children>
       </AnchorPane>
    </left>
