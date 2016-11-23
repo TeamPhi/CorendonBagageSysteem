@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.StatistiekenController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.StatisticsController">
    <children>
       <AnchorPane layoutY="400.0" prefHeight="200.0" prefWidth="200.0" />
       <AnchorPane layoutX="600.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" />

@@ -15,7 +15,7 @@ public class CorendonBagageSysteem extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
        
-        Parent root = FXMLLoader.load(getClass().getResource("/UI/TestMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ui/TestMenu.fxml"));
         
         Scene scene = new Scene(root);
         primaryStage.setTitle("Corendon Bagage Systeem");
