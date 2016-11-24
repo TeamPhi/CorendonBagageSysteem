@@ -21,8 +21,9 @@ import javafx.scene.layout.AnchorPane;
 public class TestMenuController implements Initializable {
     
     @FXML
-    private AnchorPane sceneContent;
+    private AnchorPane sceneContent; //Replaceable pane in FXML
     
+    //Scenes
     AnchorPane scene1;
     AnchorPane scene2;
 
@@ -32,6 +33,7 @@ public class TestMenuController implements Initializable {
     }  
     
     public TestMenuController() throws IOException{
+        //Loading scenes in memmory
         this.scene1 = FXMLLoader.load(getClass().getResource("testScene1.fxml"));
         this.scene2 = FXMLLoader.load(getClass().getResource("Main.fxml"));
     }
@@ -40,13 +42,14 @@ public class TestMenuController implements Initializable {
     
     @FXML
     private void goScene1(ActionEvent event) {
-        System.out.println(getClass().getResource("testScene1.fxml"));
-        this.sceneContent.getChildren().setAll(this.scene1);
+        //Click event triggered by onAction in the FXML
+        this.sceneContent.getChildren().setAll(this.scene1); //Replaces scene (AnchorPane)
     }
     
     @FXML
     private void goScene2(ActionEvent event) {
-        this.sceneContent.getChildren().setAll(this.scene2);
+        //Click event triggered by onAction in the FXML
+        this.sceneContent.getChildren().setAll(this.scene2);//Replaces scene (AnchorPane)
     }
       
     
