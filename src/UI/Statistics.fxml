@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.StatisticsController">
+   <children>
+      <AnchorPane layoutY="400.0" prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane layoutX="600.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="64.0" layoutY="173.0" text="Geregistreerde bagage" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="600.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ComboBox fx:id="comboBoxSelectedTime" layoutX="57.0" layoutY="61.0" prefHeight="39.0" prefWidth="129.0" promptText="All-time" />
+         </children>
+      </AnchorPane>
+      <DatePicker fx:id="datumPicker" layoutX="200.0" layoutY="61.0" prefHeight="39.0" prefWidth="229.0" />
+      <ComboBox fx:id="comboBoxAlleLuchthavens" layoutX="441.0" layoutY="61.0" prefHeight="39.0" prefWidth="200.0" promptText="Alle luchthavens" />
+      <LineChart fx:id="graphRegisteredLuggage" layoutX="51.0" layoutY="200.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Label layoutX="208.0" layoutY="34.0" text="Startdatum:" />
+   </children>
+</AnchorPane>
