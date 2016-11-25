@@ -13,6 +13,6 @@
       <Button fx:id="buttonClaims" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Schade-uitkeringen" />
       <Button fx:id="buttonStatistics" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Statestieken" />
       <Button fx:id="buttonAccountManager" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Accountmanagement" />
-      <Button fx:id="buttonSignOut" mnemonicParsing="false" onMouseClicked="#SignOut" prefHeight="40.0" prefWidth="200.0" text="Afmelden" />
+      <Button fx:id="buttonSignOut" mnemonicParsing="false" onMouseClicked="SignOut" prefHeight="40.0" prefWidth="200.0" text="Afmelden" />
    </children>
 </VBox>
