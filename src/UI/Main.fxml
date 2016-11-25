@@ -15,7 +15,7 @@
         <items>
           <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="0.0" minWidth="-Infinity" prefWidth="100.0">
                <children>
-                  <Button fx:id="thaTest" layoutX="11.0" layoutY="180.0" mnemonicParsing="false" onAction="#testThis" text="Button" />
+                  <Button fx:id="buttonTestNaam" layoutX="11.0" layoutY="180.0" mnemonicParsing="false" onAction="#testThis" text="Button" />
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>

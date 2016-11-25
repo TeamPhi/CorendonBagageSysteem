@@ -21,11 +21,10 @@ public class MainUIController implements Initializable{
     @FXML
     private AnchorPane paneHeader;
     @FXML
-    private Button thaTest;
+    private Button buttonTestNaam;
 
     @FXML
     private void testThis(ActionEvent event) {
-
     }
     
     @Override
