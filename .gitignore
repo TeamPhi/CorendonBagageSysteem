@@ -6,3 +6,5 @@
 /CSVWriter/build/
 /CSVWriter/dist/
 /WS_JFreeChart/nbproject/private/
+*.java
+src/UI/AccountManagerEdit.fxml
