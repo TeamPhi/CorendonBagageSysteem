@@ -19,8 +19,8 @@ public class LogInScreenController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @FXML
-    AnchorPane anchorr;
+    
+    
     @FXML
     private TextField textFieldGebruikersnaam;
     @FXML
@@ -28,10 +28,15 @@ public class LogInScreenController implements Initializable {
     @FXML
     private Button buttonInloggen;
     
+    LogInScreenController()
+    {
+        
+    }
+    
     @FXML
     private void logInAction(ActionEvent event) {
         //anchorr.getChildren().
-
+        
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -20,20 +20,12 @@ import javafx.scene.layout.AnchorPane;
 public class MainUIController implements Initializable{
     @FXML
     private AnchorPane paneHeader;
+    @FXML
     private Button thaTest;
-    //private ImageView btnLangTurkish;
+
     @FXML
     private void testThis(ActionEvent event) {
-        //System.out.println("Turkish");
-        //paneHeader.getChildren().setAll(FXMLLoader.load(getClass().getResource("LanguageBox.fxml")));
-        /*
-        try {
-            paneHeader.getChildren().add(FXMLLoader.load(getClass().getResource("LanguageBox.fxml")));
-        } catch (IOException ex) {
-            Logger.getLogger(MainUIController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
-        System.out.println("dit is een test dat meerdere controllers werken");
+
     }
     
     @Override
