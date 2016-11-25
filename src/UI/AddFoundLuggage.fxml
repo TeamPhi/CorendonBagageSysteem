@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="29.0" layoutY="31.0" mnemonicParsing="false" text="Send DHL form" />
+      <Button layoutX="816.0" layoutY="31.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="736.0" layoutY="31.0" mnemonicParsing="false" text="Save" />
+      <Button layoutX="594.0" layoutY="31.0" mnemonicParsing="false" text="Save &amp; Match" />
+      <Button layoutX="816.0" layoutY="64.0" mnemonicParsing="false" text="Delete" />
+      <Label layoutX="29.0" layoutY="104.0" text="Found luggage registration form">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="138.0" text="Date" />
+      <Label layoutX="31.0" layoutY="166.0" text="Time" />
+      <Label layoutX="29.0" layoutY="195.0" text="Airport" />
+      <Label layoutX="28.0" layoutY="223.0" text="Lost-and-found ID" />
+      <Label layoutX="25.0" layoutY="260.0" text="Flight information">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="172.0" layoutY="134.0" />
+      <TextField layoutX="172.0" layoutY="162.0" />
+      <TextField layoutX="172.0" layoutY="191.0" />
+      <TextField layoutX="172.0" layoutY="219.0" />
+      <TextField layoutX="172.0" layoutY="282.0" />
+      <Label layoutX="27.0" layoutY="286.0" text="Label ID" />
+      <Label layoutX="27.0" layoutY="314.0" text="Flight ID" />
+      <TextField layoutX="172.0" layoutY="310.0" />
+      <Label layoutX="27.0" layoutY="342.0" text="Destination" />
+      <TextField layoutX="172.0" layoutY="338.0" />
+      <Label layoutX="27.0" layoutY="369.0" text="Traveller's name" />
+      <TextField layoutX="172.0" layoutY="365.0" />
+      <Label layoutX="24.0" layoutY="402.0" text="Luggage information">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="428.0" text="Type" />
+      <TextField layoutX="172.0" layoutY="424.0" />
+      <TextField layoutX="172.0" layoutY="452.0" />
+      <Label layoutX="27.0" layoutY="456.0" text="Brand" />
+      <TextField layoutX="172.0" layoutY="480.0" />
+      <Label layoutX="27.0" layoutY="484.0" text="Color" />
+      <TextArea layoutX="172.0" layoutY="508.0" prefHeight="129.0" prefWidth="356.0" />
+      <Label layoutX="28.0" layoutY="513.0" text="Features" />
+      <Button layoutX="28.0" layoutY="663.0" mnemonicParsing="false" text="Add more" />
+      <Button layoutX="593.0" layoutY="706.0" mnemonicParsing="false" text="Save &amp; Match" />
+      <Button layoutX="735.0" layoutY="706.0" mnemonicParsing="false" text="Save" />
+      <Button layoutX="815.0" layoutY="706.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="28.0" layoutY="706.0" mnemonicParsing="false" text="Send DHL form" />
+   </children>
+</AnchorPane>
