@@ -14,8 +14,8 @@
       <AnchorPane layoutX="600.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="200.0" layoutY="173.0" text="Gebruikersnaam:" />
       <Label layoutX="200.0" layoutY="273.0" text="Wachtwoord:" />
-      <PasswordField fx:id="passwordFieldWachtwoord" layoutX="357.0" layoutY="267.0" prefHeight="39.0" prefWidth="263.0" />
-      <TextField fx:id="textFieldGebruikersnaam" layoutX="357.0" layoutY="167.0" prefHeight="39.0" prefWidth="263.0" />
+      <PasswordField fx:id="passwordFieldPassword" layoutX="357.0" layoutY="267.0" prefHeight="39.0" prefWidth="263.0" />
+      <TextField fx:id="textFieldUserName" layoutX="355.0" layoutY="181.0" prefHeight="39.0" prefWidth="263.0" />
       <Button fx:id="buttonInloggen" layoutX="486.0" layoutY="361.0" mnemonicParsing="false" onAction="#logInAction" prefHeight="39.0" prefWidth="134.0" text="Inloggen" />
    </children>
 </AnchorPane>

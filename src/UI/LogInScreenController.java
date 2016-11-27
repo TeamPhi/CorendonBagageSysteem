@@ -22,17 +22,15 @@ public class LogInScreenController implements Initializable {
     
     
     @FXML
-    private TextField textFieldGebruikersnaam;
-    @FXML
-    private PasswordField passwordFieldWachtwoord;
-    @FXML
+    private TextField textFieldUserName;
+    private PasswordField passwordFieldPassword;
     private Button buttonInloggen;
-    
+    /*
     LogInScreenController()
     {
         
     }
-    
+    */
     @FXML
     private void logInAction(ActionEvent event) {
         //anchorr.getChildren().
