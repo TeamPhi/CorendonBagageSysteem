@@ -9,3 +9,10 @@
 *.java
 src/UI/AccountManagerEdit.fxml
 !/src/backend/DBConnection.java
+!/src/ui/AccountManagerController.java
+!/src/ui/LanguageBoxController.java
+!/src/ui/LogInScreenController.java
+!/src/ui/MainUIController.java
+!/src/ui/UI.java
+!/src/ui/TestMenuController.java
+!/src/ui/NavigationBarController.java

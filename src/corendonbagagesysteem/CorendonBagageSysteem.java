@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class CorendonBagageSysteem extends Application {
     //This pane should always be the root and always hosts the other screens.
-    private AnchorPane anchorRoot;
+    private static AnchorPane anchorRoot;
     @Override
     public void start(Stage primaryStage) throws IOException {
        
@@ -45,8 +45,8 @@ public class CorendonBagageSysteem extends Application {
      * the passed Node onto it.
      * @param e The screen or elements you want to display on the screen.
      */
-    public void setRoot(Node e){
-        this.anchorRoot.getChildren().clear();
-        this.anchorRoot.getChildren().add(e);
+    public static void setRoot(Node e){
+        anchorRoot.getChildren().clear();
+        anchorRoot.getChildren().add(e);
     }
 }
