@@ -8,3 +8,4 @@
 /WS_JFreeChart/nbproject/private/
 *.java
 src/UI/AccountManagerEdit.fxml
+!/src/backend/DBConnection.java
