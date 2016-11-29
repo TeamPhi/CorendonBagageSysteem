@@ -16,3 +16,8 @@ src/UI/AccountManagerEdit.fxml
 !/src/ui/UI.java
 !/src/ui/TestMenuController.java
 !/src/ui/NavigationBarController.java
+!/src/backend/LostLuggage.java
+!/src/backend/FoundLuggage.java
+!/src/backend/Luggage.java
+!/src/backend/LuggageEnum.java
+!/src/backend/StatusEnum.java
