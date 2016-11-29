@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /build/
 /dist/
 /nbproject/private/
@@ -17,3 +18,28 @@ src/UI/AccountManagerEdit.fxml
 !/src/ui/TestMenuController.java
 !/src/ui/NavigationBarController.java
 !/src/UI/AddFoundLuggageController.java
+=======
+/build/
+/dist/
+/nbproject/private/
+/WS_libraries_PDFBOX/nbproject/private/
+/CSVWriter/nbproject/private/
+/CSVWriter/build/
+/CSVWriter/dist/
+/WS_JFreeChart/nbproject/private/
+*.java
+src/UI/AccountManagerEdit.fxml
+!/src/backend/DBConnection.java
+!/src/ui/AccountManagerController.java
+!/src/ui/LanguageBoxController.java
+!/src/ui/LogInScreenController.java
+!/src/ui/MainUIController.java
+!/src/ui/UI.java
+!/src/ui/TestMenuController.java
+!/src/ui/NavigationBarController.java
+!/src/backend/LostLuggage.java
+!/src/backend/FoundLuggage.java
+!/src/backend/Luggage.java
+!/src/backend/LuggageEnum.java
+!/src/backend/StatusEnum.java
+>>>>>>> origin/master
