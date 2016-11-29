@@ -8,11 +8,11 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="buttonHome" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Home" />
-      <Button fx:id="buttonLuggageOverview" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Bagage-overicht" />
-      <Button fx:id="buttonClaims" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Schade-uitkeringen" />
-      <Button fx:id="buttonStatistics" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Statestieken" />
-      <Button fx:id="buttonAccountManager" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Accountmanagement" />
-      <Button fx:id="buttonSignOut" mnemonicParsing="false" onMouseClicked="SignOut" prefHeight="40.0" prefWidth="200.0" text="Afmelden" />
+      <Button fx:id="buttonHome" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="40.0" prefWidth="200.0" text="Home" />
+      <Button fx:id="buttonLuggageOverview" mnemonicParsing="false" onAction="#luggageOverviewButtonClicked" prefHeight="40.0" prefWidth="200.0" text="Bagage-overicht" />
+      <Button fx:id="buttonClaims" mnemonicParsing="false" onAction="#claimsButtonClicked" prefHeight="40.0" prefWidth="200.0" text="Schade-uitkeringen" />
+      <Button fx:id="buttonStatistics" mnemonicParsing="false" onAction="#statisticsButtonClicked" prefHeight="40.0" prefWidth="200.0" text="Statestieken" />
+      <Button fx:id="buttonAccountManager" mnemonicParsing="false" onAction="#accountmanagementButtonClicked" prefHeight="40.0" prefWidth="200.0" text="Accountmanagement" />
+      <Button fx:id="buttonSignOut" mnemonicParsing="false" onAction="#logOutButtonClicked" onMouseClicked="SignOut" prefHeight="40.0" prefWidth="200.0" text="Afmelden" />
    </children>
 </VBox>
