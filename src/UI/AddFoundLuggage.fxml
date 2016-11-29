@@ -6,11 +6,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="29.0" layoutY="31.0" mnemonicParsing="false" onAction="#sendDHL" text="Send DHL form" />
       <Button layoutX="816.0" layoutY="31.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
-      <Button layoutX="736.0" layoutY="31.0" mnemonicParsing="false" onAction="#save" text="Save" />
+      <Button layoutX="736.0" layoutY="31.0" mnemonicParsing="false" onAction="#saveData" text="Save" />
       <Button layoutX="594.0" layoutY="31.0" mnemonicParsing="false" onAction="#saveMatch" text="Save &amp; Match" />
       <Button layoutX="816.0" layoutY="64.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
       <Label layoutX="29.0" layoutY="104.0" text="Found luggage registration form">
