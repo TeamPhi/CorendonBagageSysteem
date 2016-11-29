@@ -1,20 +1,33 @@
 package ui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
-/**
- * FXML Controller class
- *
- * @author Elwin Slokker
- */
-public class LanguageBoxController implements Initializable {
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+public class LanguageBoxController {
+
+    @FXML
+    private Button buttonEnglish;
+
+    @FXML
+    private Button buttonDutch;
+
+    @FXML
+    private Button buttonTurkish;
+
+    @FXML
+    void changeLanguageEnglish(ActionEvent event) {
+
     }
+
+    @FXML
+    void changeLanguageDutch(ActionEvent event) {
+
+    }
+
+    @FXML
+    void changeLanguageTurkish(ActionEvent event) {
+
+    }
+
 }

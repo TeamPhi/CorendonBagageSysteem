@@ -10,29 +10,42 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 /**
  *
  * @author Elwin Slokker
  */
 public class MainUIController implements Initializable{
-    @FXML
-    private AnchorPane paneHeader;
-    @FXML
-    private AnchorPane paneNavigation;
+    private Button buttonTestNaam;
+    private VBox navigationBar;
+    private HBox languagebox;
+    private AnchorPane paneHome;
+        
     @FXML
     private AnchorPane paneContent;
+
     @FXML
-    private Button buttonTestNaam;
+    private AnchorPane paneHeader;
+
     @FXML
-    private void testThis(ActionEvent event) {
+    private AnchorPane paneNavigation;
+    
+    public MainUIController() throws IOException {
+        System.out.println("LOADING MAIN UI CONTROLLER");
+        
+        this.navigationBar = FXMLLoader.load(getClass().getResource("NavigationBar.fxml"));
+        this.paneNavigation.getChildren().setAll(navigationBar);
+        this.paneHome = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        this.paneContent.getChildren().setAll(paneHome);
+        this.languagebox = FXMLLoader.load(getClass().getResource("LanguageBox.fxml"));
+        this.paneHeader.getChildren().setAll(languagebox);
         
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }   
 }

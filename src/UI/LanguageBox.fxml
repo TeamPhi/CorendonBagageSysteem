@@ -7,11 +7,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LanguageBox.LanguageBoxController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LanguageBoxController">
    <children>
-      <ImageView fx:id="buttonEnglish" fitHeight="63.0" fitWidth="64.0" onMouseClicked="#changeLanguageEnglish" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="buttonDutch" fitHeight="63.0" fitWidth="64.0" onMouseClicked="#changeLanguageDutch" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="buttonTurkish" fitHeight="63.0" fitWidth="64.0" onMouseClicked="#changeLanguageTurkish" pickOnBounds="true" preserveRatio="true" />
+      <AnchorPane>
+         <children>
+            <ImageView fitHeight="63.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="buttonEnglish" mnemonicParsing="false" onAction="#changeLanguageEnglish" opacity="0.0" prefHeight="63.0" prefWidth="65.0" text="Button" />
+         </children>
+      </AnchorPane>
+      <AnchorPane>
+         <children>
+            <ImageView fitHeight="63.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="buttonDutch" mnemonicParsing="false" onAction="#changeLanguageDutch" opacity="0.0" prefHeight="63.0" prefWidth="65.0" text="Button" />
+         </children>
+      </AnchorPane>
+      <AnchorPane>
+         <children>
+            <ImageView fitHeight="63.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="buttonTurkish" mnemonicParsing="false" onAction="#changeLanguageTurkish" opacity="0.0" prefHeight="63.0" prefWidth="65.0" text="Button" />
+         </children>
+      </AnchorPane>
       <Button mnemonicParsing="false" text="Button" />
    </children>
 </HBox>

@@ -26,7 +26,6 @@ public class LogInScreenController implements Initializable {
     /**
      * Initializes the controller class.
      */
-
     @FXML
     private TextField textFieldUserName;
     private PasswordField passwordFieldPassword;
@@ -34,21 +33,25 @@ public class LogInScreenController implements Initializable {
 
     private SplitPane mainScreen;
 
-    /*
-    LogInScreenController()throws IOException{
-        
+    LogInScreenController() throws IOException {
+        URL resource = getClass().getResource("TestMenu.fxml");
+        this.mainScreen = FXMLLoader.load(resource);
     }
-    */
+
     @FXML
     private void logInAction(ActionEvent event) {
 
-            //Dit is test code die niet werkt.
-            //anchorr.getChildren().
-            //this.mainScreen = FXMLLoader.load(getClass().getResource("Main.fxml"));
-            //AnchorPane.setBottomAnchor(this.mainScreen, 0.0);
-            //AnchorPane.setLeftAnchor(this.mainScreen, 0.0);
-            //AnchorPane.setRightAnchor(this.mainScreen, 0.0);
-            //AnchorPane.setTopAnchor(this.mainScreen, 0.0);
+        ///try {
+        //Dit is test code die niet werkt.
+        //anchorr.getChildren().
+        CorendonBagageSysteem.setRoot(this.mainScreen);
+        AnchorPane.setBottomAnchor(this.mainScreen, 0.0);
+        AnchorPane.setLeftAnchor(this.mainScreen, 0.0);
+        AnchorPane.setRightAnchor(this.mainScreen, 0.0);
+        AnchorPane.setTopAnchor(this.mainScreen, 0.0);
+        //} catch (IOException ex) {
+        // Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        ///}
     }
 
     @Override
