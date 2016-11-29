@@ -16,3 +16,4 @@ src/UI/AccountManagerEdit.fxml
 !/src/ui/UI.java
 !/src/ui/TestMenuController.java
 !/src/ui/NavigationBarController.java
+!/src/UI/AddFoundLuggageController.java
