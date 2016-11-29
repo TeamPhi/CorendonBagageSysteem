@@ -14,25 +14,21 @@ import javafx.stage.Stage;
  */
 public class CorendonBagageSysteem extends Application {
     //This pane should always be the root and always hosts the other screens.
-    private static AnchorPane anchorRoot;
+    private static AnchorPane root;
     @Override
     public void start(Stage primaryStage) throws IOException {
-       
-        Parent root = FXMLLoader.load(getClass().getResource("/ui/Main.fxml"));
         
-        //WEET NIET WAT HET PLAN WAS MAAR DE CODE HIER ONDER ZORGT VOOR ERRORS
-        
-        //AnchorPane root2 = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
+        Parent startScreen = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
         //Needs to be constructed/initzialized first.
-        //anchorRoot = new AnchorPane();
-        //anchorRoot.getChildren().add(root2);
-        //AnchorPane.setBottomAnchor(root2, 0.0);
-        //AnchorPane.setLeftAnchor(root2, 0.0);
-        //AnchorPane.setRightAnchor(root2, 0.0);
-        //AnchorPane.setTopAnchor(root2, 0.0);
+        root = new AnchorPane();
+        //root.getChildren().add(startScreen);
+        setRoot(startScreen);
         
         
         Scene scene = new Scene(root);
+        
+        scene.getStylesheets().add("/css/style.css");
+        
         primaryStage.setTitle("Corendon Bagage Systeem");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -51,7 +47,11 @@ public class CorendonBagageSysteem extends Application {
      * @param e The screen or elements you want to display on the screen.
      */
     public static void setRoot(Node e){
-        anchorRoot.getChildren().clear();
-        anchorRoot.getChildren().add(e);
+        root.getChildren().clear();
+        root.getChildren().add(e);
+        root.setBottomAnchor(e, 0.0);
+        root.setLeftAnchor(e, 0.0);
+        root.setRightAnchor(e, 0.0);
+        root.setTopAnchor(e, 0.0);
     }
 }
