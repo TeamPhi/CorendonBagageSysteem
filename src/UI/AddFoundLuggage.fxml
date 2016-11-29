@@ -6,14 +6,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.AddFoundLuggageController">
    <children>
-      <Button layoutX="29.0" layoutY="31.0" mnemonicParsing="false" text="Send DHL form" />
-      <Button layoutX="816.0" layoutY="31.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="736.0" layoutY="31.0" mnemonicParsing="false" text="Save" />
-      <Button layoutX="594.0" layoutY="31.0" mnemonicParsing="false" text="Save &amp; Match" />
-      <Button layoutX="816.0" layoutY="64.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="29.0" layoutY="31.0" mnemonicParsing="false" onAction="#sendDHL" text="Send DHL form" />
+      <Button layoutX="816.0" layoutY="31.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button layoutX="736.0" layoutY="31.0" mnemonicParsing="false" onAction="#save" text="Save" />
+      <Button layoutX="594.0" layoutY="31.0" mnemonicParsing="false" onAction="#saveMatch" text="Save &amp; Match" />
+      <Button layoutX="816.0" layoutY="64.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
       <Label layoutX="29.0" layoutY="104.0" text="Found luggage registration form">
          <font>
             <Font size="18.0" />
@@ -28,30 +27,30 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="172.0" layoutY="134.0" />
-      <TextField layoutX="172.0" layoutY="162.0" />
-      <TextField layoutX="172.0" layoutY="191.0" />
-      <TextField layoutX="172.0" layoutY="219.0" />
-      <TextField layoutX="172.0" layoutY="282.0" />
+      <TextField fx:id="textFieldDate" layoutX="172.0" layoutY="134.0" />
+      <TextField fx:id="textFieldTime" layoutX="172.0" layoutY="162.0" />
+      <TextField fx:id="textFieldAirport" layoutX="172.0" layoutY="191.0" />
+      <TextField fx:id="textFieldLostFound" layoutX="172.0" layoutY="219.0" />
+      <TextField fx:id="textFieldLabelId" layoutX="172.0" layoutY="282.0" />
       <Label layoutX="27.0" layoutY="286.0" text="Label ID" />
       <Label layoutX="27.0" layoutY="314.0" text="Flight ID" />
-      <TextField layoutX="172.0" layoutY="310.0" />
+      <TextField fx:id="textFieldFlightId" layoutX="172.0" layoutY="310.0" />
       <Label layoutX="27.0" layoutY="342.0" text="Destination" />
-      <TextField layoutX="172.0" layoutY="338.0" />
+      <TextField fx:id="textFieldDestination" layoutX="172.0" layoutY="338.0" />
       <Label layoutX="27.0" layoutY="369.0" text="Traveller's name" />
-      <TextField layoutX="172.0" layoutY="365.0" />
+      <TextField fx:id="textFieldTravellerName" layoutX="172.0" layoutY="365.0" />
       <Label layoutX="24.0" layoutY="402.0" text="Luggage information">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <Label layoutX="27.0" layoutY="428.0" text="Type" />
-      <TextField layoutX="172.0" layoutY="424.0" />
-      <TextField layoutX="172.0" layoutY="452.0" />
+      <TextField fx:id="textFieldType" layoutX="172.0" layoutY="424.0" />
+      <TextField fx:id="testFieldBrand" layoutX="172.0" layoutY="452.0" />
       <Label layoutX="27.0" layoutY="456.0" text="Brand" />
-      <TextField layoutX="172.0" layoutY="480.0" />
+      <TextField fx:id="textFieldColor" layoutX="172.0" layoutY="480.0" />
       <Label layoutX="27.0" layoutY="484.0" text="Color" />
-      <TextArea layoutX="172.0" layoutY="508.0" prefHeight="129.0" prefWidth="356.0" />
+      <TextArea fx:id="textFieldFeatures" layoutX="172.0" layoutY="508.0" prefHeight="129.0" prefWidth="356.0" />
       <Label layoutX="28.0" layoutY="513.0" text="Features" />
       <Button layoutX="28.0" layoutY="663.0" mnemonicParsing="false" text="Add more" />
       <Button layoutX="593.0" layoutY="706.0" mnemonicParsing="false" text="Save &amp; Match" />
