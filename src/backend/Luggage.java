@@ -17,7 +17,7 @@ public abstract class Luggage {
     protected String picture;
     
     public Luggage(){
-        
+       
     }
     public String getLabelNumber(){
         return this.labelNumber;

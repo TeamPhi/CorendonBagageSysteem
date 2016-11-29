@@ -25,5 +25,4 @@ public class FoundLuggage extends Luggage{
     public void setLostFoundID(String lostFoundID){
         this.lostFoundID = lostFoundID;
     }
-    
 }

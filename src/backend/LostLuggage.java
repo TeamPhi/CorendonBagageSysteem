@@ -18,4 +18,5 @@ public class LostLuggage extends Luggage{
     this.status = status;
     this.picture = newPicture;
     }
+    
 }

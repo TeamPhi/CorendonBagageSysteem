@@ -5,6 +5,7 @@ package backend;
  * initialise all the information about the traveller.
  */
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -36,7 +37,7 @@ public class Passenger {
         this.email = newEmail;
         this.flightNumber = newFlightNumber;
         this.destination = newDestination;
-        this.lostLuggage = ArrayList(LostLuggage);
+        this.lostLuggage = new ArrayList<LostLuggage>();
     }
     
     public Passenger(String newFlightNumber, String newDestination, List newLostLuggage) {
