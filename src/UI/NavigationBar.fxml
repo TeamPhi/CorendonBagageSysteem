@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.NavigationBarController">
    <children>
       <Button fx:id="buttonHome" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="40.0" prefWidth="200.0" text="Home" />
       <Button fx:id="buttonLuggageOverview" mnemonicParsing="false" onAction="#luggageOverviewButtonClicked" prefHeight="40.0" prefWidth="200.0" text="Bagage-overicht" />
