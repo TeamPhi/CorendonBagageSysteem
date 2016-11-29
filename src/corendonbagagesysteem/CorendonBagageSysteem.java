@@ -19,7 +19,7 @@ public class CorendonBagageSysteem extends Application {
     public void start(Stage primaryStage) throws IOException {
        
         //Parent root = FXMLLoader.load(getClass().getResource("/ui/TestMenu.fxml"));
-        AnchorPane root2 = FXMLLoader.load(getClass().getResource("/ui/LogInScreen.fxml"));
+        AnchorPane root2 = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
         //Needs to be constructed/initzialized first.
         anchorRoot = new AnchorPane();
         anchorRoot.getChildren().add(root2);
