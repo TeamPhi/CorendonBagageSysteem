@@ -1,20 +1,25 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ui;
 
 import corendonbagagesysteem.CorendonBagageSysteem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -23,40 +28,33 @@ import javafx.scene.layout.AnchorPane;
  */
 public class LogInScreenController implements Initializable {
 
+    @FXML
+    private AnchorPane AnchorPane;
+    @FXML
+    private PasswordField passwordFieldPassword;
+    @FXML
+    private TextField textFieldUserName;
+    @FXML
+    private Button buttonInloggen;
+    
+    private Node mainScreen;
+
     /**
      * Initializes the controller class.
      */
-    @FXML
-    private TextField textFieldUserName;
-    private PasswordField passwordFieldPassword;
-    private Button buttonInloggen;
-
-    private SplitPane mainScreen;
-
-    LogInScreenController() throws IOException {
-        URL resource = getClass().getResource("TestMenu.fxml");
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+    
+    public LogInScreenController() throws IOException{
+        URL resource = getClass().getResource("Main.fxml");
         this.mainScreen = FXMLLoader.load(resource);
     }
 
     @FXML
     private void logInAction(ActionEvent event) {
-
-        ///try {
-        //Dit is test code die niet werkt.
-        //anchorr.getChildren().
-        CorendonBagageSysteem.setRoot(this.mainScreen);
-        AnchorPane.setBottomAnchor(this.mainScreen, 0.0);
-        AnchorPane.setLeftAnchor(this.mainScreen, 0.0);
-        AnchorPane.setRightAnchor(this.mainScreen, 0.0);
-        AnchorPane.setTopAnchor(this.mainScreen, 0.0);
-        //} catch (IOException ex) {
-        // Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
-        ///}
+        CorendonBagageSysteem.setRoot(mainScreen);
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-
+    
 }
