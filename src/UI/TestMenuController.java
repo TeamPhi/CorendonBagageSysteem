@@ -34,8 +34,8 @@ public class TestMenuController implements Initializable {
     
     public TestMenuController() throws IOException{
         //Loading scenes in memmory
-        this.scene1 = FXMLLoader.load(getClass().getResource("AddLuggage.fxml"));
-        this.scene2 = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        this.scene1 = FXMLLoader.load(getClass().getResource("testScene1.fxml"));
+        this.scene2 = FXMLLoader.load(getClass().getResource("testScene2.fxml"));
     }
     
     

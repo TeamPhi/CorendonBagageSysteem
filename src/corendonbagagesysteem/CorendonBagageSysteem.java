@@ -18,16 +18,21 @@ public class CorendonBagageSysteem extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
        
-        //Parent root = FXMLLoader.load(getClass().getResource("/ui/TestMenu.fxml"));
-        AnchorPane root2 = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ui/Main.fxml"));
+        
+        //WEET NIET WAT HET PLAN WAS MAAR DE CODE HIER ONDER ZORGT VOOR ERRORS
+        
+        //AnchorPane root2 = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
         //Needs to be constructed/initzialized first.
-        anchorRoot = new AnchorPane();
-        anchorRoot.getChildren().add(root2);
-        AnchorPane.setBottomAnchor(root2, 0.0);
-        AnchorPane.setLeftAnchor(root2, 0.0);
-        AnchorPane.setRightAnchor(root2, 0.0);
-        AnchorPane.setTopAnchor(root2, 0.0);
-        Scene scene = new Scene(anchorRoot);
+        //anchorRoot = new AnchorPane();
+        //anchorRoot.getChildren().add(root2);
+        //AnchorPane.setBottomAnchor(root2, 0.0);
+        //AnchorPane.setLeftAnchor(root2, 0.0);
+        //AnchorPane.setRightAnchor(root2, 0.0);
+        //AnchorPane.setTopAnchor(root2, 0.0);
+        
+        
+        Scene scene = new Scene(root);
         primaryStage.setTitle("Corendon Bagage Systeem");
         primaryStage.setScene(scene);
         primaryStage.show();

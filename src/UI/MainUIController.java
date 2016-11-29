@@ -34,13 +34,16 @@ public class MainUIController implements Initializable{
     
     public MainUIController() throws IOException {
         System.out.println("LOADING MAIN UI CONTROLLER");
+        System.out.println(getClass().getResource("NavigationBar.fxml"));
         
-        this.navigationBar = FXMLLoader.load(getClass().getResource("NavigationBar.fxml"));
-        this.paneNavigation.getChildren().setAll(navigationBar);
-        this.paneHome = FXMLLoader.load(getClass().getResource("Home.fxml"));
-        this.paneContent.getChildren().setAll(paneHome);
-        this.languagebox = FXMLLoader.load(getClass().getResource("LanguageBox.fxml"));
-        this.paneHeader.getChildren().setAll(languagebox);
+        //WEET NIET WAT HET PLAN WAS MAAR DE CODE HIER ONDER ZORGT VOOR ERRORS
+        
+        //this.navigationBar = FXMLLoader.load(getClass().getResource("NavigationBar.fxml"));
+        //this.paneNavigation.getChildren().setAll(navigationBar);
+        //this.paneHome = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        //this.paneContent.getChildren().setAll(paneHome);
+        //this.languagebox = FXMLLoader.load(getClass().getResource("LanguageBox.fxml"));
+        //this.paneHeader.getChildren().setAll(languagebox);
         
     }
     
