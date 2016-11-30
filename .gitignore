@@ -44,3 +44,4 @@ src/UI/AccountManagerEdit.fxml
 >>>>>>> origin/master
 !/src/UI/AddFoundLuggageController.java
 !/src/ui/LanguageBarController.java
+!/src/backend/UIClass.java

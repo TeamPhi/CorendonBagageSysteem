@@ -1,5 +1,6 @@
 package corendonbagagesysteem;
 
+import backend.UIClass;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -48,9 +49,6 @@ public class CorendonBagageSysteem extends Application {
     public static void setRoot(Node e){
         root.getChildren().clear();
         root.getChildren().add(e);
-        root.setBottomAnchor(e, 0.0);
-        root.setLeftAnchor(e, 0.0);
-        root.setRightAnchor(e, 0.0);
-        root.setTopAnchor(e, 0.0);
+        UIClass.setAnchorDistance(e, 0.0);
     }
 }

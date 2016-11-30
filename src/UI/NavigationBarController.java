@@ -1,9 +1,13 @@
 package ui;
 
+import backend.UIClass;
+import corendonbagagesysteem.CorendonBagageSysteem;
 import ui.MainUIController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,10 +25,13 @@ import javafx.scene.layout.BorderPane;
 public class NavigationBarController implements Initializable {
     
     private Node luggageList;
+    private Node luggageForm;
     private Node accountManager;
+    private Node accountManagerEdit;
     private Node statistics;
     private Node home;
     private Node claims;
+    private Node logInScreen;
     
     @FXML
     private Button buttonHome;
@@ -46,29 +53,24 @@ public class NavigationBarController implements Initializable {
     public NavigationBarController() throws IOException{
         //load the Luggage List and set the anchorproperties for proper resize.
         this.luggageList = FXMLLoader.load(getClass().getResource("LuggageList.fxml"));
-        AnchorPane.setBottomAnchor(this.luggageList, 0.0);
-        AnchorPane.setLeftAnchor(this.luggageList, 0.0);
-        AnchorPane.setRightAnchor(this.luggageList, 0.0);
-        AnchorPane.setTopAnchor(this.luggageList, 0.0);
+        UIClass.setAnchorDistance(this.luggageList, 0.0);
+        //load the Add Luggage Form and set the anchorproperties for proper resize.
+        this.luggageForm = FXMLLoader.load(getClass().getResource("AddFoundLuggage.fxml"));
+        UIClass.setAnchorDistance(this.luggageForm, 0.0);
         //load the Account Manager screen and set the anchorproperties for proper resize.
         this.accountManager = FXMLLoader.load(getClass().getResource("AccountManager.fxml"));
-        AnchorPane.setBottomAnchor(this.accountManager, 0.0);
-        AnchorPane.setLeftAnchor(this.accountManager, 0.0);
-        AnchorPane.setRightAnchor(this.accountManager, 0.0);
-        AnchorPane.setTopAnchor(this.accountManager, 0.0);
+        UIClass.setAnchorDistance(this.accountManager, 0.0);
+        //load the Account editor and set the anchorproperties for proper resize.
+        this.accountManagerEdit = FXMLLoader.load(getClass().getResource("AccountManagerEdit.fxml"));
+        
         //load the Home screen and set the anchorproperties for proper resize.
         this.home = FXMLLoader.load(getClass().getResource("Home.fxml"));
-        AnchorPane.setBottomAnchor(this.home, 0.0);
-        AnchorPane.setLeftAnchor(this.home, 0.0);
-        AnchorPane.setRightAnchor(this.home, 0.0);
-        AnchorPane.setTopAnchor(this.home, 0.0);
+        UIClass.setAnchorDistance(this.home, 0.0);
         //load the Statistics screen and set the anchorproperties for proper resize.
         this.statistics = FXMLLoader.load(getClass().getResource("Statistics.fxml"));
-        AnchorPane.setBottomAnchor(this.statistics, 0.0);
-        AnchorPane.setLeftAnchor(this.statistics, 0.0);
-        AnchorPane.setRightAnchor(this.statistics, 0.0);
-        AnchorPane.setTopAnchor(this.statistics, 0.0);
-
+        UIClass.setAnchorDistance(this.statistics, 0.0);
+        //load the Login screen and set the anchorproperties for proper resize.
+        //this.logInScreen = FXMLLoader.load(getClass().getResource("logInScreen.fxml"));
     }
     
     /**
@@ -106,7 +108,7 @@ public class NavigationBarController implements Initializable {
 
     @FXML
     private void logOutButtonClicked(ActionEvent event) {
-        
+        //CorendonBagageSysteem.setRoot(this.logInScreen);
     }
     
 }
