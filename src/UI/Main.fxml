@@ -11,13 +11,13 @@
 
 <SplitPane dividerPositions="0.1806020066889632" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainUIController">
    <items>
-      <AnchorPane styleClass="navigationBar" fx:id="paneNavigation" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="0.0" minWidth="-Infinity" prefHeight="398.0" prefWidth="200.0" />
+      <AnchorPane fx:id="paneNavigation" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="0.0" minWidth="-Infinity" styleClass="navigationBar" />
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
             <SplitPane dividerPositions="0.096" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <items>
                   <AnchorPane fx:id="paneHeader" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="0.0" prefHeight="40.0" />
-                  <AnchorPane fx:id="paneContent" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="paneContent" />
                </items>
             </SplitPane>
          </children>

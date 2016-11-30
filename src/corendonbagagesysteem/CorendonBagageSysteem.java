@@ -24,7 +24,6 @@ public class CorendonBagageSysteem extends Application {
         //root.getChildren().add(startScreen);
         setRoot(startScreen);
         
-        
         Scene scene = new Scene(root);
         
         scene.getStylesheets().add("/css/style.css");
@@ -43,7 +42,7 @@ public class CorendonBagageSysteem extends Application {
     }
     /**
      * Change the screen by removing all nodes attached to anchorRoot and placing
-     * the passed Node onto it.
+     * the passed Node onto it. In addition, the node is anchored to the edges of the rootpane.
      * @param e The screen or elements you want to display on the screen.
      */
     public static void setRoot(Node e){

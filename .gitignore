@@ -43,3 +43,4 @@ src/UI/AccountManagerEdit.fxml
 !/src/backend/StatusEnum.java
 >>>>>>> origin/master
 !/src/UI/AddFoundLuggageController.java
+!/src/ui/LanguageBarController.java

@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
  */
 public class MainUIController implements Initializable{
     private VBox navigationBar;
-    private HBox languagebox;
+    private HBox languageBar;
     
     private static AnchorPane contentBox;
         
@@ -30,13 +30,12 @@ public class MainUIController implements Initializable{
 
     @FXML
     private AnchorPane paneHeader;
-
     @FXML
     private AnchorPane paneNavigation;
     
     public MainUIController() throws IOException {
         this.navigationBar = FXMLLoader.load(getClass().getResource("NavigationBar.fxml"));
-
+        this.languageBar = FXMLLoader.load(getClass().getResource("LanguageBar.fxml"));
         
         //this.navigationBar = FXMLLoader.load(getClass().getResource("NavigationBar.fxml"));
         //this.paneNavigation.getChildren().setAll(navigationBar);
@@ -50,7 +49,9 @@ public class MainUIController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          this.paneNavigation.getChildren().setAll(this.navigationBar);
-         this.contentBox = this.paneContent;
+         this.paneHeader.getChildren().setAll(this.languageBar);
+         AnchorPane.setRightAnchor(this.languageBar, 0.0);
+         MainUIController.contentBox = this.paneContent;
     }  
     
     public static AnchorPane getContentBox(){
