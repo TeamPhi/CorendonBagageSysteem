@@ -4,7 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
 /**Provides extra methods for the User Interface
- *
+ * 
  * @author Elwin Slokker
  */
 public class UIClass {
