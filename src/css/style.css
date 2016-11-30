@@ -1,13 +1,17 @@
-.Pane{
-    -fx-background-color: #FFFFFF !important;
+.navigationBar{
+    -fx-background-color: #FFF !important;
 }
 
-.testbutton {
+.navigationBar Button {
    -fx-background-color: linear-gradient(#FFFFFF,  #FFFFFF);
    -fx-text-fill: #ED0C0C !important;
+   -fx-padding: 10px 25px;
+   -fx-font-size: 12px;
+   -fx-font-family: verdana;
+   -fx-font-weight: bold;
 }
 
-.testbutton:hover {
+.navigationBar Button:hover {
     -fx-background-color: linear-gradient(#F5F5F5,  #FFFFFF);
     -fx-text-fill: #C90404 !important;
 }

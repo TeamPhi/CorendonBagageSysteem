@@ -7,14 +7,26 @@ package ui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
  *
- * @author Oscar
+ * @author Atori
  */
 public class AccountManagerController implements Initializable {
+
+    @FXML
+    private Button accountManagementEditButton;
+    @FXML
+    private Button accountManagementAddButton;
+    @FXML
+    private TableView<?> accountTabel;
 
     /**
      * Initializes the controller class.
@@ -23,5 +35,17 @@ public class AccountManagerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void accountManagementEditAccount(ActionEvent event) {
+    }
+
+    @FXML
+    private void accountManagementAddButtonAction(MouseEvent event) {
+    }
+
+    @FXML
+    private void accountManagementAddAccount(ActionEvent event) {
+    }
     
 }

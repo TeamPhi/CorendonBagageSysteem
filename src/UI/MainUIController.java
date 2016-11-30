@@ -9,19 +9,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 /**
  *
  * @author Elwin Slokker
  */
 public class MainUIController implements Initializable{
-    private Button buttonTestNaam;
     private VBox navigationBar;
     private HBox languagebox;
-    private AnchorPane paneHome;
+    
+    private static AnchorPane contentBox;
         
     @FXML
     private AnchorPane paneContent;
@@ -33,10 +35,8 @@ public class MainUIController implements Initializable{
     private AnchorPane paneNavigation;
     
     public MainUIController() throws IOException {
-        System.out.println("LOADING MAIN UI CONTROLLER");
-        System.out.println(getClass().getResource("NavigationBar.fxml"));
-        
-        //WEET NIET WAT HET PLAN WAS MAAR DE CODE HIER ONDER ZORGT VOOR ERRORS
+        this.navigationBar = FXMLLoader.load(getClass().getResource("NavigationBar.fxml"));
+
         
         //this.navigationBar = FXMLLoader.load(getClass().getResource("NavigationBar.fxml"));
         //this.paneNavigation.getChildren().setAll(navigationBar);
@@ -49,6 +49,13 @@ public class MainUIController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }   
+         this.paneNavigation.getChildren().setAll(this.navigationBar);
+         this.contentBox = this.paneContent;
+    }  
+    
+    public static AnchorPane getContentBox(){
+        System.out.println(MainUIController.contentBox);
+        return MainUIController.contentBox;
+    }
+     
 }
