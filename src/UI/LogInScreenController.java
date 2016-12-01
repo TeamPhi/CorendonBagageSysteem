@@ -50,6 +50,7 @@ public class LogInScreenController implements Initializable {
     public LogInScreenController() throws IOException{
         URL resource = getClass().getResource("Main.fxml");
         this.mainScreen = FXMLLoader.load(resource);
+        //this.mainScreen = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
     }
 
     @FXML

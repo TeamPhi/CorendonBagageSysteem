@@ -45,7 +45,7 @@ public class NavigationBarController implements Initializable {
     private Button buttonAccountManager;
     @FXML
     private Button buttonSignOut;
-    /**This constructor is only called by the FX thread and no instance of this controller 
+    /**This constructor is only called by the FX thread and no other instance of this controller 
      * should be created.
      * 
      * @throws IOException 
@@ -54,21 +54,26 @@ public class NavigationBarController implements Initializable {
         //load the Luggage List and set the anchorproperties for proper resize.
         this.luggageList = FXMLLoader.load(getClass().getResource("LuggageList.fxml"));
         UIClass.setAnchorDistance(this.luggageList, 0.0);
+        
         //load the Add Luggage Form and set the anchorproperties for proper resize.
         this.luggageForm = FXMLLoader.load(getClass().getResource("AddFoundLuggage.fxml"));
         UIClass.setAnchorDistance(this.luggageForm, 0.0);
+        
         //load the Account Manager screen and set the anchorproperties for proper resize.
         this.accountManager = FXMLLoader.load(getClass().getResource("AccountManager.fxml"));
         UIClass.setAnchorDistance(this.accountManager, 0.0);
+        
         //load the Account editor and set the anchorproperties for proper resize.
         this.accountManagerEdit = FXMLLoader.load(getClass().getResource("AccountManagerEdit.fxml"));
         
         //load the Home screen and set the anchorproperties for proper resize.
         this.home = FXMLLoader.load(getClass().getResource("Home.fxml"));
         UIClass.setAnchorDistance(this.home, 0.0);
+        
         //load the Statistics screen and set the anchorproperties for proper resize.
         this.statistics = FXMLLoader.load(getClass().getResource("Statistics.fxml"));
         UIClass.setAnchorDistance(this.statistics, 0.0);
+        
         //load the Login screen and set the anchorproperties for proper resize.
         //this.logInScreen = FXMLLoader.load(getClass().getResource("logInScreen.fxml"));
     }

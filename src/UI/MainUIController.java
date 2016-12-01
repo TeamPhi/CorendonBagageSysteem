@@ -27,7 +27,6 @@ public class MainUIController implements Initializable{
         
     @FXML
     private AnchorPane paneContent;
-
     @FXML
     private AnchorPane paneHeader;
     @FXML
@@ -36,12 +35,10 @@ public class MainUIController implements Initializable{
     public MainUIController() throws IOException {
         this.navigationBar = FXMLLoader.load(getClass().getResource("NavigationBar.fxml"));
         this.languageBar = FXMLLoader.load(getClass().getResource("LanguageBar.fxml"));
-        
-        //this.navigationBar = FXMLLoader.load(getClass().getResource("NavigationBar.fxml"));
+        this.paneContent = FXMLLoader.load(getClass().getResource("Home.fxml"));
         //this.paneNavigation.getChildren().setAll(navigationBar);
         //this.paneHome = FXMLLoader.load(getClass().getResource("Home.fxml"));
         //this.paneContent.getChildren().setAll(paneHome);
-        //this.languagebox = FXMLLoader.load(getClass().getResource("LanguageBox.fxml"));
         //this.paneHeader.getChildren().setAll(languagebox);
         
     }
@@ -55,7 +52,7 @@ public class MainUIController implements Initializable{
     }  
     
     public static AnchorPane getContentBox(){
-        System.out.println(MainUIController.contentBox);
+        //System.out.println(MainUIController.contentBox);
         return MainUIController.contentBox;
     }
      
