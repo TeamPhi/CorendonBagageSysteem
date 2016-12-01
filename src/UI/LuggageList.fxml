@@ -7,102 +7,97 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane prefHeight="400.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LuggageListController">
-   <center>
-      <TabPane prefHeight="502.0" prefWidth="1244.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-         <tabs>
-            <Tab text="Gevonden">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
-                     <children>
-                        <TextField layoutX="14.0" layoutY="14.0" />
-                        <Button layoutX="174.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
-                        <Text layoutX="300.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
-                        <Text layoutX="439.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
-                        <Text layoutX="561.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
-                        <Text layoutX="684.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wijzigen" />
-                        <Text layoutX="803.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toevoegen" />
-                        <TableView layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
-                           <columns>
-                              <TableColumn prefWidth="98.0" text="Labelnummer" />
-                              <TableColumn prefWidth="99.0" text="Luchthaven" />
-                              <TableColumn prefWidth="99.0" text="Vluchtnummer" />
-                              <TableColumn prefWidth="99.0" text="Bestemming" />
-                              <TableColumn prefWidth="99.0" text="Type" />
-                              <TableColumn prefWidth="99.0" text="Merk" />
-                              <TableColumn prefWidth="99.0" text="Kleur" />
-                              <TableColumn prefWidth="99.0" text="Datum" />
-                              <TableColumn prefWidth="109.0" text="Status" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="Vermist">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
-                     <children>
-                        <TextField layoutX="14.0" layoutY="14.0" />
-                        <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
-                        <Text layoutX="300.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
-                        <Text layoutX="439.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
-                        <Text layoutX="561.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
-                        <Text layoutX="684.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wijzigen" />
-                        <Text layoutX="803.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toevoegen" />
-                        <TableView layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
-                           <columns>
-                              <TableColumn prefWidth="98.0" text="Labelnummer" />
-                              <TableColumn prefWidth="99.0" text="Luchthaven" />
-                              <TableColumn prefWidth="99.0" text="Vluchtnummer" />
-                              <TableColumn prefWidth="99.0" text="Bestemming" />
-                              <TableColumn prefWidth="99.0" text="Type" />
-                              <TableColumn prefWidth="99.0" text="Merk" />
-                              <TableColumn prefWidth="99.0" text="Kleur" />
-                              <TableColumn prefWidth="99.0" text="Datum" />
-                              <TableColumn prefWidth="109.0" text="Status" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="Matches">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
-                     <children>
-                        <TextField layoutX="14.0" layoutY="14.0" />
-                        <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
-                        <Text layoutX="710.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
-                        <Text layoutX="849.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
-                        <Text layoutX="971.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
-                        <Text layoutX="1094.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DHL formulier versturen" />
-                        <TableView layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
-                           <columns>
-                              <TableColumn prefWidth="98.0" text="Labelnummer" />
-                              <TableColumn prefWidth="99.0" text="Luchthaven" />
-                              <TableColumn prefWidth="99.0" text="Vluchtnummer" />
-                              <TableColumn prefWidth="99.0" text="Bestemming" />
-                              <TableColumn prefWidth="99.0" text="Datum" />
-                              <TableColumn prefWidth="99.0" text="Status" />
-                           </columns>
-                        </TableView>
-                        <TableView layoutX="633.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
-                           <columns>
-                              <TableColumn prefWidth="98.0" text="Labelnummer" />
-                              <TableColumn prefWidth="99.0" text="Luchthaven" />
-                              <TableColumn prefWidth="99.0" text="Vluchtnummer" />
-                              <TableColumn prefWidth="99.0" text="Bestemming" />
-                              <TableColumn prefWidth="99.0" text="Datum" />
-                              <TableColumn prefWidth="99.0" text="Status" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-         </tabs>
-      </TabPane>
-   </center>
-</BorderPane>
+<TabPane prefHeight="502.0" prefWidth="1244.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.LuggageListController">
+   <tabs>
+      <Tab fx:id="tabFound" text="Gevonden">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
+               <children>
+                  <TextField layoutX="14.0" layoutY="14.0" />
+                  <Button layoutX="174.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
+                  <Text layoutX="300.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
+                  <Text layoutX="439.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
+                  <Text layoutX="561.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
+                  <Text layoutX="684.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wijzigen" />
+                  <Text layoutX="803.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toevoegen" />
+                  <TableView fx:id="tableFoundLuggage" layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
+                     <columns>
+                        <TableColumn fx:id="columnFoundLabelnumber" prefWidth="98.0" text="Labelnummer" />
+                        <TableColumn fx:id="columnFoundAirport" prefWidth="99.0" text="Luchthaven" />
+                        <TableColumn fx:id="columnFoundFlightnumber" prefWidth="99.0" text="Vluchtnummer" />
+                        <TableColumn fx:id="columnFoundDestination" prefWidth="99.0" text="Bestemming" />
+                        <TableColumn fx:id="columnFoundType" prefWidth="99.0" text="Type" />
+                        <TableColumn fx:id="columnFoundBrand" prefWidth="99.0" text="Merk" />
+                        <TableColumn fx:id="columnFoundColor" prefWidth="99.0" text="Kleur" />
+                        <TableColumn fx:id="columnFoundDate" prefWidth="99.0" text="Datum" />
+                        <TableColumn fx:id="columnFoundStatus" prefWidth="109.0" text="Status" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab fx:id="tabLost" text="Vermist">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
+               <children>
+                  <TextField layoutX="14.0" layoutY="14.0" />
+                  <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
+                  <Text layoutX="300.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
+                  <Text layoutX="439.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
+                  <Text layoutX="561.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
+                  <Text layoutX="684.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wijzigen" />
+                  <Text layoutX="803.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toevoegen" />
+                  <TableView fx:id="tableLostLuggage" layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
+                     <columns>
+                        <TableColumn fx:id="columnLostLabelnumber" prefWidth="98.0" text="Labelnummer" />
+                        <TableColumn fx:id="columnLostAirport" prefWidth="99.0" text="Luchthaven" />
+                        <TableColumn fx:id="columnLostFlightnumber" prefWidth="99.0" text="Vluchtnummer" />
+                        <TableColumn fx:id="columnLostDestination" prefWidth="99.0" text="Bestemming" />
+                        <TableColumn fx:id="columnLostType" prefWidth="99.0" text="Type" />
+                        <TableColumn fx:id="columnLostBrand" prefWidth="99.0" text="Merk" />
+                        <TableColumn fx:id="columnLostColor" prefWidth="99.0" text="Kleur" />
+                        <TableColumn fx:id="columnLostDate" prefWidth="99.0" text="Datum" />
+                        <TableColumn fx:id="columnLostStatus" prefWidth="109.0" text="Status" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab fx:id="tabMatches" text="Matches">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
+               <children>
+                  <TextField layoutX="14.0" layoutY="14.0" />
+                  <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
+                  <Text layoutX="710.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
+                  <Text layoutX="849.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
+                  <Text layoutX="971.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
+                  <Text layoutX="1094.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DHL formulier versturen" />
+                  <TableView layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
+                     <columns>
+                        <TableColumn prefWidth="98.0" text="Labelnummer" />
+                        <TableColumn prefWidth="99.0" text="Luchthaven" />
+                        <TableColumn prefWidth="99.0" text="Vluchtnummer" />
+                        <TableColumn prefWidth="99.0" text="Bestemming" />
+                        <TableColumn prefWidth="99.0" text="Datum" />
+                        <TableColumn prefWidth="99.0" text="Status" />
+                     </columns>
+                  </TableView>
+                  <TableView layoutX="633.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
+                     <columns>
+                        <TableColumn prefWidth="98.0" text="Labelnummer" />
+                        <TableColumn prefWidth="99.0" text="Luchthaven" />
+                        <TableColumn prefWidth="99.0" text="Vluchtnummer" />
+                        <TableColumn prefWidth="99.0" text="Bestemming" />
+                        <TableColumn prefWidth="99.0" text="Datum" />
+                        <TableColumn prefWidth="99.0" text="Status" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>

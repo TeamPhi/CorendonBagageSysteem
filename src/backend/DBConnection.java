@@ -22,7 +22,7 @@ public class DBConnection {
             System.out.println("Connection success");
             return conn;
 
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
             return null;
 
