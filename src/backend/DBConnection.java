@@ -12,8 +12,11 @@ public class DBConnection {
     private static String url = "dbc:mysql://localhost:3306/<database>";//Location of database
     private static String user = "root";//Username of database  
     private static String pass = "password";//Password of database 
-
-    public static Connection ConnectDb() {
+    /**
+     * 
+     * @return A connection object which can be used to reach the database.
+     */
+    public static Connection connectDb() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -27,7 +30,6 @@ public class DBConnection {
             return null;
 
         }
-
     }
 
 }

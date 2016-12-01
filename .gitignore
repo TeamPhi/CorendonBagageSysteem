@@ -45,3 +45,5 @@ src/UI/AccountManagerEdit.fxml
 !/src/UI/AddFoundLuggageController.java
 !/src/ui/LanguageBarController.java
 !/src/backend/UIClass.java
+!/src/ui/test/TestMenuController.java
+!/src/ui/I18N.java

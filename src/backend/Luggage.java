@@ -9,13 +9,14 @@ import java.util.Date;
 public abstract class Luggage {
     protected String labelNumber;
     protected String flightnumber;
+    protected String registeredAirport;//The airport where the luggage was found, or reported missing.
     protected String destination;
     protected LuggageEnum kind;
     protected String colour;
     protected Date date;
     protected StatusEnum status;
     protected String picture;
-    
+    protected char[] features = new char[500];//500 is the maximum amount of characters that fit in the database field.
     Luggage(){
        
     }
