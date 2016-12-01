@@ -1,7 +1,7 @@
 package ui;
 
 /**
- *
+ * 
  * @author Elwin Slokker
  */
 import javafx.beans.binding.Bindings;
