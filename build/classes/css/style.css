@@ -1,0 +1,42 @@
+.navigationBar{
+    -fx-background-color: #FFF !important;
+}
+
+.navigationBar Button {
+   -fx-background-color: linear-gradient(#FFFFFF,  #FFFFFF);
+   -fx-text-fill: #ED0C0C !important;
+   -fx-padding: 10px 25px;
+   -fx-font-size: 12px;
+   -fx-font-family: verdana;
+   -fx-font-weight: bold;
+}
+
+.navigationBar Button:hover {
+    -fx-background-color: linear-gradient(#F5F5F5,  #FFFFFF);
+    -fx-text-fill: #C90404 !important;
+}
+
+/*
+.testbutton {
+  font-family: verdana;
+  font-weight: bold;
+  color: #ED0C0C !important;
+  font-size: 15px;
+  text-shadow: 1px 1px 0px #7CACDE;
+  box-shadow: 1px 1px 1px #BEE2F9;
+  padding: 10px 25px;
+  background: #63B8EE;
+  background: linear-gradient(top,  #FFFFFF,  #F5F5F5);
+  background: -fx-linear-gradient(top,  #FFFFFF,  #F5F5F5);
+  background: -fx-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F5F5F5));
+  background: -fx-linear-gradient(top,  #FFFFFF,  #F5F5F5);
+}
+.testbutton:hover {
+  color: #C90404 !important;
+  background: #468CCF;
+  background: linear-gradient(top,  #FCFCFC,  #FFFFFF);
+  background: -fx-linear-gradient(top,  #FCFCFC,  #FFFFFF);
+  background: -fx-gradient(linear, left top, left bottom, from(#FCFCFC), to(#FFFFFF));
+  background: -fx-linear-gradient(top,  #FCFCFC,  #FFFFFF);
+}
+*/

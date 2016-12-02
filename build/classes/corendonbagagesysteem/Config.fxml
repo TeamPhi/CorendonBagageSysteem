@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="36.0" layoutY="102.0" prefHeight="16.0" prefWidth="133.0" text="Gevonden bagage">
+         <font>
+            <Font name="Arial Narrow Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="61.0" prefHeight="20.0" prefWidth="172.0" text="Maximale opslagtijd in dagen">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="41.0" prefHeight="20.0" prefWidth="165.0" text="Vermiste bagage">
+         <font>
+            <Font name="Arial Narrow Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="118.0" prefHeight="20.0" prefWidth="181.0" text="Maximale opslagtijd in dagen" />
+      <Label layoutX="36.0" layoutY="155.0" prefHeight="16.0" prefWidth="133.0" text="Statistieken">
+         <font>
+            <Font name="Arial Narrow Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="36.0" layoutY="178.0" prefHeight="16.0" prefWidth="197.0" text="Maximale opslagtijd in maanden" />
+      <Label layoutX="357.0" layoutY="53.0" prefHeight="16.0" prefWidth="250.0" text="(leeg veld voor geen maximale opslagtijd)" />
+      <Label layoutX="357.0" layoutY="114.0" prefHeight="16.0" prefWidth="250.0" text="(leeg veld voor geen maximale opslagtijd)" />
+      <Label layoutX="357.0" layoutY="171.0" text="(leeg veld voor geen maximale opslagtijd)" />
+      <Button layoutX="530.0" layoutY="232.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="opslaan" />
+      <Label layoutX="260.0" layoutY="53.0" prefHeight="16.0" prefWidth="45.0" text="365" />
+      <Label layoutX="260.0" layoutY="114.0" text="365" />
+      <Label layoutX="260.0" layoutY="168.0" prefHeight="16.0" prefWidth="22.0" text="72" />
+   </children>
+</Pane>

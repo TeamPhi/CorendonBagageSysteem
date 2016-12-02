@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.test.TestMenuController">
+   <left>
+      <AnchorPane prefHeight="379.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+             <!-- onAction="#foo" triggers an event in the Controller. onAction triggers the most likely event of the node, which is a click event for buttons. -->
+            <Button layoutX="14.0" layoutY="2.0" mnemonicParsing="false" onAction="#goScene1" text="scene 1" />
+            <Button layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#goScene2" text="scene 2" />
+         </children>
+      </AnchorPane>
+   </left>
+   <top>
+      <AnchorPane prefHeight="34.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <!-- This scene (AnchorPane) will be replaced with the desired scene decided by the Navigation Controller -->
+      <AnchorPane fx:id="sceneContent" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

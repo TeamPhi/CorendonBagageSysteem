@@ -56,8 +56,8 @@ public class NavigationBarController implements Initializable {
         UIClass.setAnchorDistance(this.luggageList, 0.0);
         
         //load the Add Luggage Form and set the anchorproperties for proper resize.
-        this.luggageForm = FXMLLoader.load(getClass().getResource("AddFoundLuggage.fxml"));
-        UIClass.setAnchorDistance(this.luggageForm, 0.0);
+        //this.luggageForm = FXMLLoader.load(getClass().getResource("AddFoundLuggage.fxml"));
+        //UIClass.setAnchorDistance(this.luggageForm, 0.0);
         
         //load the Account Manager screen and set the anchorproperties for proper resize.
         this.accountManager = FXMLLoader.load(getClass().getResource("AccountManager.fxml"));

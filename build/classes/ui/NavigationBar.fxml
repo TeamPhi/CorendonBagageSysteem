@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="200.0" styleClass="navigationBar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.NavigationBarController">
+   <children>
+      <ImageView fitHeight="40.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="false">
+        <image>
+           <Image url="/resource/corendon_logo.jpg" />
+        </image>
+      </ImageView>
+      <Button fx:id="buttonHome" mnemonicParsing="false" onAction="#homeButtonClicked" prefHeight="40.0" prefWidth="200.0" text="buttonHome" />
+      <Button fx:id="buttonLuggageOverview" mnemonicParsing="false" onAction="#luggageOverviewButtonClicked" prefHeight="40.0" prefWidth="200.0" text="buttonLuggageOverview" />
+      <Button fx:id="buttonClaims" mnemonicParsing="false" onAction="#claimsButtonClicked" prefHeight="40.0" prefWidth="200.0" text="buttonClaims" />
+      <Button fx:id="buttonStatistics" mnemonicParsing="false" onAction="#statisticsButtonClicked" prefHeight="40.0" prefWidth="200.0" text="buttonStatistics" />
+      <Button fx:id="buttonAccountManager" mnemonicParsing="false" onAction="#accountmanagementButtonClicked" prefHeight="40.0" prefWidth="200.0" text="buttonAccountManager" />
+      <Button fx:id="buttonSignOut" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="40.0" prefWidth="200.0" text="signOutButton" />
+   </children>
+</VBox>
