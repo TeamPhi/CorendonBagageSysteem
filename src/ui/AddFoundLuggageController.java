@@ -63,6 +63,7 @@ public class AddFoundLuggageController {
 
     @FXML
     void delete(ActionEvent event) {
+        System.out.println("delete");
 
     }
 
