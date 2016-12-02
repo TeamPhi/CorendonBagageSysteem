@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
@@ -27,13 +28,34 @@ public class AccountManagerController implements Initializable {
     private Button accountManagementAddButton;
     @FXML
     private TableView<?> accountTabel;
-
+    @FXML
+    private TableColumn columnUsername;
+    @FXML
+    private TableColumn columnPassword;
+    @FXML
+    private TableColumn columnPriveleges;
+    @FXML
+    private TableColumn columnName;
+    @FXML
+    private TableColumn columnSurname;
+    @FXML
+    private TableColumn columnEmail;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //System.out.println(this.columnUsername.getText());
+        /*
+        I18N.bindTableText(this.columnUsername.getText(), this.columnUsername, (Object[]) null);
+        I18N.bindTableText(this.columnPassword.getText(), this.columnPassword, (Object[]) null);
+        I18N.bindTableText(this.columnPriveleges.getText(), this.columnPriveleges, (Object[]) null);
+        I18N.bindTableText(this.columnName.getText(), this.columnUsername, (Object[]) null);
+        I18N.bindTableText(this.columnSurname.getText(), this.columnUsername, (Object[]) null);
+        I18N.bindTableText(this.columnEmail.getText(), this.columnEmail, (Object[]) null);
+        */
+        //I18N.bindText(this.accountManagementEditButton.getText(), this.accountManagementEditButton, (Object[]) null);
     }    
 
     @FXML

@@ -15,11 +15,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -30,6 +29,10 @@ public class LogInScreenController implements Initializable {
 
     @FXML
     private AnchorPane AnchorPane;
+    @FXML
+    private Label labelUsername;
+    @FXML
+    private Label labelPassword;
     @FXML
     private PasswordField passwordFieldPassword;
     @FXML
@@ -44,7 +47,9 @@ public class LogInScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        I18N.bindText(this.labelUsername.getText(), this.labelUsername, (Object[]) null);
+        I18N.bindText(this.labelPassword.getText(), this.labelPassword, (Object[]) null);
+        I18N.bindText(this.buttonInloggen.getText(), this.buttonInloggen, (Object[]) null);
     }    
     
     public LogInScreenController() throws IOException{

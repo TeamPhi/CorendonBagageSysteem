@@ -10,7 +10,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +18,8 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumnBase;
 
 /**
  * I18N utility class.
@@ -39,7 +40,7 @@ public final class I18N {
      * @return List of Locale objects.
      */
     public static List<Locale> getSupportedLocales() {
-        return new ArrayList<>(Arrays.asList(Locale.ENGLISH, Locale.GERMAN));
+        return new ArrayList<>(Arrays.asList(Locale.ENGLISH, new Locale("nl","NL"), new Locale("tr","TR")));
     }
 
     /**
@@ -76,7 +77,7 @@ public final class I18N {
      * @return localized formatted string
      */
     public static String get(final String key, final Object... args) {
-        ResourceBundle bundle = ResourceBundle.getBundle("resources.LanguageBundle", getLocale());
+        ResourceBundle bundle = ResourceBundle.getBundle("resource.LanguageBundle", getLocale());
         return MessageFormat.format(bundle.getString(key), args);
     }
 
@@ -134,6 +135,7 @@ public final class I18N {
      *
      * @param key
      *         ResourceBundle key
+     * @param e Labeled element/control.
      * @param args
      *         optional arguments for the message
      * 
@@ -142,5 +144,15 @@ public final class I18N {
         //Button button = new Button();
         e.textProperty().bind(createStringBinding(key, args));
         //return button;
+    }
+
+    /**
+     *
+     * @param key
+     * @param t
+     * @param args
+     */
+    public static void bindTableText(final String key, TableColumn t, final Object... args) {
+        t.textProperty().bind(createStringBinding(key, args));
     }
 }

@@ -18,7 +18,7 @@ public abstract class Luggage {
     protected String picture;
     protected char[] features = new char[500];//500 is the maximum amount of characters that fit in the database field.
     Luggage(){
-       
+       //empty constructor; this class should not be made.
     }
     /**
      * 

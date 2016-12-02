@@ -11,22 +11,30 @@
    <children>
       <AnchorPane>
          <children>
-            <ImageView fitHeight="63.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="63.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/resource/englishflag.png" />
+               </image></ImageView>
             <Button fx:id="buttonEnglish" mnemonicParsing="false" onAction="#changeLanguageEnglish" opacity="0.0" prefHeight="63.0" prefWidth="65.0" text="Button" />
          </children>
       </AnchorPane>
       <AnchorPane>
          <children>
-            <ImageView fitHeight="63.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="63.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/resource/dutchflag.png" />
+               </image></ImageView>
             <Button fx:id="buttonDutch" mnemonicParsing="false" onAction="#changeLanguageDutch" opacity="0.0" prefHeight="63.0" prefWidth="65.0" text="Button" />
          </children>
       </AnchorPane>
       <AnchorPane>
          <children>
-            <ImageView fitHeight="63.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="63.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/resource/turkishflag.png" />
+               </image></ImageView>
             <Button fx:id="buttonTurkish" mnemonicParsing="false" onAction="#changeLanguageTurkish" opacity="0.0" prefHeight="63.0" prefWidth="65.0" text="Button" />
          </children>
       </AnchorPane>
-      <Button mnemonicParsing="false" text="Button" />
    </children>
 </HBox>

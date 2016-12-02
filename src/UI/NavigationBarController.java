@@ -83,7 +83,12 @@ public class NavigationBarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        I18N.bindText(this.buttonHome.getText(), this.buttonHome, (Object[]) null);
+        I18N.bindText(this.buttonLuggageOverview.getText(), this.buttonLuggageOverview, (Object[]) null);
+        I18N.bindText(this.buttonClaims.getText(), this.buttonClaims, (Object[]) null);
+        I18N.bindText(this.buttonStatistics.getText(), this.buttonStatistics, (Object[]) null);
+        I18N.bindText(this.buttonAccountManager.getText(), this.buttonAccountManager, (Object[]) null);
+        I18N.bindText(this.buttonSignOut.getText(), this.buttonSignOut, (Object[]) null); 
     }    
     
     @FXML
