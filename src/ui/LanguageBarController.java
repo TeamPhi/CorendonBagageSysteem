@@ -17,18 +17,18 @@ public class LanguageBarController {
     private Button buttonTurkish;
 
     @FXML
-    void changeLanguageEnglish(ActionEvent event) {
+    private void changeLanguageEnglish(ActionEvent event) {
             I18N.setLocale(new Locale("en","EN"));
             //I18N.setLocale(Locale.ENGLISH);
     }
 
     @FXML
-    void changeLanguageDutch(ActionEvent event) {
+    private void changeLanguageDutch(ActionEvent event) {
         I18N.setLocale(new Locale("nl","NL"));
     }
 
     @FXML
-    void changeLanguageTurkish(ActionEvent event) {
+    private void changeLanguageTurkish(ActionEvent event) {
         I18N.setLocale(new Locale("tr","TR"));
     }
 

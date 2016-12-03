@@ -16,7 +16,7 @@
                   <TableColumn fx:id="columnPassword" minWidth="100.0" prefWidth="100.0" text="password" />
                   <TableColumn fx:id="columnPriveleges" minWidth="100.0" prefWidth="100.0" text="privileges" />
                   <TableColumn fx:id="columnName" minWidth="100.0" prefWidth="100.0" text="workerName" />
-                  <TableColumn fx:id="colomnSurname" minWidth="100.0" prefWidth="100.0" text="workerSurname" />
+                  <TableColumn fx:id="columnSurname" minWidth="100.0" prefWidth="100.0" text="workerSurname" />
                   <TableColumn fx:id="columnEmail" minWidth="100.0" prefWidth="100.0" text="labelEmail" />
                </columns>
             </TableView>
@@ -27,7 +27,7 @@
       <AnchorPane prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="accountManagementEditButton" layoutX="509.0" layoutY="14.0" mnemonicParsing="false" onAction="#accountManagementEditAccount" text="buttonEdit" AnchorPane.rightAnchor="14.0" />
-            <Button id="AccountManagementAddButton" fx:id="accountManagementAddButton" layoutX="415.0" layoutY="14.0" mnemonicParsing="false" onAction="#accountManagementAddAccount" onMouseClicked="#accountManagementAddButtonAction" text="buttonAdd" AnchorPane.rightAnchor="90.0" />
+            <Button id="AccountManagementAddButton" fx:id="accountManagementAddButton" layoutX="415.0" layoutY="14.0" mnemonicParsing="false" onAction="#accountManagementAddAccount" text="buttonAdd" AnchorPane.rightAnchor="90.0" />
          </children>
       </AnchorPane>
    </top>

@@ -13,7 +13,7 @@
       <AnchorPane layoutX="600.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label layoutX="64.0" layoutY="173.0" text="labelRegistered" />
+            <Label fx:id="labelRegisteredLuggage" layoutX="64.0" layoutY="173.0" text="labelRegistered" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="600.0" prefHeight="200.0" prefWidth="200.0">
@@ -31,6 +31,6 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <Label layoutX="208.0" layoutY="34.0" text="labelStart" />
+      <Label fx:id="labelStartDate" layoutX="208.0" layoutY="34.0" text="labelStart" />
    </children>
 </AnchorPane>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import java.net.URL;
@@ -12,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -19,18 +15,25 @@ import javafx.scene.control.DatePicker;
  * @author Enes
  */
 public class StatisticsController implements Initializable {
-    
+    @FXML
+    private Label labelStartDate;
+    @FXML
+    private Label labelRegisteredLuggage;
     @FXML
     private LineChart graphRegisteredLuggage;
+    @FXML
     private DatePicker datumpicker;
+    @FXML
     private ComboBox comboBoxAlleLuchthavens;
+    @FXML
     private ComboBox comboBoxSelectedTime;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        I18N.bindText(this.labelStartDate.getText(), this.labelStartDate, (Object[]) null);
+        I18N.bindText(this.labelRegisteredLuggage.getText(), this.labelRegisteredLuggage, (Object[]) null);
     }    
     
 }

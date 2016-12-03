@@ -18,6 +18,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 import javafx.scene.control.Labeled;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumnBase;
 
@@ -130,8 +131,9 @@ public final class I18N {
         Button button = new Button();
         button.textProperty().bind(createStringBinding(key, args));
         return button;
-    }    /**
-     * creates a bound Button for the given resourcebundle key
+    }    
+    /**
+     * binds the labeled Node with the given resourcebundle key
      *
      * @param key
      *         ResourceBundle key
@@ -153,6 +155,15 @@ public final class I18N {
      * @param args
      */
     public static void bindTableText(final String key, TableColumn t, final Object... args) {
+        t.textProperty().bind(createStringBinding(key, args));
+    }
+    /**
+     *
+     * @param key
+     * @param t
+     * @param args
+     */
+    public static void bindTabText(final String key, Tab t, final Object... args) {
         t.textProperty().bind(createStringBinding(key, args));
     }
 }

@@ -1,9 +1,14 @@
+package ui;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class AddFoundLuggageController {
+public class AddFoundLuggageController implements Initializable{
  
     @FXML
     private TextField textFieldTime;
@@ -40,7 +45,14 @@ public class AddFoundLuggageController {
 
     @FXML
     private TextField textFieldTravellerName;
-
+    
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }  
     @FXML
     void sendDHL(ActionEvent event) {
 

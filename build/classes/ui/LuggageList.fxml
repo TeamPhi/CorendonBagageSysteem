@@ -9,92 +9,92 @@
 
 <TabPane prefHeight="502.0" prefWidth="1244.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LuggageListController">
    <tabs>
-      <Tab fx:id="tabFound" text="Gevonden">
+      <Tab fx:id="tabFound" text="foundTab">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
                <children>
-                  <TextField layoutX="14.0" layoutY="14.0" />
-                  <Button layoutX="174.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
-                  <Text layoutX="300.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
-                  <Text layoutX="439.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
-                  <Text layoutX="561.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
-                  <Text layoutX="684.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wijzigen" />
-                  <Text layoutX="803.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toevoegen" />
+                  <TextField layoutX="14.0" layoutY="10.0" />
+                  <Button fx:id="buttonFoundSearch" layoutX="173.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchFoundButtonClicked" text="buttonSearch" />
                   <TableView fx:id="tableFoundLuggage" layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
                      <columns>
-                        <TableColumn fx:id="columnFoundLabelnumber" prefWidth="98.0" text="Labelnummer" />
-                        <TableColumn fx:id="columnFoundAirport" prefWidth="99.0" text="Luchthaven" />
-                        <TableColumn fx:id="columnFoundFlightnumber" prefWidth="99.0" text="Vluchtnummer" />
-                        <TableColumn fx:id="columnFoundDestination" prefWidth="99.0" text="Bestemming" />
-                        <TableColumn fx:id="columnFoundType" prefWidth="99.0" text="Type" />
-                        <TableColumn fx:id="columnFoundBrand" prefWidth="99.0" text="Merk" />
-                        <TableColumn fx:id="columnFoundColor" prefWidth="99.0" text="Kleur" />
-                        <TableColumn fx:id="columnFoundDate" prefWidth="99.0" text="Datum" />
-                        <TableColumn fx:id="columnFoundStatus" prefWidth="109.0" text="Status" />
+                        <TableColumn fx:id="columnFoundLabelnumber" prefWidth="98.0" text="tableColumnLabel" />
+                        <TableColumn fx:id="columnFoundAirport" prefWidth="99.0" text="tableColumnAirport" />
+                        <TableColumn fx:id="columnFoundFlightnumber" prefWidth="99.0" text="tableColumnFlightnumber" />
+                        <TableColumn fx:id="columnFoundDestination" prefWidth="99.0" text="tableColumnDestination" />
+                        <TableColumn fx:id="columnFoundType" prefWidth="99.0" text="tableColumnKind" />
+                        <TableColumn fx:id="columnFoundBrand" prefWidth="99.0" text="tableColumnBrand" />
+                        <TableColumn fx:id="columnFoundColor" prefWidth="99.0" text="tableColumnColor" />
+                        <TableColumn fx:id="columnFoundDate" prefWidth="99.0" text="tableColumnDate" />
+                        <TableColumn fx:id="columnFoundStatus" prefWidth="109.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
+                  <Button fx:id="buttonFoundMatch" layoutX="316.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchFoundButtonClicked" text="buttonMatch" />
+                  <Button fx:id="buttonFoundEdit" layoutX="746.0" layoutY="10.0" mnemonicParsing="false" text="buttonEdit" />
+                  <Button fx:id="buttonFoundAdd" layoutX="870.0" layoutY="10.0" mnemonicParsing="false" text="buttonAdd" />
+                  <Button fx:id="buttonFoundImport" layoutX="598.0" layoutY="10.0" mnemonicParsing="false" onAction="#importFoundButtonClicked" text="buttonImport" />
+                  <Button fx:id="buttonFoundExport" layoutX="458.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportFoundButtonClicked" text="buttonExport" />
                </children>
             </AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="tabLost" text="Vermist">
+      <Tab fx:id="tabLost" text="missingTab">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
                <children>
-                  <TextField layoutX="14.0" layoutY="14.0" />
-                  <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
-                  <Text layoutX="300.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
-                  <Text layoutX="439.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
-                  <Text layoutX="561.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
-                  <Text layoutX="684.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wijzigen" />
-                  <Text layoutX="803.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Toevoegen" />
+                  <TextField layoutX="14.0" layoutY="10.0" />
+                  <Button fx:id="buttonLostSearch" layoutX="164.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchLostButtonClicked" text="buttonSearch" />
+                  <Button fx:id="buttonLostExport" layoutX="456.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportLostButtonClicked" text="buttonExport" />
+                  <Button fx:id="buttonLostImport" layoutX="599.0" layoutY="10.0" mnemonicParsing="false" onAction="#importLostButtonClicked" text="buttonImport" />
+                  <Button fx:id="buttonLostAdd" layoutX="877.0" layoutY="10.0" mnemonicParsing="false" onAction="#addLostButtonClicked" text="buttonAdd" />
+                  <Button fx:id="buttonLostEdit" layoutX="761.0" layoutY="10.0" mnemonicParsing="false" onAction="#ediLostButtonClicked" text="buttonEdit" />
+                  <Button fx:id="buttonLostMatch" layoutX="302.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchLostButtonClicked" text="buttonMatch" />
                   <TableView fx:id="tableLostLuggage" layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
                      <columns>
-                        <TableColumn fx:id="columnLostLabelnumber" prefWidth="98.0" text="Labelnummer" />
-                        <TableColumn fx:id="columnLostAirport" prefWidth="99.0" text="Luchthaven" />
-                        <TableColumn fx:id="columnLostFlightnumber" prefWidth="99.0" text="Vluchtnummer" />
-                        <TableColumn fx:id="columnLostDestination" prefWidth="99.0" text="Bestemming" />
-                        <TableColumn fx:id="columnLostType" prefWidth="99.0" text="Type" />
-                        <TableColumn fx:id="columnLostBrand" prefWidth="99.0" text="Merk" />
-                        <TableColumn fx:id="columnLostColor" prefWidth="99.0" text="Kleur" />
-                        <TableColumn fx:id="columnLostDate" prefWidth="99.0" text="Datum" />
-                        <TableColumn fx:id="columnLostStatus" prefWidth="109.0" text="Status" />
+                        <TableColumn fx:id="columnLostLabelnumber" prefWidth="98.0" text="tableColumnLabel" />
+                        <TableColumn fx:id="columnLostAirport" prefWidth="99.0" text="tableColumnAirport" />
+                        <TableColumn fx:id="columnLostFlightnumber" prefWidth="99.0" text="tableColumnFlightnumber" />
+                        <TableColumn fx:id="columnLostDestination" prefWidth="99.0" text="tableColumnDestination" />
+                        <TableColumn fx:id="columnLostType" prefWidth="99.0" text="tableColumnKind" />
+                        <TableColumn fx:id="columnLostBrand" prefWidth="99.0" text="tableColumnBrand" />
+                        <TableColumn fx:id="columnLostColor" prefWidth="99.0" text="tableColumnColor" />
+                        <TableColumn fx:id="columnLostDate" prefWidth="99.0" text="tableColumnDate" />
+                        <TableColumn fx:id="columnLostStatus" prefWidth="109.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
                </children>
             </AnchorPane>
          </content>
       </Tab>
-      <Tab fx:id="tabMatches" text="Matches">
+      <Tab fx:id="tabMatches" text="matchTab">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
                <children>
-                  <TextField layoutX="14.0" layoutY="14.0" />
-                  <Button layoutX="169.0" layoutY="14.0" mnemonicParsing="false" text="Zoeken" />
-                  <Text layoutX="710.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matches zoeken" />
-                  <Text layoutX="849.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exporteren" />
-                  <Text layoutX="971.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importeren" />
-                  <Text layoutX="1094.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DHL formulier versturen" />
+                  <TextField layoutX="14.0" layoutY="10.0" />
+                  <Button fx:id="buttonMatchSearch" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" text="buttonSearch" />
                   <TableView layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
                      <columns>
-                        <TableColumn prefWidth="98.0" text="Labelnummer" />
-                        <TableColumn prefWidth="99.0" text="Luchthaven" />
-                        <TableColumn prefWidth="99.0" text="Vluchtnummer" />
-                        <TableColumn prefWidth="99.0" text="Bestemming" />
-                        <TableColumn prefWidth="99.0" text="Datum" />
-                        <TableColumn prefWidth="99.0" text="Status" />
+                        <TableColumn prefWidth="98.0" text="tableColumnLabel" />
+                        <TableColumn prefWidth="99.0" text="tableColumnAirport" />
+                        <TableColumn prefWidth="99.0" text="tableColumnFlightnumber" />
+                        <TableColumn prefWidth="99.0" text="tableColumnDestination" />
+                        <TableColumn prefWidth="99.0" text="tableColumnDate" />
+                        <TableColumn prefWidth="99.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
                   <TableView layoutX="633.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
                      <columns>
-                        <TableColumn prefWidth="98.0" text="Labelnummer" />
-                        <TableColumn prefWidth="99.0" text="Luchthaven" />
-                        <TableColumn prefWidth="99.0" text="Vluchtnummer" />
-                        <TableColumn prefWidth="99.0" text="Bestemming" />
-                        <TableColumn prefWidth="99.0" text="Datum" />
-                        <TableColumn prefWidth="99.0" text="Status" />
+                        <TableColumn prefWidth="98.0" text="tableColumnLabel" />
+                        <TableColumn prefWidth="99.0" text="tableColumnAirport" />
+                        <TableColumn prefWidth="99.0" text="tableColumnFlightnumber" />
+                        <TableColumn prefWidth="99.0" text="tableColumnDestination" />
+                        <TableColumn prefWidth="99.0" text="tableColumnDate" />
+                        <TableColumn prefWidth="99.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
+                  <Button fx:id="buttonMatchMatch" layoutX="335.0" layoutY="10.0" mnemonicParsing="false" text="buttonMatch" />
+                  <Button fx:id="buttonMatchImport" layoutX="622.0" layoutY="10.0" mnemonicParsing="false" text="buttonImport" />
+                  <Button fx:id="buttonMatchExport" layoutX="480.0" layoutY="10.0" mnemonicParsing="false" text="buttonExport" />
+                  <Button fx:id="buttonMatchForm" layoutX="1001.0" layoutY="10.0" mnemonicParsing="false" text="buttonMakeDeliveryForm" />
                </children>
             </AnchorPane>
          </content>

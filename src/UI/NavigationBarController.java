@@ -6,8 +6,6 @@ import ui.MainUIController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +27,7 @@ public class NavigationBarController implements Initializable {
     private Node accountManager;
     private Node accountManagerEdit;
     private Node statistics;
+    private Node configuration;
     private Node home;
     private Node claims;
     private Node logInScreen;
@@ -43,6 +42,8 @@ public class NavigationBarController implements Initializable {
     private Button buttonStatistics;
     @FXML
     private Button buttonAccountManager;
+    @FXML
+    private Button buttonConfiguration;
     @FXML
     private Button buttonSignOut;
     /**This constructor is only called by the FX thread and no other instance of this controller 
@@ -73,6 +74,10 @@ public class NavigationBarController implements Initializable {
         //load the Statistics screen and set the anchorproperties for proper resize.
         this.statistics = FXMLLoader.load(getClass().getResource("Statistics.fxml"));
         UIClass.setAnchorDistance(this.statistics, 0.0);
+        
+        //load the configuration screen and set the anchorproperties for proper resize.
+        this.configuration = FXMLLoader.load(getClass().getResource("Config.fxml"));
+        UIClass.setAnchorDistance(this.configuration, 0.0);
         
         //load the Login screen and set the anchorproperties for proper resize.
         //this.logInScreen = FXMLLoader.load(getClass().getResource("logInScreen.fxml"));
@@ -115,7 +120,10 @@ public class NavigationBarController implements Initializable {
     private void accountmanagementButtonClicked(ActionEvent event) {
         MainUIController.getContentBox().getChildren().setAll(this.accountManager);
     }
-
+    @FXML
+    private void configurationButtonClicked(ActionEvent event) {
+        MainUIController.getContentBox().getChildren().setAll(this.configuration);
+    }
     @FXML
     private void logOutButtonClicked(ActionEvent event) {
         //CorendonBagageSysteem.setRoot(this.logInScreen);
