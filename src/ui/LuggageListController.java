@@ -1,8 +1,15 @@
 package ui;
 
+import backend.FoundLuggage;
+import backend.LostLuggage;
 import backend.Luggage;
+import backend.LuggageEnum;
+import backend.StatusEnum;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,19 +17,24 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 /**
- * FXML 
- * 
+ * FXML
+ *
  * @author Elwin Slokker
  */
-public class LuggageListController implements Initializable{
+public class LuggageListController implements Initializable {
+
+    private static ObservableList<FoundLuggage> foundLuggageData;
+    private static ObservableList<LostLuggage> lostLuggageData;
 
     @FXML
     private Tab tabFound;
     @FXML
-    private TableView<Luggage> tableFoundLuggage;
+    private TableView<FoundLuggage> tableFoundLuggage;
     @FXML
-    private TableColumn<Luggage, String> columnFoundLabelnumber;
+    private TableColumn<FoundLuggage, String> columnFoundLabelnumber;
     @FXML
     private TableColumn<Luggage, String> columnFoundAirport;
     @FXML
@@ -36,7 +48,7 @@ public class LuggageListController implements Initializable{
     @FXML
     private TableColumn<Luggage, String> columnFoundColor;
     @FXML
-    private TableColumn<Luggage, String> columnFoundDate;
+    private TableColumn<FoundLuggage, Date> columnFoundDate;
     @FXML
     private TableColumn<Luggage, String> columnFoundStatus;
     @FXML
@@ -85,7 +97,7 @@ public class LuggageListController implements Initializable{
     private Button buttonLostEdit;
     @FXML
     private Button buttonLostAdd;
-            
+
     @FXML
     private Tab tabMatches;
     @FXML
@@ -98,14 +110,16 @@ public class LuggageListController implements Initializable{
     private Button buttonMatchImport;
     @FXML
     private Button buttonMatchForm;
+
     /**
      *
      */
-    public LuggageListController(){
-    
+    public LuggageListController() {
+        LuggageListController.foundLuggageData = FXCollections.observableArrayList(
+                new FoundLuggage("t", "t", "r", LuggageEnum.MISC, "black", "1345", new Date(100000L), StatusEnum.REGISTERED, "empty"));
     }
-    
-     /**
+
+    /**
      * Initializes the controller class.
      */
     @Override
@@ -126,7 +140,11 @@ public class LuggageListController implements Initializable{
         I18N.bindText(this.buttonFoundImport.getText(), this.buttonFoundImport, (Object[]) null);
         I18N.bindText(this.buttonFoundEdit.getText(), this.buttonFoundEdit, (Object[]) null);
         I18N.bindText(this.buttonFoundAdd.getText(), this.buttonFoundAdd, (Object[]) null);
-
+        //please add more!!!!!!
+        this.columnFoundLabelnumber.setCellValueFactory(
+                new PropertyValueFactory<FoundLuggage, String>("labelNumber"));
+        this.columnFoundDate.setCellValueFactory(
+                new PropertyValueFactory<FoundLuggage, Date>("date"));
         I18N.bindTabText(this.tabLost.getText(), this.tabLost, (Object[]) null);
         I18N.bindTableText(this.columnLostLabelnumber.getText(), this.columnLostLabelnumber, (Object[]) null);
         I18N.bindTableText(this.columnLostAirport.getText(), this.columnLostAirport, (Object[]) null);
@@ -143,57 +161,74 @@ public class LuggageListController implements Initializable{
         I18N.bindText(this.buttonLostImport.getText(), this.buttonLostImport, (Object[]) null);
         I18N.bindText(this.buttonLostEdit.getText(), this.buttonLostEdit, (Object[]) null);
         I18N.bindText(this.buttonLostAdd.getText(), this.buttonLostAdd, (Object[]) null);
-        
+
         I18N.bindTabText(this.tabMatches.getText(), this.tabMatches, (Object[]) null);
     }
-    @FXML
-    private void searchFoundButtonClicked(ActionEvent event){
-        
+    public ObservableList<FoundLuggage> getFoundLuggageDate(){
+        return LuggageListController.foundLuggageData;
+    }
+    public ObservableList<LostLuggage> getLostLuggageDate(){
+        return LuggageListController.lostLuggageData;
     }
     @FXML
-    private void matchFoundButtonClicked(ActionEvent event){
-        
+    private void searchFoundButtonClicked(ActionEvent event) {
+
     }
+
     @FXML
-    private void exportFoundButtonClicked(ActionEvent event){
-        
+    private void matchFoundButtonClicked(ActionEvent event) {
+
     }
+
     @FXML
-    private void importFoundButtonClicked(ActionEvent event){
-        
+    private void exportFoundButtonClicked(ActionEvent event) {
+
     }
+
     @FXML
-    private void ediFoundButtonClicked(ActionEvent event){
-        
+    private void importFoundButtonClicked(ActionEvent event) {
+
     }
+
     @FXML
-    private void addFoundButtonClicked(ActionEvent event){
-        
+    private void ediFoundButtonClicked(ActionEvent event) {
+
     }
-    
-    
+
     @FXML
-    private void searchLostButtonClicked(ActionEvent event){
-        
+    private void addFoundButtonClicked(ActionEvent event) {
+
+        this.tableFoundLuggage.setItems(foundLuggageData);
+
     }
+
     @FXML
-    private void matchLostButtonClicked(ActionEvent event){
-        
+    private void searchLostButtonClicked(ActionEvent event) {
+
     }
+
     @FXML
-    private void exportLostButtonClicked(ActionEvent event){
-        
+    private void matchLostButtonClicked(ActionEvent event) {
+
     }
+
     @FXML
-    private void importLostButtonClicked(ActionEvent event){
-        
+    private void exportLostButtonClicked(ActionEvent event) {
+
     }
+
     @FXML
-    private void ediLostButtonClicked(ActionEvent event){
-        
+    private void importLostButtonClicked(ActionEvent event) {
+
     }
+
     @FXML
-    private void addLostButtonClicked(ActionEvent event){
-        
+    private void ediLostButtonClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void addLostButtonClicked(ActionEvent event) {
+
     }
 }

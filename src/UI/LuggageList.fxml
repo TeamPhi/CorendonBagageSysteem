@@ -30,7 +30,7 @@
                   </TableView>
                   <Button fx:id="buttonFoundMatch" layoutX="316.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchFoundButtonClicked" text="buttonMatch" />
                   <Button fx:id="buttonFoundEdit" layoutX="746.0" layoutY="10.0" mnemonicParsing="false" text="buttonEdit" />
-                  <Button fx:id="buttonFoundAdd" layoutX="870.0" layoutY="10.0" mnemonicParsing="false" text="buttonAdd" />
+                  <Button fx:id="buttonFoundAdd" layoutX="870.0" layoutY="10.0" mnemonicParsing="false" onAction="#addFoundButtonClicked" text="buttonAdd" />
                   <Button fx:id="buttonFoundImport" layoutX="598.0" layoutY="10.0" mnemonicParsing="false" onAction="#importFoundButtonClicked" text="buttonImport" />
                   <Button fx:id="buttonFoundExport" layoutX="458.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportFoundButtonClicked" text="buttonExport" />
                </children>
