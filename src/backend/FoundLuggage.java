@@ -17,7 +17,8 @@ public class FoundLuggage extends Luggage{
      * @param newLabelNumber 
      * @param newFlightnumber
      * @param newDestination
-     * @param kind
+     * @param type
+     * @param brand
      * @param newColour
      * @param newLostFoundID
      * @param registerDate
@@ -25,10 +26,10 @@ public class FoundLuggage extends Luggage{
      * @param newPicture 
      */
     public FoundLuggage(String newLabelNumber, String newFlightnumber, 
-            String newDestination, LuggageEnum kind, String newColour, 
+            String newDestination, LuggageEnum type, String brand, String newColour, 
             String newLostFoundID,Date registerDate, StatusEnum status, 
             String newPicture){
-        super(newLabelNumber, newFlightnumber, newDestination, kind, newColour, registerDate, status, newPicture);
+        super(newLabelNumber, newFlightnumber, newDestination, type, brand, newColour, registerDate, status, newPicture);
         this.lostFoundID = new SimpleStringProperty(newLostFoundID);
     }
     /**

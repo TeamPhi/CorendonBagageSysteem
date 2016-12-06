@@ -14,17 +14,18 @@ public class LostLuggage extends Luggage {
      * @param newLabelNumber
      * @param newFlightnumber
      * @param newDestination
-     * @param kind
+     * @param type
+     * @param brand
      * @param newColour
      * @param registerDate
      * @param status
      * @param newPicture
      */
     public LostLuggage(String newLabelNumber, String newFlightnumber,
-            String newDestination, LuggageEnum kind, String newColour,
+            String newDestination, LuggageEnum type, String brand, String newColour,
             Date registerDate, StatusEnum status,
             String newPicture) {
-        super(newLabelNumber, newFlightnumber, newDestination, kind, newColour, registerDate, status, newPicture);
+        super(newLabelNumber, newFlightnumber, newDestination, type, brand, newColour, registerDate, status, newPicture);
     }
 
 }

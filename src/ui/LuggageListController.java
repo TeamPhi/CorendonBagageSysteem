@@ -116,7 +116,7 @@ public class LuggageListController implements Initializable {
      */
     public LuggageListController() {
         LuggageListController.foundLuggageData = FXCollections.observableArrayList(
-                new FoundLuggage("t", "t", "r", LuggageEnum.MISC, "black", "1345", new Date(100000L), StatusEnum.REGISTERED, "empty"));
+                new FoundLuggage("11223344", "Schiphol", "14253443", LuggageEnum.MISC, "samsonite", "black", "1234", new Date(100000L), StatusEnum.REGISTERED, "empty"));
     }
 
     /**
@@ -140,11 +140,27 @@ public class LuggageListController implements Initializable {
         I18N.bindText(this.buttonFoundImport.getText(), this.buttonFoundImport, (Object[]) null);
         I18N.bindText(this.buttonFoundEdit.getText(), this.buttonFoundEdit, (Object[]) null);
         I18N.bindText(this.buttonFoundAdd.getText(), this.buttonFoundAdd, (Object[]) null);
-        //please add more!!!!!!
+        
+        //init collumns and decide what values are stored in them.
         this.columnFoundLabelnumber.setCellValueFactory(
                 new PropertyValueFactory<FoundLuggage, String>("labelNumber"));
+        this.columnFoundAirport.setCellValueFactory(
+                new PropertyValueFactory<Luggage, String>("registeredAirport"));
+        this.columnFoundFlightnumber.setCellValueFactory(
+                new PropertyValueFactory<Luggage, String>("registeredAirport"));
+        this.columnFoundDestination.setCellValueFactory(
+                new PropertyValueFactory<Luggage, String>("destination"));
+        this.columnFoundType.setCellValueFactory(
+                new PropertyValueFactory<Luggage, String>("type"));
+        this.columnFoundBrand.setCellValueFactory(
+                new PropertyValueFactory<Luggage, String>("brand"));
+        this.columnFoundColor.setCellValueFactory(
+                new PropertyValueFactory<Luggage, String>("color"));
         this.columnFoundDate.setCellValueFactory(
                 new PropertyValueFactory<FoundLuggage, Date>("date"));
+        this.columnFoundStatus.setCellValueFactory(
+                new PropertyValueFactory<Luggage, String>("status"));
+        
         I18N.bindTabText(this.tabLost.getText(), this.tabLost, (Object[]) null);
         I18N.bindTableText(this.columnLostLabelnumber.getText(), this.columnLostLabelnumber, (Object[]) null);
         I18N.bindTableText(this.columnLostAirport.getText(), this.columnLostAirport, (Object[]) null);

@@ -21,7 +21,7 @@
                         <TableColumn fx:id="columnFoundAirport" prefWidth="99.0" text="tableColumnAirport" />
                         <TableColumn fx:id="columnFoundFlightnumber" prefWidth="99.0" text="tableColumnFlightnumber" />
                         <TableColumn fx:id="columnFoundDestination" prefWidth="99.0" text="tableColumnDestination" />
-                        <TableColumn fx:id="columnFoundType" prefWidth="99.0" text="tableColumnKind" />
+                        <TableColumn fx:id="columnFoundType" prefWidth="99.0" text="tableColumnType" />
                         <TableColumn fx:id="columnFoundBrand" prefWidth="99.0" text="tableColumnBrand" />
                         <TableColumn fx:id="columnFoundColor" prefWidth="99.0" text="tableColumnColor" />
                         <TableColumn fx:id="columnFoundDate" prefWidth="99.0" text="tableColumnDate" />
@@ -54,7 +54,7 @@
                         <TableColumn fx:id="columnLostAirport" prefWidth="99.0" text="tableColumnAirport" />
                         <TableColumn fx:id="columnLostFlightnumber" prefWidth="99.0" text="tableColumnFlightnumber" />
                         <TableColumn fx:id="columnLostDestination" prefWidth="99.0" text="tableColumnDestination" />
-                        <TableColumn fx:id="columnLostType" prefWidth="99.0" text="tableColumnKind" />
+                        <TableColumn fx:id="columnLostType" prefWidth="99.0" text="tableColumnType" />
                         <TableColumn fx:id="columnLostBrand" prefWidth="99.0" text="tableColumnBrand" />
                         <TableColumn fx:id="columnLostColor" prefWidth="99.0" text="tableColumnColor" />
                         <TableColumn fx:id="columnLostDate" prefWidth="99.0" text="tableColumnDate" />

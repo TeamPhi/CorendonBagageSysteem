@@ -14,7 +14,8 @@ public abstract class Luggage {
     //The airport where the luggage was found, or reported missing.
     private final SimpleStringProperty registeredAirport;
     private final SimpleStringProperty destination;
-    private final SimpleObjectProperty<LuggageEnum> kind;
+    private final SimpleObjectProperty<LuggageEnum> type;
+    private final SimpleStringProperty brand;
     private final SimpleStringProperty color;
     private final SimpleObjectProperty<Date> date;
     private final SimpleObjectProperty<StatusEnum> status;
@@ -26,14 +27,15 @@ public abstract class Luggage {
      * @param date 
      */
     public Luggage(String newLabelNumber, String newFlightnumber, 
-            String newDestination, LuggageEnum kind, String newColour, 
+            String newDestination, LuggageEnum type, String brand, String newColour, 
             Date date, StatusEnum status, 
             String newPicture){
         this.labelNumber = new SimpleStringProperty(newLabelNumber);
         this.flightnumber = new SimpleStringProperty(newFlightnumber);
         this.registeredAirport = new SimpleStringProperty(newDestination);
         this.destination = new SimpleStringProperty(newDestination);
-        this.kind = new SimpleObjectProperty(kind);
+        this.type = new SimpleObjectProperty(type);
+        this.brand = new SimpleStringProperty(brand);
         this.color  = new SimpleStringProperty(newColour);
         this.picture = new SimpleStringProperty(newPicture);
         this.date = new SimpleObjectProperty(date);
@@ -70,10 +72,10 @@ public abstract class Luggage {
     }
     /**
      * 
-     * @return What kind of luggage (see LuggageEnum.java).
+     * @return What type of luggage (see LuggageEnum.java).
      */
-    public LuggageEnum getKind(){
-        return this.kind.get();
+    public LuggageEnum getType(){
+        return this.type.get();
     }/**
      * 
      * @return A written colour.
@@ -139,10 +141,10 @@ public abstract class Luggage {
     }
     /**
      * 
-     * @param kind 
+     * @param type 
      */
-    public void setKind(LuggageEnum kind){
-        this.kind.set(kind);
+    public void setType(LuggageEnum type){
+        this.type.set(type);
     }
     /**
      * 
