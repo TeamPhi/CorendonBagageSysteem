@@ -8,11 +8,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AddFoundLuggageController">
    <children>
-      <Button layoutX="29.0" layoutY="31.0" mnemonicParsing="false" onAction="#sendDHL" text="Send DHL form" />
-      <Button layoutX="816.0" layoutY="31.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
-      <Button layoutX="736.0" layoutY="31.0" mnemonicParsing="false" onAction="#saveData" text="Save" />
-      <Button layoutX="594.0" layoutY="31.0" mnemonicParsing="false" onAction="#saveMatch" text="Save &amp; Match" />
-      <Button layoutX="816.0" layoutY="64.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+      <Button fx:id="buttonSend" layoutX="29.0" layoutY="31.0" mnemonicParsing="false" onAction="#sendDHL" text="Send DHL form" />
+      <Button fx:id="buttonCancel" layoutX="816.0" layoutY="31.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button fx:id="buttonSave" layoutX="736.0" layoutY="31.0" mnemonicParsing="false" onAction="#saveData" text="Save" />
+      <Button fx:id="buttonMatchSave" layoutX="594.0" layoutY="31.0" mnemonicParsing="false" onAction="#saveMatch" text="Save &amp; Match" />
+      <Button fx:id="buttonDelete" layoutX="816.0" layoutY="64.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
       <Label layoutX="29.0" layoutY="104.0" text="Found luggage registration form">
          <font>
             <Font size="18.0" />
@@ -45,7 +45,6 @@
          </font>
       </Label>
       <Label layoutX="27.0" layoutY="428.0" text="Type" />
-      <TextField fx:id="textFieldType" layoutX="172.0" layoutY="424.0" />
       <TextField fx:id="testFieldBrand" layoutX="172.0" layoutY="452.0" />
       <Label layoutX="27.0" layoutY="456.0" text="Brand" />
       <TextField fx:id="textFieldColor" layoutX="172.0" layoutY="480.0" />
@@ -57,5 +56,8 @@
       <Button layoutX="735.0" layoutY="706.0" mnemonicParsing="false" text="Save" />
       <Button layoutX="815.0" layoutY="706.0" mnemonicParsing="false" text="Cancel" />
       <Button layoutX="28.0" layoutY="706.0" mnemonicParsing="false" text="Send DHL form" />
+      <ComboBox fx:id="comboBoxType" layoutX="172.0" layoutY="422.0" prefHeight="39.0" prefWidth="224.0" />
+      <ComboBox fx:id="comboBoxStatus" layoutX="660.0" layoutY="239.0" prefWidth="150.0" />
+      <Label layoutX="573.0" layoutY="247.0" text="labelStatus" />
    </children>
 </AnchorPane>

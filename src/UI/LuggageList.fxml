@@ -19,6 +19,7 @@
                      <columns>
                         <TableColumn fx:id="columnFoundLabelnumber" prefWidth="98.0" text="tableColumnLabel" />
                         <TableColumn fx:id="columnFoundAirport" prefWidth="99.0" text="tableColumnAirport" />
+                        <TableColumn fx:id="columnLostFound" prefWidth="75.0" text="tableColumnLostFoundID" />
                         <TableColumn fx:id="columnFoundFlightnumber" prefWidth="99.0" text="tableColumnFlightnumber" />
                         <TableColumn fx:id="columnFoundDestination" prefWidth="99.0" text="tableColumnDestination" />
                         <TableColumn fx:id="columnFoundType" prefWidth="99.0" text="tableColumnType" />

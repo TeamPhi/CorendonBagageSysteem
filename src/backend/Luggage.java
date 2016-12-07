@@ -76,7 +76,15 @@ public abstract class Luggage {
      */
     public LuggageEnum getType(){
         return this.type.get();
-    }/**
+    }
+    /**
+     * 
+     * @return 
+     */
+    public String getBrand(){
+        return this.brand.get();
+    }
+    /**
      * 
      * @return A written colour.
      */

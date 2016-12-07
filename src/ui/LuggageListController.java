@@ -5,19 +5,26 @@ import backend.LostLuggage;
 import backend.Luggage;
 import backend.LuggageEnum;
 import backend.StatusEnum;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML
@@ -26,8 +33,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class LuggageListController implements Initializable {
 
-    private static ObservableList<FoundLuggage> foundLuggageData;
-    private static ObservableList<LostLuggage> lostLuggageData;
+    public static ObservableList<FoundLuggage> foundLuggageData;
+    public static ObservableList<LostLuggage> lostLuggageData;
 
     @FXML
     private Tab tabFound;
@@ -36,21 +43,23 @@ public class LuggageListController implements Initializable {
     @FXML
     private TableColumn<FoundLuggage, String> columnFoundLabelnumber;
     @FXML
-    private TableColumn<Luggage, String> columnFoundAirport;
+    private TableColumn<FoundLuggage, String> columnFoundAirport;
     @FXML
-    private TableColumn<Luggage, String> columnFoundFlightnumber;
+    private TableColumn<FoundLuggage, String> columnFoundFlightnumber;
     @FXML
-    private TableColumn<Luggage, String> columnFoundDestination;
+    private TableColumn<FoundLuggage, String> columnLostFound;
     @FXML
-    private TableColumn<Luggage, String> columnFoundType;
+    private TableColumn<FoundLuggage, String> columnFoundDestination;
     @FXML
-    private TableColumn<Luggage, String> columnFoundBrand;
+    private TableColumn<FoundLuggage, String> columnFoundType;
     @FXML
-    private TableColumn<Luggage, String> columnFoundColor;
+    private TableColumn<FoundLuggage, String> columnFoundBrand;
+    @FXML
+    private TableColumn<FoundLuggage, String> columnFoundColor;
     @FXML
     private TableColumn<FoundLuggage, Date> columnFoundDate;
     @FXML
-    private TableColumn<Luggage, String> columnFoundStatus;
+    private TableColumn<FoundLuggage, String> columnFoundStatus;
     @FXML
     private Button buttonFoundSearch;
     @FXML
@@ -66,25 +75,25 @@ public class LuggageListController implements Initializable {
     @FXML
     private Tab tabLost;
     @FXML
-    private TableView<?> tableLostLuggage;
+    private TableView<LostLuggage> tableLostLuggage;
     @FXML
-    private TableColumn<?, ?> columnLostLabelnumber;
+    private TableColumn<LostLuggage, String> columnLostLabelnumber;
     @FXML
-    private TableColumn<?, ?> columnLostAirport;
+    private TableColumn<LostLuggage, String> columnLostAirport;
     @FXML
-    private TableColumn<?, ?> columnLostFlightnumber;
+    private TableColumn<LostLuggage, String> columnLostFlightnumber;
     @FXML
-    private TableColumn<?, ?> columnLostDestination;
+    private TableColumn<LostLuggage, String> columnLostDestination;
     @FXML
-    private TableColumn<?, ?> columnLostType;
+    private TableColumn<LostLuggage, String> columnLostType;
     @FXML
-    private TableColumn<?, ?> columnLostBrand;
+    private TableColumn<LostLuggage, String> columnLostBrand;
     @FXML
-    private TableColumn<?, ?> columnLostColor;
+    private TableColumn<LostLuggage, String> columnLostColor;
     @FXML
-    private TableColumn<?, ?> columnLostDate;
+    private TableColumn<LostLuggage, Date> columnLostDate;
     @FXML
-    private TableColumn<?, ?> columnLostStatus;
+    private TableColumn<LostLuggage, String> columnLostStatus;
     @FXML
     private Button buttonLostSearch;
     @FXML
@@ -128,6 +137,7 @@ public class LuggageListController implements Initializable {
         I18N.bindTableText(this.columnFoundLabelnumber.getText(), this.columnFoundLabelnumber, (Object[]) null);
         I18N.bindTableText(this.columnFoundAirport.getText(), this.columnFoundAirport, (Object[]) null);
         I18N.bindTableText(this.columnFoundFlightnumber.getText(), this.columnFoundFlightnumber, (Object[]) null);
+        I18N.bindTableText(this.columnLostFound.getText(), this.columnLostFound, (Object[]) null);
         I18N.bindTableText(this.columnFoundDestination.getText(), this.columnFoundDestination, (Object[]) null);
         I18N.bindTableText(this.columnFoundType.getText(), this.columnFoundType, (Object[]) null);
         I18N.bindTableText(this.columnFoundBrand.getText(), this.columnFoundBrand, (Object[]) null);
@@ -140,27 +150,30 @@ public class LuggageListController implements Initializable {
         I18N.bindText(this.buttonFoundImport.getText(), this.buttonFoundImport, (Object[]) null);
         I18N.bindText(this.buttonFoundEdit.getText(), this.buttonFoundEdit, (Object[]) null);
         I18N.bindText(this.buttonFoundAdd.getText(), this.buttonFoundAdd, (Object[]) null);
-        
+
         //init collumns and decide what values are stored in them.
         this.columnFoundLabelnumber.setCellValueFactory(
                 new PropertyValueFactory<FoundLuggage, String>("labelNumber"));
         this.columnFoundAirport.setCellValueFactory(
-                new PropertyValueFactory<Luggage, String>("registeredAirport"));
+                new PropertyValueFactory<FoundLuggage, String>("registeredAirport"));
         this.columnFoundFlightnumber.setCellValueFactory(
-                new PropertyValueFactory<Luggage, String>("registeredAirport"));
+                new PropertyValueFactory<FoundLuggage, String>("flightnumber"));
+        this.columnLostFound.setCellValueFactory(
+                new PropertyValueFactory<FoundLuggage, String>("lostFoundID"));
         this.columnFoundDestination.setCellValueFactory(
-                new PropertyValueFactory<Luggage, String>("destination"));
+                new PropertyValueFactory<FoundLuggage, String>("destination"));
         this.columnFoundType.setCellValueFactory(
-                new PropertyValueFactory<Luggage, String>("type"));
+                new PropertyValueFactory<FoundLuggage, String>("type"));
         this.columnFoundBrand.setCellValueFactory(
-                new PropertyValueFactory<Luggage, String>("brand"));
+                new PropertyValueFactory<FoundLuggage, String>("brand"));
         this.columnFoundColor.setCellValueFactory(
-                new PropertyValueFactory<Luggage, String>("color"));
+                new PropertyValueFactory<FoundLuggage, String>("color"));
         this.columnFoundDate.setCellValueFactory(
                 new PropertyValueFactory<FoundLuggage, Date>("date"));
         this.columnFoundStatus.setCellValueFactory(
-                new PropertyValueFactory<Luggage, String>("status"));
-        
+                new PropertyValueFactory<FoundLuggage, String>("status"));
+        //Connect list with table
+        this.tableFoundLuggage.setItems(foundLuggageData);
         I18N.bindTabText(this.tabLost.getText(), this.tabLost, (Object[]) null);
         I18N.bindTableText(this.columnLostLabelnumber.getText(), this.columnLostLabelnumber, (Object[]) null);
         I18N.bindTableText(this.columnLostAirport.getText(), this.columnLostAirport, (Object[]) null);
@@ -180,12 +193,15 @@ public class LuggageListController implements Initializable {
 
         I18N.bindTabText(this.tabMatches.getText(), this.tabMatches, (Object[]) null);
     }
-    public ObservableList<FoundLuggage> getFoundLuggageDate(){
+
+    public ObservableList<FoundLuggage> getFoundLuggageDate() {
         return LuggageListController.foundLuggageData;
     }
-    public ObservableList<LostLuggage> getLostLuggageDate(){
+
+    public ObservableList<LostLuggage> getLostLuggageDate() {
         return LuggageListController.lostLuggageData;
     }
+
     @FXML
     private void searchFoundButtonClicked(ActionEvent event) {
 
@@ -213,8 +229,17 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void addFoundButtonClicked(ActionEvent event) {
-
-        this.tableFoundLuggage.setItems(foundLuggageData);
+        try {
+            //this.tableFoundLuggage.setItems(foundLuggageData); ONLY FOR TESTING
+            Parent addScreen = FXMLLoader.load(getClass().getResource("AddFoundLuggage.fxml"));
+            Stage add = new Stage();
+            Scene scene = new Scene(addScreen);
+            add.setTitle("Corendon Bagage Systeem");
+            add.setScene(scene);
+            add.show();
+        } catch (IOException ex) {
+            Logger.getLogger(LuggageListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
