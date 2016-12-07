@@ -9,36 +9,32 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ConfigController">
    <children>
-      <Label layoutX="36.0" layoutY="102.0" prefHeight="16.0" prefWidth="133.0" text="Gevonden bagage">
+      <Label layoutX="36.0" layoutY="187.0" prefHeight="26.0" prefWidth="154.0" text="Statistieken">
          <font>
             <Font name="Arial Narrow Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="61.0" prefHeight="20.0" prefWidth="172.0" text="Maximale opslagtijd in dagen">
-         <font>
-            <Font name="Arial" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="36.0" layoutY="41.0" prefHeight="20.0" prefWidth="165.0" text="Vermiste bagage">
+      <Label layoutX="36.0" layoutY="83.0" prefHeight="20.0" prefWidth="172.0" text="Maximale opslagtijd in dagen" />
+      <Label layoutX="31.0" layoutY="49.0" prefHeight="20.0" prefWidth="165.0" text=" Vermiste bagage">
          <font>
             <Font name="Arial Narrow Bold" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="118.0" prefHeight="20.0" prefWidth="181.0" text="Maximale opslagtijd in dagen" />
-      <Label layoutX="36.0" layoutY="155.0" prefHeight="16.0" prefWidth="133.0" text="Statistieken">
+      <Label layoutX="37.0" layoutY="217.0" prefHeight="20.0" prefWidth="181.0" text="Maximale opslagtijd in maanden" />
+      <Label layoutX="37.0" layoutY="118.0" prefHeight="26.0" prefWidth="165.0" text="Gevonden bagage">
          <font>
-            <Font name="Arial Narrow Bold" size="18.0" />
+            <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="178.0" prefHeight="16.0" prefWidth="197.0" text="Maximale opslagtijd in maanden" />
-      <Label layoutX="357.0" layoutY="53.0" prefHeight="16.0" prefWidth="250.0" text="(leeg veld voor geen maximale opslagtijd)" />
-      <Label layoutX="357.0" layoutY="114.0" prefHeight="16.0" prefWidth="250.0" text="(leeg veld voor geen maximale opslagtijd)" />
-      <Label layoutX="357.0" layoutY="171.0" text="(leeg veld voor geen maximale opslagtijd)" />
-      <Button layoutX="530.0" layoutY="232.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="opslaan" />
-      <Label layoutX="260.0" layoutY="53.0" prefHeight="16.0" prefWidth="45.0" text="365" />
-      <Label layoutX="260.0" layoutY="114.0" text="365" />
-      <Label layoutX="260.0" layoutY="168.0" prefHeight="16.0" prefWidth="22.0" text="72" />
+      <Label layoutX="36.0" layoutY="150.0" prefHeight="16.0" prefWidth="197.0" text="Maximale opslagtijd in dagen" />
+      <Label layoutX="357.0" layoutY="85.0" prefHeight="16.0" prefWidth="250.0" text="(leeg veld voor geen maximale opslagtijd)" />
+      <Label layoutX="357.0" layoutY="150.0" prefHeight="16.0" prefWidth="250.0" text="(leeg veld voor geen maximale opslagtijd)" />
+      <Label layoutX="357.0" layoutY="220.0" text="(leeg veld voor geen maximale opslagtijd)" />
+      <Button fx:id="buttonSave" layoutX="507.0" layoutY="274.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="opslaan" />
+      <TextField fx:id="textfieldLostMaxLuggage" layoutX="250.0" layoutY="81.0" prefHeight="25.0" prefWidth="65.0" />
+      <TextField fx:id="textfieldFoundMaxLuggage" layoutX="250.0" layoutY="146.0" prefHeight="25.0" prefWidth="65.0" />
+      <TextField fx:id="textfieldStatistics" layoutX="250.0" layoutY="215.0" prefHeight="25.0" prefWidth="65.0" />
    </children>
 </Pane>
