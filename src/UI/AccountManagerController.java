@@ -47,6 +47,7 @@ public class AccountManagerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Bind all text to the translations.
         I18N.bindText(this.accountManagementEditButton.getText(), this.accountManagementEditButton, (Object[]) null);
         I18N.bindText(this.accountManagementAddButton.getText(), this.accountManagementAddButton, (Object[]) null);
         I18N.bindTableText(this.columnUsername.getText(), this.columnUsername, (Object[]) null);

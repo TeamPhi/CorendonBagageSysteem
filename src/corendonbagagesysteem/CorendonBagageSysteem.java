@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 /**
  * 
  * @author Jordy
+ * @author Elwin
+ * @author Mark
  */
 public class CorendonBagageSysteem extends Application {
     //This pane should always be the root and always hosts the other screens.
@@ -22,7 +24,6 @@ public class CorendonBagageSysteem extends Application {
         Parent startScreen = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
         //Needs to be constructed/initzialized first.
         root = new AnchorPane();
-        //root.getChildren().add(startScreen);
         setRoot(startScreen);
         
         Scene scene = new Scene(root);

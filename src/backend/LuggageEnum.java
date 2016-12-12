@@ -1,6 +1,6 @@
 package backend;
 
-/**
+/**The types of luggage.
  *
  * @author Elwin Slokker
  */

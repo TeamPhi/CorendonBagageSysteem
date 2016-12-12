@@ -13,6 +13,13 @@ public class DBConnection {
     private static String url = "dbc:mysql://localhost:3306/<database>";//Location of database
     private static String user = "root";//Username of database  
     private static String pass = "password";//Password of database 
+    public static final int LENGTH_OF_NAME = 45;
+    public static final int LENGTH_OF_ADDRESS = 45;
+    public static final int LENGTH_OF_CITY = 45;
+    public static final int LENGTH_OF_ZIPCODE = 10;
+    public static final int LENGTH_OF_COUNTRY = 45;
+    public static final int LENGTH_OF_TELEPHONE = 12;
+    public static final int LENGTH_OF_EMAIL = 45;
 
     /**
      *

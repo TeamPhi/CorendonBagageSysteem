@@ -88,6 +88,7 @@ public class NavigationBarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Bind all the texts to the translation.
         I18N.bindText(this.buttonHome.getText(), this.buttonHome, (Object[]) null);
         I18N.bindText(this.buttonLuggageOverview.getText(), this.buttonLuggageOverview, (Object[]) null);
         I18N.bindText(this.buttonClaims.getText(), this.buttonClaims, (Object[]) null);

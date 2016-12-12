@@ -13,36 +13,31 @@ public class FoundLuggage extends Luggage{
     */
     private final SimpleStringProperty lostFoundID;
     /**Create a new piece of luggage that has been found on an airport.
+     * The arguments are optional.
      * 
-     * @param newLabelNumber 
-     * @param newFlightnumber
-     * @param newDestination
-     * @param type
-     * @param brand
-     * @param newColour
-     * @param newLostFoundID
-     * @param registerDate
-     * @param status
-     * @param newPicture 
+     * @param newLabelNumber The label number or ID found that was given to the luggage.
+     * @param newFlightnumber The flightnubmer of the airplane the luggage was on.
+     * @param newDestination The place where the the luggage should go to.
+     * @param type What kind of luggage it is.
+     * @param brand The brand of the luggage.
+     * @param newColor Color of the luggage.
+     * @param newLostFoundID The ID given by the founder.
+     * @param registerDate The date of the day the luggage was found.
+     * @param status A field specifying the status.
+     * @param newPicture Path to a local picture.
      */
     public FoundLuggage(String newLabelNumber, String newFlightnumber, 
-            String newDestination, LuggageEnum type, String brand, String newColour, 
+            String newDestination, LuggageEnum type, String brand, String newColor, 
             String newLostFoundID,Date registerDate, StatusEnum status, 
             String newPicture){
-        super(newLabelNumber, newFlightnumber, newDestination, type, brand, newColour, registerDate, status, newPicture);
+        super(newLabelNumber, newFlightnumber, newDestination, type, brand, newColor, registerDate, status, newPicture);
         this.lostFoundID = new SimpleStringProperty(newLostFoundID);
     }
-    /**
-     * 
-     * @return 
-     */
+ 
     public String getLostFoundID(){
         return this.lostFoundID.get();
     }
-    /**
-     * 
-     * @param lostFoundID 
-     */
+
     public void setLostFoundID(String lostFoundID){
         this.lostFoundID.set(lostFoundID);
     }

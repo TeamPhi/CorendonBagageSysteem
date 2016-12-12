@@ -34,7 +34,7 @@ public class LogInScreenController implements Initializable {
     private TextField textFieldUserName;
     @FXML
     private Button buttonInloggen;
-    
+    //the object that holds the main screen.
     private Node mainScreen;
 
     /**
@@ -42,12 +42,14 @@ public class LogInScreenController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //bind all text to the translations.
         I18N.bindText(this.labelUsername.getText(), this.labelUsername, (Object[]) null);
         I18N.bindText(this.labelPassword.getText(), this.labelPassword, (Object[]) null);
         I18N.bindText(this.buttonInloggen.getText(), this.buttonInloggen, (Object[]) null);
     }    
     
     public LogInScreenController() throws IOException{
+        //Load the main screen from FXML
         URL resource = getClass().getResource("Main.fxml");
         this.mainScreen = FXMLLoader.load(resource);
         //this.mainScreen = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
@@ -55,6 +57,7 @@ public class LogInScreenController implements Initializable {
 
     @FXML
     private void logInAction(ActionEvent event) {
+        //Change the root, so the screen switches.
         CorendonBagageSysteem.setRoot(mainScreen);
     }
     

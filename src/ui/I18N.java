@@ -104,42 +104,12 @@ public final class I18N {
     public static StringBinding createStringBinding(Callable<String> func) {
         return Bindings.createStringBinding(func, LOCALE);
     }
-
-    /**
-     * creates a bound Label whose value is computed on language change.
+  
+    /** Binds the labeled Node with the given resourcebundle key
      *
-     * @param func
-     *         the function to compute the value
-     * @return Label
-     */
-    public static Label labelForValue(Callable<String> func) {
-        Label label = new Label();
-        label.textProperty().bind(createStringBinding(func));
-        return label;
-    }
-
-    /**
-     * creates a bound Button for the given resourcebundle key
-     *
-     * @param key
-     *         ResourceBundle key
-     * @param args
-     *         optional arguments for the message
-     * @return Button
-     */
-    public static Button buttonForKey(final String key, final Object... args) {
-        Button button = new Button();
-        button.textProperty().bind(createStringBinding(key, args));
-        return button;
-    }    
-    /**
-     * binds the labeled Node with the given resourcebundle key
-     *
-     * @param key
-     *         ResourceBundle key
+     * @param key ResourceBundle key
      * @param e Labeled element/control.
-     * @param args
-     *         optional arguments for the message
+     * @param args optional arguments for the message
      * 
      */
     public static void bindText(final String key, Labeled e, final Object... args) {
@@ -148,18 +118,18 @@ public final class I18N {
         //return button;
     }
 
-    /**
+    /** Binds the Column header with the given resourcebundle key.
      *
-     * @param key
+     * @param key ResourceBundle key
      * @param t
      * @param args
      */
     public static void bindTableText(final String key, TableColumn t, final Object... args) {
         t.textProperty().bind(createStringBinding(key, args));
     }
-    /**
+    /** Binds the Tab header with the given resourcebundle key.
      *
-     * @param key
+     * @param key ResourceBundle key
      * @param t
      * @param args
      */

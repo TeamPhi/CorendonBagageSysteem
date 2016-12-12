@@ -32,12 +32,16 @@ import javafx.stage.Stage;
  * @author Elwin Slokker
  */
 public class LuggageListController implements Initializable {
-
+    /*
+    These lists need to be created for the table view.
+    Because a table view can only display rows directly taken from objects in an observable list.
+    */
     public static ObservableList<FoundLuggage> foundLuggageData;
     public static ObservableList<LostLuggage> lostLuggageData;
 
     @FXML
     private Tab tabFound;
+    //TableView and their columns need to know which objects are contained.
     @FXML
     private TableView<FoundLuggage> tableFoundLuggage;
     @FXML
@@ -120,10 +124,12 @@ public class LuggageListController implements Initializable {
     @FXML
     private Button buttonMatchForm;
 
-    /**
+    /**Only the FXML thread may call the controller constructor. 
+     * It can be used to initialize variables or controls before the initialize method.
      *
      */
     public LuggageListController() {
+        //The list is filled with a test data.
         LuggageListController.foundLuggageData = FXCollections.observableArrayList(
                 new FoundLuggage("11223344", "Schiphol", "14253443", LuggageEnum.MISC, "samsonite", "black", "1234", new Date(100000L), StatusEnum.REGISTERED, "empty"));
     }
@@ -133,6 +139,9 @@ public class LuggageListController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        /* The section of the found luggage initialization.
+        First all the controls are bound the translation.
+        */
         I18N.bindTabText(this.tabFound.getText(), this.tabFound, (Object[]) null);
         I18N.bindTableText(this.columnFoundLabelnumber.getText(), this.columnFoundLabelnumber, (Object[]) null);
         I18N.bindTableText(this.columnFoundAirport.getText(), this.columnFoundAirport, (Object[]) null);
@@ -174,6 +183,9 @@ public class LuggageListController implements Initializable {
                 new PropertyValueFactory<FoundLuggage, String>("status"));
         //Connect list with table
         this.tableFoundLuggage.setItems(foundLuggageData);
+        /* The section of the lost luggage initialization.
+        First all the controls are bound the translation.
+        */
         I18N.bindTabText(this.tabLost.getText(), this.tabLost, (Object[]) null);
         I18N.bindTableText(this.columnLostLabelnumber.getText(), this.columnLostLabelnumber, (Object[]) null);
         I18N.bindTableText(this.columnLostAirport.getText(), this.columnLostAirport, (Object[]) null);
@@ -190,7 +202,10 @@ public class LuggageListController implements Initializable {
         I18N.bindText(this.buttonLostImport.getText(), this.buttonLostImport, (Object[]) null);
         I18N.bindText(this.buttonLostEdit.getText(), this.buttonLostEdit, (Object[]) null);
         I18N.bindText(this.buttonLostAdd.getText(), this.buttonLostAdd, (Object[]) null);
-
+        
+        /* The section of the matched luggage initialization.
+        First all the controls are bound the translation.
+        */
         I18N.bindTabText(this.tabMatches.getText(), this.tabMatches, (Object[]) null);
     }
 
@@ -229,6 +244,9 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void addFoundButtonClicked(ActionEvent event) {
+        /* Load the add screen.
+        First the FXML file is loaded and then a new Stage is made (a window) and shown.
+        */
         try {
             //this.tableFoundLuggage.setItems(foundLuggageData); ONLY FOR TESTING
             Parent addScreen = FXMLLoader.load(getClass().getResource("AddFoundLuggage.fxml"));

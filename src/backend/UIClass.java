@@ -7,9 +7,10 @@ import javafx.scene.layout.AnchorPane;
  * 
  * @author Elwin Slokker
  */
-public class UIClass {
-    /**
-     * 
+public abstract class UIClass {
+    
+    /**Set the distance between the AnchorPane borders and the borders of the element.
+     * Can only be used when the element is the child of an AnchorPane.
      * @param e The Node or element you want to anchor.
      * @param distance The amount of space between the borders of the node and 
      * the borders of the anchorpane.
