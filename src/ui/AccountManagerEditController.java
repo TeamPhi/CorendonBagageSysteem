@@ -2,10 +2,12 @@ package ui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -18,21 +20,30 @@ public class AccountManagerEditController implements Initializable {
     @FXML
     private TextField usernameTextField;
     @FXML
-    private TextField accountManagementLastNameTextField;
-    @FXML
-    private TextField accountManagementFirstNameTextField;
-    @FXML
-    private TextField accountManagementEmailAdress;
-    @FXML
     private ChoiceBox<?> accountPrivilegeChoiceBox;
     @FXML
-    private TextField newPasswordTextField;
+    private Label labelSurname;
     @FXML
-    private TextField newPasswordConfirmTextField;
+    private TextField textFieldSurname;
     @FXML
-    private Button accountManagementResetPasswordButton;
+    private Label labelEmail;
     @FXML
-    private Button accountManagementSaveChangesButton;
+    private Label labelPrivilege;
+    @FXML
+    private Label labelChangePass;
+    @FXML
+    private Label labelPassPrompt;
+    @FXML
+    private Label labelPassRepeat;
+    @FXML
+    private TextField textFieldNewPasswordRepeat;
+    @FXML
+    private Label labelResetPass;
+    @FXML
+    private Button buttonResetPassword;
+    @FXML
+    private Button buttonSave;
+
 
     /**
      * Initializes the controller class.
@@ -41,4 +52,12 @@ public class AccountManagerEditController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    @FXML
+    private void resetPassword(ActionEvent event) {
+    }
+
+    @FXML
+    private void Save(ActionEvent event) {
+    }
+
 }

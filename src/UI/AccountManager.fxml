@@ -10,7 +10,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="accountTabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="tableAccount" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columns>
                   <TableColumn fx:id="columnUsername" minWidth="100.0" prefWidth="100.0" text="username" />
                   <TableColumn fx:id="columnPassword" minWidth="100.0" prefWidth="100.0" text="password" />
@@ -26,8 +26,12 @@
    <top>
       <AnchorPane prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="accountManagementEditButton" layoutX="509.0" layoutY="14.0" mnemonicParsing="false" onAction="#accountManagementEditAccount" text="buttonEdit" AnchorPane.rightAnchor="14.0" />
-            <Button id="AccountManagementAddButton" fx:id="accountManagementAddButton" layoutX="415.0" layoutY="14.0" mnemonicParsing="false" onAction="#accountManagementAddAccount" text="buttonAdd" AnchorPane.rightAnchor="90.0" />
+            <HBox layoutX="156.0" layoutY="-16.0" prefHeight="50.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Button id="AccountManagementAddButton" fx:id="buttonAccountManagerAdd" mnemonicParsing="false" onAction="#addAccount" text="buttonAdd" />
+                  <Button fx:id="buttonAccountManagerEdit" mnemonicParsing="false" onAction="#editAccount" text="buttonEdit" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </top>

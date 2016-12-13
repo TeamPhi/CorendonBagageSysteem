@@ -20,13 +20,13 @@ import javafx.scene.control.TextField;
 public class AccountManagerController implements Initializable {
 
     @FXML
-    private Button accountManagementEditButton;
+    private Button buttonAccountManagerEdit;
     @FXML
-    private Button accountManagementAddButton;
+    private Button buttonAccountManagerAdd;
     @FXML
-    private TableView<?> accountTabel;
+    private TableView<?> tableAccount;
     @FXML
-    private TableColumn columnUsername;
+    private TableColumn<?, ?> columnUsername;
     @FXML
     private TableColumn<?, ?> columnPassword;
     @FXML
@@ -48,8 +48,8 @@ public class AccountManagerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Bind all text to the translations.
-        I18N.bindText(this.accountManagementEditButton.getText(), this.accountManagementEditButton, (Object[]) null);
-        I18N.bindText(this.accountManagementAddButton.getText(), this.accountManagementAddButton, (Object[]) null);
+        I18N.bindText(this.buttonAccountManagerEdit.getText(), this.buttonAccountManagerEdit, (Object[]) null);
+        I18N.bindText(this.buttonAccountManagerAdd.getText(), this.buttonAccountManagerAdd, (Object[]) null);
         I18N.bindTableText(this.columnUsername.getText(), this.columnUsername, (Object[]) null);
         I18N.bindTableText(this.columnPassword.getText(), this.columnPassword, (Object[]) null);
         I18N.bindTableText(this.columnPriveleges.getText(), this.columnPriveleges, (Object[]) null);
@@ -59,12 +59,12 @@ public class AccountManagerController implements Initializable {
     }    
 
     @FXML
-    private void accountManagementEditAccount(ActionEvent event) {
+    private void editAccount(ActionEvent event) {
         
     }
 
     @FXML
-    private void accountManagementAddAccount(ActionEvent event) {
+    private void addAccount(ActionEvent event) {
         
     }
 
