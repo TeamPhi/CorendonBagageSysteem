@@ -1,7 +1,9 @@
 package ui;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +22,7 @@ public class AccountManagerEditController implements Initializable {
     @FXML
     private TextField usernameTextField;
     @FXML
-    private ChoiceBox<?> accountPrivilegeChoiceBox;
+    private ChoiceBox<String> choiceBoxPrivilege;
     @FXML
     private Label labelSurname;
     @FXML
@@ -43,14 +45,18 @@ public class AccountManagerEditController implements Initializable {
     private Button buttonResetPassword;
     @FXML
     private Button buttonSave;
-
+    
+    public AccountManagerEditController(){
+        
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //add items to the ChoiceBox
+        this.choiceBoxPrivilege.setItems(FXCollections.observableArrayList("First", "Second", "Third"));
     }    
     @FXML
     private void resetPassword(ActionEvent event) {

@@ -14,16 +14,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 /**
  * FXML Controller class
  *
  * @author Enes
+ * @author Elwin
  */
 public class LogInScreenController implements Initializable {
-
+    private HBox languageBar;
+    
     @FXML
     private AnchorPane AnchorPane;
+    @FXML
+    private AnchorPane paneLanguageBar;
     @FXML
     private Label labelUsername;
     @FXML
@@ -36,7 +41,16 @@ public class LogInScreenController implements Initializable {
     private Button buttonInloggen;
     //the object that holds the main screen.
     private Node mainScreen;
-
+    
+    public LogInScreenController() throws IOException{
+        //Load the main screen from FXML
+        URL resource = getClass().getResource("Main.fxml");
+        this.mainScreen = FXMLLoader.load(resource);
+        //Load the languagebar from FXML.
+        this.languageBar = FXMLLoader.load(getClass().getResource("LanguageBar.fxml"));
+        //this.mainScreen = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -46,19 +60,29 @@ public class LogInScreenController implements Initializable {
         I18N.bindText(this.labelUsername.getText(), this.labelUsername, (Object[]) null);
         I18N.bindText(this.labelPassword.getText(), this.labelPassword, (Object[]) null);
         I18N.bindText(this.buttonInloggen.getText(), this.buttonInloggen, (Object[]) null);
+        //I18N.bindText("some",this.passwordFieldPassword., (Object[]) null);
+        //Add the languagebar and allign it.
+        this.paneLanguageBar.getChildren().setAll(this.languageBar);
+        AnchorPane.setRightAnchor(this.languageBar, 0.0);
     }    
     
-    public LogInScreenController() throws IOException{
-        //Load the main screen from FXML
-        URL resource = getClass().getResource("Main.fxml");
-        this.mainScreen = FXMLLoader.load(resource);
-        //this.mainScreen = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
-    }
+
 
     @FXML
     private void logInAction(ActionEvent event) {
-        //Change the root, so the screen switches.
-        CorendonBagageSysteem.setRoot(mainScreen);
+        /*
+        query to check the password and username
+        */
+        //Test account
+        if (this.textFieldUserName.getText().equals("admin")  && this.passwordFieldPassword.getText().equals("1234")){
+            
+            //Change the root, so the screen switches.
+            CorendonBagageSysteem.setRoot(mainScreen);
+            
+        }
+        else{
+            CorendonBagageSysteem.setRoot(mainScreen);
+        }
     }
-    
+
 }

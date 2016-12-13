@@ -26,7 +26,7 @@
    <top>
       <AnchorPane prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox layoutX="156.0" layoutY="-16.0" prefHeight="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <HBox layoutX="156.0" layoutY="-16.0" prefHeight="50.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Button id="AccountManagementAddButton" fx:id="buttonAccountManagerAdd" mnemonicParsing="false" onAction="#addAccount" text="buttonAdd" />
                   <Button fx:id="buttonAccountManagerEdit" mnemonicParsing="false" onAction="#editAccount" text="buttonEdit" />
