@@ -123,6 +123,7 @@ public class LuggageListController implements Initializable {
     private Button buttonMatchImport;
     @FXML
     private Button buttonMatchForm;
+    
 
     /**Only the FXML thread may call the controller constructor. 
      * It can be used to initialize variables or controls before the initialize method.
