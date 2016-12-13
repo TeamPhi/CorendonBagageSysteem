@@ -1,15 +1,11 @@
 package ui;
 
 import backend.Account;
-import backend.FoundLuggage;
-import backend.LuggageEnum;
-import backend.StatusEnum;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Date;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,14 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import static ui.LuggageListController.foundLuggageData;
+
 
 /**
  * FXML Controller class
@@ -61,8 +54,7 @@ public class AccountManagerController implements Initializable {
     public AccountManagerController(){
         //The list is filled with test data.
         AccountManagerController.accountData = FXCollections.observableArrayList(
-                new Account("Karello", "****", 
-                "Baliemedewerker", "Karel", "Lout", "Karello@gmail.com"));
+                new Account("Karello", "****", "Baliemedewerker", "Karel", "Lout", "Karello@gmail.com"));
     }
     
     /**
