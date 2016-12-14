@@ -63,11 +63,11 @@ public class AddFoundLuggageController implements Initializable{
         this.comboBoxType.setItems(FXCollections.observableArrayList(LuggageEnum.values()));
         this.comboBoxStatus.setItems(FXCollections.observableArrayList(StatusEnum.values()));
     }  
-    public FoundLuggage makeFoundLuggage(){
-        FoundLuggage foundLuggage;
-        foundLuggage = new FoundLuggage(this.textFieldLabelId.getText(),this.textFieldFlightId.getText(), this.textFieldDestination.getText(),(LuggageEnum)this.comboBoxType.getValue(), this.textFieldBrand.getText(), this.textFieldColor.getText(), this.textFieldLostFound.getText(),new Date(this.textFieldDate.getText()),(StatusEnum) this.comboBoxStatus.getValue(), null);
-        return foundLuggage;
-    }
+//    public FoundLuggage makeFoundLuggage(){
+//        FoundLuggage foundLuggage;
+//        foundLuggage = new FoundLuggage(this.textFieldLabelId.getText(),this.textFieldFlightId.getText(), this.textFieldDestination.getText(),(LuggageEnum)this.comboBoxType.getValue(), this.textFieldBrand.getText(), this.textFieldColor.getText(), this.textFieldLostFound.getText(),new Date(this.textFieldDate.getText()),(StatusEnum) this.comboBoxStatus.getValue(), null);
+//        return foundLuggage;
+//    }
     @FXML
     void sendDHL(ActionEvent event) {
 
@@ -79,20 +79,20 @@ public class AddFoundLuggageController implements Initializable{
         stage.close();
     }
 
-    @FXML
-    void saveData(ActionEvent event) {
-        LuggageListController.foundLuggageData.add(makeFoundLuggage());
-        Stage stage = (Stage) this.buttonSave.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    void saveMatch(ActionEvent event) {
-        LuggageListController.foundLuggageData.add(makeFoundLuggage());
-        //MATCH
-        Stage stage = (Stage) this.buttonSaveMatch.getScene().getWindow();
-        stage.close();
-    }
+//    @FXML
+//    void saveData(ActionEvent event) {
+//        LuggageListController.foundLuggageData.add(makeFoundLuggage());
+//        Stage stage = (Stage) this.buttonSave.getScene().getWindow();
+//        stage.close();
+//    }
+//
+//    @FXML
+//    void saveMatch(ActionEvent event) {
+//        LuggageListController.foundLuggageData.add(makeFoundLuggage());
+//        //MATCH
+//        Stage stage = (Stage) this.buttonSaveMatch.getScene().getWindow();
+//        stage.close();
+//    }
 
     @FXML
     void delete(ActionEvent event) {

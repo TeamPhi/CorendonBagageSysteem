@@ -3,142 +3,163 @@ package backend;
 import java.util.Date;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-/**This class provides the basic attributes and mutators for a piece of luggage.
+/**
+ * This class provides the basic attributes and mutators for a piece of luggage.
  *
- * @author Elwin Slokker
+ * @author Elwin Slokker & Jordy Quak
  */
 public abstract class Luggage {
+
     /*
     Properties are a sort of java wrappers.
     They are mostly used to bind a 'property' to a element/control.
-    */
+     */
     private final SimpleStringProperty labelNumber;
-    private final SimpleStringProperty flightnumber;
-    //The airport where the luggage was found, or reported missing.
-    private final SimpleStringProperty registeredAirport;
+    private final SimpleStringProperty flightNumber;
+    private final SimpleStringProperty airport;
     private final SimpleStringProperty destination;
-    private final SimpleObjectProperty<LuggageEnum> type;
+    private final SimpleStringProperty type;
     private final SimpleStringProperty brand;
     private final SimpleStringProperty color;
-    private final SimpleObjectProperty<Date> date;
-    private final SimpleObjectProperty<StatusEnum> status;
-    private final SimpleStringProperty picture;
-    private char[] features;
-    
-    /**This constructor creates a luggage object.
-     * 
-     * @param newLabelNumber The label number or ID found that was given to the luggage.
-     * @param newFlightnumber The flightnubmer of the airplane the luggage was on.
-     * @param newDestination The place where the the luggage should go to.
+    private final SimpleStringProperty date;
+    private final SimpleStringProperty status;
+
+    /**
+     * This constructor creates a luggage object.
+     *
+     * @param labelNumber The label number or ID found that was given to the
+     * luggage.
+     * @param flightNumber The flightnubmer of the airplane the luggage was on.
+     * @param airport
+     * @param destination The place where the the luggage should go to.
      * @param type What kind of luggage it is.
      * @param brand The brand of the luggage.
-     * @param newColor Color of the luggage.
+     * @param color Color of the luggage.
      * @param date The date of registration or found date.
      * @param status A field specifying the status.
-     * @param newPicture Path to a local picture.
      */
-    public Luggage(String newLabelNumber, String newFlightnumber, 
-            String newDestination, LuggageEnum type, String brand, String newColor, 
-            Date date, StatusEnum status, 
-            String newPicture){
-        this.labelNumber = new SimpleStringProperty(newLabelNumber);
-        this.flightnumber = new SimpleStringProperty(newFlightnumber);
-        this.registeredAirport = new SimpleStringProperty(newDestination);
-        this.destination = new SimpleStringProperty(newDestination);
-        this.type = new SimpleObjectProperty(type);
+    public Luggage(String labelNumber, String flightNumber, String airport,
+            String destination, String type, String brand, String color,
+            String date, String status) {
+        this.labelNumber = new SimpleStringProperty(labelNumber);
+        this.flightNumber = new SimpleStringProperty(flightNumber);
+        this.airport = new SimpleStringProperty(airport);
+        this.destination = new SimpleStringProperty(destination);
+        this.type = new SimpleStringProperty(type);
         this.brand = new SimpleStringProperty(brand);
-        this.color  = new SimpleStringProperty(newColor);
-        this.picture = new SimpleStringProperty(newPicture);
-        this.date = new SimpleObjectProperty(date);
-        this.status = new SimpleObjectProperty(status);
-        this.features = new char[500];//500 is the maximum amount of characters that fit in the database field.
+        this.color = new SimpleStringProperty(color);
+        this.date = new SimpleStringProperty(date);
+        this.status = new SimpleStringProperty(status);
     }
 
-    public String getLabelNumber(){
-        return this.labelNumber.get();
+    public String getLabelNumber() {
+        return labelNumber.get();
     }
 
-    public String getFlightNumber(){
-        return this.flightnumber.get();
+    public String getFlightNumber() {
+        return flightNumber.get();
     }
 
-    public String getRegisteredAirport(){
-        return this.registeredAirport.get();
+    public String getAirport() {
+        return airport.get();
     }
 
-    public String getDestination(){
-        return this.destination.get();
+    public String getDestination() {
+        return destination.get();
     }
 
-    public LuggageEnum getType(){
-        return this.type.get();
+    public String getType() {
+        return type.get();
     }
 
-    public String getBrand(){
-        return this.brand.get();
+    public String getBrand() {
+        return brand.get();
     }
 
-    public String getColor(){
-        return this.color.get();
+    public String getColor() {
+        return color.get();
     }
 
-    public Date getDate(){
-        return this.date.get();
+    public String getDate() {
+        return date.get();
     }
 
-    public StatusEnum getStatus(){
-        return this.status.get();
+    public String getStatus() {
+        return status.get();
     }
 
-    public String getPicture(){
-        return this.picture.get();
-    }
-
-    public char[] getFeatures(){
-        return this.features;
-    }
-
-    public void setLabelNumber(String labelNumber){
+    public void setLabelNumber(String labelNumber) {
         this.labelNumber.set(labelNumber);
     }
 
-    public void setFlightNumber(String flightNumber){
+    public void setFlightNumber(String flightNumber) {
         this.labelNumber.set(flightNumber);
     }
 
-    public void setRegisteredAirport(String airport){
-        this.registeredAirport.set(airport);
+    public void setAirport(String airport) {
+        this.airport.set(airport);
     }
 
-    public void setDestination(String destination){
+    public void setDestination(String destination) {
         this.labelNumber.set(destination);
     }
 
-    public void setType(LuggageEnum type){
+    public void setType(String type) {
         this.type.set(type);
     }
 
-    public void setColor(String color){
+    public void setBrand(String brand) {
+        this.brand.set(brand);
+    }
+
+    public void setColor(String color) {
         this.color.set(color);
     }
 
-    public void setDate(Date date){
+    public void setDate(String date) {
         this.date.set(date);
     }
 
-    public void changeStatus(StatusEnum status){
+    public void setStatus(String status) {
         this.status.set(status);
     }
 
-    public void setPicture(String picture){
-        this.picture.set(picture);
+    public StringProperty labelNumberProperty() {
+        return labelNumber;
     }
 
-    public void setFeatures(char[] features){
-        this.features = features;
+    public StringProperty flightNumberProperty() {
+        return flightNumber;
     }
-        public void setFeatures(String features){
-        this.features = features.toCharArray();
+
+    public StringProperty airportProperty() {
+        return airport;
     }
+
+    public StringProperty destinationProperty() {
+        return destination;
+    }
+
+    public StringProperty typeProperty() {
+        return type;
+    }
+
+    public StringProperty brandProperty() {
+        return brand;
+    }
+
+    public StringProperty colorProperty() {
+        return color;
+    }
+
+    public StringProperty dateProperty() {
+        return date;
+    }
+
+    public StringProperty statusProperty() {
+        return status;
+    }
+
 }
