@@ -128,8 +128,8 @@ public class LuggageListController implements Initializable {
     @FXML
     private Button buttonMatchForm;
     
-    private ObservableList<FoundLuggage> foundLuggageData;
-    private ObservableList<LostLuggage> lostLuggageData;
+    public static ObservableList<FoundLuggage> foundLuggageData;
+    public static ObservableList<LostLuggage> lostLuggageData;
     private DBConnection dbc;
     @FXML
     private Button buttonFoundLoad;

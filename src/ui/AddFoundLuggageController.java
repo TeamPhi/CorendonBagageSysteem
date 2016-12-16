@@ -1,8 +1,6 @@
 package ui;
 
 import backend.FoundLuggage;
-import backend.LuggageEnum;
-import backend.StatusEnum;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -29,6 +27,10 @@ public class AddFoundLuggageController implements Initializable{
     @FXML
     private Button buttonSend;
     @FXML
+    private Button buttonAddMore;
+    @FXML
+    private Button buttonMatchSave;
+    @FXML
     private TextField textFieldTime;
     @FXML
     private TextField textFieldLostFound;
@@ -45,54 +47,54 @@ public class AddFoundLuggageController implements Initializable{
     @FXML
     private TextField textFieldColor;
     @FXML
-    private ComboBox comboBoxType;
-    @FXML
     private TextArea textFieldFeatures;
     @FXML
     private TextField textFieldDate;
     @FXML
     private TextField textFieldTravellerName;
     @FXML
-    private ComboBox comboBoxStatus;
+    private TextField testFieldBrand;
+    @FXML
+    private TextField textFieldType;
+    @FXML
+    private TextField textFieldStatus;
+
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.comboBoxType.setItems(FXCollections.observableArrayList(LuggageEnum.values()));
-        this.comboBoxStatus.setItems(FXCollections.observableArrayList(StatusEnum.values()));
+
     }  
-//    public FoundLuggage makeFoundLuggage(){
-//        FoundLuggage foundLuggage;
-//        foundLuggage = new FoundLuggage(this.textFieldLabelId.getText(),this.textFieldFlightId.getText(), this.textFieldDestination.getText(),(LuggageEnum)this.comboBoxType.getValue(), this.textFieldBrand.getText(), this.textFieldColor.getText(), this.textFieldLostFound.getText(),new Date(this.textFieldDate.getText()),(StatusEnum) this.comboBoxStatus.getValue(), null);
-//        return foundLuggage;
-//    }
-    @FXML
+    public FoundLuggage makeFoundLuggage(){
+        FoundLuggage foundLuggage;
+        foundLuggage = new FoundLuggage(this.textFieldLabelId.getText(),this.textFieldFlightId.getText(), this.textFieldDestination.getText(),
+                this.textFieldType.getText(), this.textFieldBrand.getText(), this.textFieldColor.getText(), this.textFieldLostFound.getText(),
+                this.textFieldDate.getText(),this.textFieldStatus.getText(), null);
+        return foundLuggage;
+    }
     void sendDHL(ActionEvent event) {
 
     }
 
-    @FXML
     void cancel(ActionEvent event) {
         Stage stage = (Stage) this.buttonCancel.getScene().getWindow();
         stage.close();
     }
 
-//    @FXML
-//    void saveData(ActionEvent event) {
-//        LuggageListController.foundLuggageData.add(makeFoundLuggage());
-//        Stage stage = (Stage) this.buttonSave.getScene().getWindow();
-//        stage.close();
-//    }
-//
-//    @FXML
-//    void saveMatch(ActionEvent event) {
-//        LuggageListController.foundLuggageData.add(makeFoundLuggage());
-//        //MATCH
-//        Stage stage = (Stage) this.buttonSaveMatch.getScene().getWindow();
-//        stage.close();
-//    }
+    void saveData(ActionEvent event) {
+        LuggageListController.foundLuggageData.add(makeFoundLuggage());
+        Stage stage = (Stage) this.buttonSave.getScene().getWindow();
+        stage.close();
+    }
+
+    void saveMatch(ActionEvent event) {
+        LuggageListController.foundLuggageData.add(makeFoundLuggage());
+        //MATCH
+        Stage stage = (Stage) this.buttonSaveMatch.getScene().getWindow();
+        stage.close();
+    }
 
     @FXML
     void delete(ActionEvent event) {
