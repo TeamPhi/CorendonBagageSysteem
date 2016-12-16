@@ -36,6 +36,6 @@
       <TextField fx:id="textFieldNewPasswordRepeat" layoutX="150.0" layoutY="360.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="400.0" />
       <Label fx:id="labelResetPass" layoutX="31.0" layoutY="354.0" text="labelSendPass" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="455.0" />
       <Button fx:id="buttonResetPassword" layoutX="358.0" layoutY="451.0" mnemonicParsing="false" onAction="#resetPassword" text="buttonResetPass" AnchorPane.leftAnchor="358.0" AnchorPane.topAnchor="451.0" />
-      <Button fx:id="buttonSave" layoutX="282.0" layoutY="505.0" mnemonicParsing="false" onAction="#Save" text="buttonSave" AnchorPane.leftAnchor="282.0" AnchorPane.topAnchor="505.0" />
+      <Button fx:id="buttonSave" layoutX="282.0" layoutY="505.0" mnemonicParsing="false" onAction="#save" text="buttonSave" AnchorPane.leftAnchor="282.0" AnchorPane.topAnchor="505.0" />
    </children>
 </AnchorPane>
