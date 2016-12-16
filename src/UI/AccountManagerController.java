@@ -1,10 +1,16 @@
 package ui;
 
 import backend.Account;
+import backend.DBConnection;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,14 +18,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 
 /**
  * FXML Controller class
@@ -31,7 +37,7 @@ import javafx.stage.Stage;
 public class AccountManagerController implements Initializable {
 
     public static ObservableList<Account> accountData;
-    
+
     @FXML
     private Button buttonAccountManagerEdit;
     @FXML
@@ -50,13 +56,14 @@ public class AccountManagerController implements Initializable {
     private TableColumn<Account, String> columnSurname;
     @FXML
     private TableColumn<Account, String> columnEmail;
-    
-    public AccountManagerController(){
+
+    public AccountManagerController() {
         //The list is filled with test data.
         AccountManagerController.accountData = FXCollections.observableArrayList(
                 new Account("Karello", "****", "Baliemedewerker", "Karel", "Lout", "Karello@gmail.com"));
+
     }
-    
+
     /**
      * Initializes the controller class.
      */
@@ -71,47 +78,119 @@ public class AccountManagerController implements Initializable {
         I18N.bindTableText(this.columnName.getText(), this.columnName, (Object[]) null);
         I18N.bindTableText(this.columnSurname.getText(), this.columnSurname, (Object[]) null);
         I18N.bindTableText(this.columnEmail.getText(), this.columnEmail, (Object[]) null);
-        this.tableAccount.setItems(accountData);
-        
-        //init collumns and decide what values are stored in them.
+
+        //init collumns and tell what values are stored in them.
         this.columnUsername.setCellValueFactory(
-                new PropertyValueFactory<Account, String>("username"));
+                new PropertyValueFactory<>("username"));
         this.columnPassword.setCellValueFactory(
-                new PropertyValueFactory<Account, String>("password"));
+                new PropertyValueFactory<>("password"));
         this.columnPriveleges.setCellValueFactory(
-                new PropertyValueFactory<Account, String>("privilege"));
+                new PropertyValueFactory<>("privilege"));
         this.columnName.setCellValueFactory(
-                new PropertyValueFactory<Account, String>("name"));
+                new PropertyValueFactory<>("name"));
         this.columnSurname.setCellValueFactory(
-                new PropertyValueFactory<Account, String>("surname"));
+                new PropertyValueFactory<>("surname"));
         this.columnEmail.setCellValueFactory(
-                new PropertyValueFactory<Account, String>("email"));
-        
-        this.tableAccount.setItems(accountData);
-    }    
+                new PropertyValueFactory<>("email"));
+
+        this.tableAccount.setItems(AccountManagerController.accountData);
+        loadAccounts();
+    }
+
+    public void loadAccounts() {
+        Connection conn = DBConnection.connectDb();
+        try {
+            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM account");
+            // string from database
+            while (rs.next()) {
+                AccountManagerController.accountData.add(new Account(rs.getString(2),
+                        rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7)));
+
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+    }
 
     @FXML
     private void editAccount(ActionEvent event) {
-        
+        /*Check if the user may edit the selected account.
+        The window is only shown if the list contains at least one account and
+        at least one is selected.
+         */
+        if (this.tableAccount.getSelectionModel().getSelectedItem() != null) {
+            showAccountManagerEdit(this.tableAccount.getSelectionModel().getSelectedItem(), false);
+        } else if (AccountManagerController.accountData.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No entries");//ripe for translation
+            alert.setHeaderText(null);
+            alert.setContentText("You can only edit an account if you have at least one entry.");//ripe for translation
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No selection");//ripe for translation
+            alert.setHeaderText(null);
+            alert.setContentText("You can only edit an account if you select an entry.");//ripe for translation
+            alert.showAndWait();
+        }
+
     }
 
     @FXML
     private void addAccount(ActionEvent event) {
-        /* Load the add screen.
-        First the FXML file is loaded and then a new Stage is made (a window) and shown.
-        */
-        try {
-            //this.tableFoundLuggage.setItems(foundLuggageData); ONLY FOR TESTING
-            Parent addScreen = FXMLLoader.load(getClass().getResource("AccountManagerEdit.fxml"));
-            
-            Stage add = new Stage();
-            Scene scene = new Scene(addScreen);
-            add.setTitle("Corendon Bagage Systeem");
-            add.setScene(scene);
-            add.show();
-        } catch (IOException ex) {
-            Logger.getLogger(LuggageListController.class.getName()).log(Level.SEVERE, null, ex);
+        //simply execute the method with addMode = true.
+        showAccountManagerEdit(null, true);
+    }
+    /**Future method/event for removing an account from the table and the database.
+     * 
+     */
+    public void deleteAccount() {
+        if (this.tableAccount.getSelectionModel().getSelectedItem() != null) {
+            Account temp = this.tableAccount.getSelectionModel().getSelectedItem();
+            try {
+                Connection conn = DBConnection.connectDb();
+                Statement stmt = conn.createStatement();
+                String sql = "DELETE FROM account "
+                        + "WHERE userid = ?";
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setInt(1, 0);//this should be changed
+                //preparedStatement.setInt(1, temp.getID());
+                preparedStatement.executeUpdate();
+                conn.close();
+                AccountManagerController.accountData.remove(temp);
+            } catch (SQLException ex) {
+                System.err.println("Error" + ex);
+            }
         }
+    }
+
+    /**
+     * Load and show the account editor screen.
+     *
+     * @param editAccount The account that needs to be edited. (null if none)
+     * @param addMode True if the screen is called from buttonAdd and false if
+     * called by buttonEdit.
+     */
+    public void showAccountManagerEdit(Account editAccount, boolean addMode) {
+        /* Load the add/ecit screen.
+        First the FXML file is loaded and then a new Stage is made (a window) and shown.
+        The initData method passes the arguments to the controller.
+         */
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountManagerEdit.fxml"));
+
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene((Pane) loader.load()));
+            AccountManagerEditController controller
+                    = loader.<AccountManagerEditController>getController();
+            controller.initData(editAccount, addMode);
+            stage.setTitle("Corendon Bagage Systeem");
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AccountManagerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //return stage;
     }
 
 }

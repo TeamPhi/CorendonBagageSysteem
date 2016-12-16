@@ -1,8 +1,6 @@
 package ui;
 
 import backend.UIClass;
-import corendonbagagesysteem.CorendonBagageSysteem;
-import ui.MainUIController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,8 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -56,16 +52,9 @@ public class NavigationBarController implements Initializable {
         this.luggageList = FXMLLoader.load(getClass().getResource("LuggageList.fxml"));
         UIClass.setAnchorDistance(this.luggageList, 0.0);
         
-        //load the Add Luggage Form and set the anchorproperties for proper resize.
-        //this.luggageForm = FXMLLoader.load(getClass().getResource("AddFoundLuggage.fxml"));
-        //UIClass.setAnchorDistance(this.luggageForm, 0.0);
-        
         //load the Account Manager screen and set the anchorproperties for proper resize.
         this.accountManager = FXMLLoader.load(getClass().getResource("AccountManager.fxml"));
         UIClass.setAnchorDistance(this.accountManager, 0.0);
-        
-        //load the Account editor and set the anchorproperties for proper resize.
-        this.accountManagerEdit = FXMLLoader.load(getClass().getResource("AccountManagerEdit.fxml"));
         
         //load the Home screen and set the anchorproperties for proper resize.
         this.home = FXMLLoader.load(getClass().getResource("Home.fxml"));
