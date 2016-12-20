@@ -32,7 +32,7 @@
       <Label layoutX="357.0" layoutY="85.0" prefHeight="16.0" prefWidth="250.0" text="(leeg veld voor geen maximale opslagtijd)" />
       <Label layoutX="357.0" layoutY="150.0" prefHeight="16.0" prefWidth="250.0" text="(leeg veld voor geen maximale opslagtijd)" />
       <Label layoutX="357.0" layoutY="220.0" text="(leeg veld voor geen maximale opslagtijd)" />
-      <Button fx:id="buttonSave" layoutX="507.0" layoutY="274.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" text="opslaan" />
+      <Button fx:id="buttonSave" layoutX="507.0" layoutY="274.0" mnemonicParsing="false" onAction="#saveButtonClicked" prefHeight="26.0" prefWidth="71.0" text="opslaan" />
       <TextField fx:id="textfieldLostMaxLuggage" layoutX="250.0" layoutY="81.0" prefHeight="25.0" prefWidth="65.0" />
       <TextField fx:id="textfieldFoundMaxLuggage" layoutX="250.0" layoutY="146.0" prefHeight="25.0" prefWidth="65.0" />
       <TextField fx:id="textfieldStatistics" layoutX="250.0" layoutY="215.0" prefHeight="25.0" prefWidth="65.0" />
