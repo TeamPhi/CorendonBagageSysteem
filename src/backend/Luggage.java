@@ -8,7 +8,8 @@ import javafx.beans.property.StringProperty;
 /**
  * This class provides the basic attributes and mutators for a piece of luggage.
  *
- * @author Elwin Slokker & Jordy Quak
+ * @author Elwin Slokker
+ * @author Jordy Quak
  */
 public abstract class Luggage {
 

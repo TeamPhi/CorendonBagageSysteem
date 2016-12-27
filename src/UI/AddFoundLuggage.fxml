@@ -9,16 +9,16 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AddFoundLuggageController">
    <children>
       <Button fx:id="buttonDelete" layoutX="522.0" layoutY="624.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
-      <Label layoutX="29.0" layoutY="22.0" text="Found luggage registration form">
+      <Label fx:id="labelHeader" layoutX="29.0" layoutY="22.0" text="Found luggage registration form">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="31.0" layoutY="56.0" text="Date" />
-      <Label layoutX="31.0" layoutY="84.0" text="Time" />
-      <Label layoutX="29.0" layoutY="113.0" text="Airport" />
-      <Label layoutX="28.0" layoutY="141.0" text="Lost-and-found ID" />
-      <Label layoutX="25.0" layoutY="178.0" text="Flight information">
+      <Label fx:id="labelDate" layoutX="31.0" layoutY="56.0" text="Date" />
+      <Label fx:id="labelTime" layoutX="31.0" layoutY="84.0" text="Time" />
+      <Label fx:id="labelAirport" layoutX="29.0" layoutY="113.0" text="Airport" />
+      <Label fx:id="labelLAFID" layoutX="28.0" layoutY="141.0" text="Lost-and-found ID" />
+      <Label fx:id="labelFlightHeader" layoutX="25.0" layoutY="178.0" text="Flight information">
          <font>
             <Font size="14.0" />
          </font>
@@ -28,31 +28,31 @@
       <TextField fx:id="textFieldAirport" layoutX="172.0" layoutY="109.0" />
       <TextField fx:id="textFieldLostFound" layoutX="172.0" layoutY="137.0" />
       <TextField fx:id="textFieldLabelId" layoutX="172.0" layoutY="200.0" />
-      <Label layoutX="27.0" layoutY="204.0" text="Label ID" />
-      <Label layoutX="27.0" layoutY="232.0" text="Flight ID" />
+      <Label fx:id="labelLabelID" layoutX="27.0" layoutY="204.0" text="Label ID" />
+      <Label fx:id="labelFlightID" layoutX="27.0" layoutY="232.0" text="Flight ID" />
       <TextField fx:id="textFieldFlightId" layoutX="172.0" layoutY="228.0" />
-      <Label layoutX="27.0" layoutY="260.0" text="Destination" />
+      <Label fx:id="labelDestination" layoutX="27.0" layoutY="260.0" text="Destination" />
       <TextField fx:id="textFieldDestination" layoutX="172.0" layoutY="256.0" />
-      <Label layoutX="27.0" layoutY="287.0" text="Traveller's name" />
+      <Label fx:id="labelName" layoutX="27.0" layoutY="287.0" text="Traveller's name" />
       <TextField fx:id="textFieldTravellerName" layoutX="172.0" layoutY="283.0" />
-      <Label layoutX="24.0" layoutY="320.0" text="Luggage information">
+      <Label fx:id="labelLuggageHeader" layoutX="24.0" layoutY="320.0" text="Luggage information">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="27.0" layoutY="346.0" text="Type" />
+      <Label fx:id="labelType" layoutX="27.0" layoutY="346.0" text="Type" />
       <TextField fx:id="testFieldBrand" layoutX="172.0" layoutY="370.0" />
-      <Label layoutX="27.0" layoutY="374.0" text="Brand" />
+      <Label fx:id="labelBrand" layoutX="27.0" layoutY="374.0" text="Brand" />
       <TextField fx:id="textFieldColor" layoutX="172.0" layoutY="398.0" />
-      <Label layoutX="27.0" layoutY="402.0" text="Color" />
-      <TextArea fx:id="textFieldFeatures" layoutX="172.0" layoutY="426.0" prefHeight="129.0" prefWidth="356.0" />
-      <Label layoutX="28.0" layoutY="431.0" text="Features" />
+      <Label fx:id="labelColor" layoutX="27.0" layoutY="402.0" text="Color" />
+      <TextArea fx:id="textAreaFeatures" layoutX="172.0" layoutY="426.0" prefHeight="129.0" prefWidth="356.0" />
+      <Label fx:id="labelFeatures" layoutX="28.0" layoutY="431.0" text="Features" />
       <Button fx:id="buttonAddMore" layoutX="28.0" layoutY="581.0" mnemonicParsing="false" text="Add more" />
       <Button fx:id="buttonMatchSave" layoutX="698.0" layoutY="624.0" mnemonicParsing="false" text="Save &amp; Match" />
       <Button fx:id="buttonSave" layoutX="810.0" layoutY="624.0" mnemonicParsing="false" text="Save" />
       <Button fx:id="buttonCancel" layoutX="450.0" layoutY="624.0" mnemonicParsing="false" text="Cancel" />
       <Button fx:id="buttonSend" layoutX="28.0" layoutY="624.0" mnemonicParsing="false" text="Send DHL form" />
-      <Label layoutX="573.0" layoutY="165.0" text="labelStatus" />
+      <Label fx:id="labelStatus" layoutX="573.0" layoutY="165.0" text="labelStatus" />
       <TextField fx:id="textFieldType" layoutX="172.0" layoutY="342.0" />
       <TextField fx:id="textFieldStatus" layoutX="639.0" layoutY="161.0" />
    </children>

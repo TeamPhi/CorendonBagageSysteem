@@ -36,12 +36,14 @@ import javafx.stage.Stage;
  */
 public class AccountManagerController implements Initializable {
 
-    public static ObservableList<Account> accountData;
+    public static ObservableList<Account> accountData = FXCollections.observableArrayList();
 
     @FXML
-    private Button buttonAccountManagerEdit;
+    private Button buttonEdit;
     @FXML
-    private Button buttonAccountManagerAdd;
+    private Button buttonAdd;
+    @FXML
+    private Button buttonDelete;
     @FXML
     private TableView<Account> tableAccount;
     @FXML
@@ -58,10 +60,6 @@ public class AccountManagerController implements Initializable {
     private TableColumn<Account, String> columnEmail;
 
     public AccountManagerController() {
-        //The list is filled with test data.
-        AccountManagerController.accountData = FXCollections.observableArrayList(
-                new Account("Karello", "****", "Baliemedewerker", "Karel", "Lout", "Karello@gmail.com"));
-
     }
 
     /**
@@ -70,8 +68,9 @@ public class AccountManagerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Bind all text to the translations.
-        I18N.bindText(this.buttonAccountManagerEdit.getText(), this.buttonAccountManagerEdit, (Object[]) null);
-        I18N.bindText(this.buttonAccountManagerAdd.getText(), this.buttonAccountManagerAdd, (Object[]) null);
+        I18N.bindText(this.buttonEdit.getText(), this.buttonEdit, (Object[]) null);
+        I18N.bindText(this.buttonAdd.getText(), this.buttonAdd, (Object[]) null);
+        I18N.bindText(this.buttonDelete.getText(), this.buttonDelete, (Object[]) null);
         I18N.bindTableText(this.columnUsername.getText(), this.columnUsername, (Object[]) null);
         I18N.bindTableText(this.columnPassword.getText(), this.columnPassword, (Object[]) null);
         I18N.bindTableText(this.columnPriveleges.getText(), this.columnPriveleges, (Object[]) null);
@@ -103,10 +102,12 @@ public class AccountManagerController implements Initializable {
             ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM account");
             // string from database
             while (rs.next()) {
-                AccountManagerController.accountData.add(new Account(rs.getString(2),
-                        rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getString(6), rs.getString(7)));
-
+                //make an account from the data from the database.
+                Account temp = new Account(rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                temp.setUserID(rs.getInt(1));
+                //Add the temp account to the list.
+                AccountManagerController.accountData.add(temp);
             }
         } catch (SQLException ex) {
             System.err.println("Error" + ex);
@@ -120,14 +121,25 @@ public class AccountManagerController implements Initializable {
         at least one is selected.
          */
         if (this.tableAccount.getSelectionModel().getSelectedItem() != null) {
-            showAccountManagerEdit(this.tableAccount.getSelectionModel().getSelectedItem(), false);
+            if (!Account.isEqualAccount(Account.getUser(),
+                    this.tableAccount.getSelectionModel().getSelectedItem())) {
+                showAccountManagerEdit(this.tableAccount.getSelectionModel().getSelectedItem(), false);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Attempt to edit own account");//ripe for translation
+                alert.setHeaderText(null);
+                alert.setContentText("You cannot edit your own account!");//ripe for translation
+                alert.showAndWait();
+            }
         } else if (AccountManagerController.accountData.isEmpty()) {
+            //error if there is no account yet.
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("No entries");//ripe for translation
             alert.setHeaderText(null);
             alert.setContentText("You can only edit an account if you have at least one entry.");//ripe for translation
             alert.showAndWait();
         } else {
+            //error if here is no selection.
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("No selection");//ripe for translation
             alert.setHeaderText(null);
@@ -142,26 +154,46 @@ public class AccountManagerController implements Initializable {
         //simply execute the method with addMode = true.
         showAccountManagerEdit(null, true);
     }
-    /**Future method/event for removing an account from the table and the database.
-     * 
+
+    /**
+     * Method/event for removing an account from the table and the database.
+     *
      */
     public void deleteAccount() {
+        /*
+        First check whether the user has selected an editable account.
+         */
         if (this.tableAccount.getSelectionModel().getSelectedItem() != null) {
-            Account temp = this.tableAccount.getSelectionModel().getSelectedItem();
-            try {
-                Connection conn = DBConnection.connectDb();
-                Statement stmt = conn.createStatement();
-                String sql = "DELETE FROM account "
-                        + "WHERE userid = ?";
-                PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                preparedStatement.setInt(1, 0);//this should be changed
-                //preparedStatement.setInt(1, temp.getID());
-                preparedStatement.executeUpdate();
-                conn.close();
-                AccountManagerController.accountData.remove(temp);
-            } catch (SQLException ex) {
-                System.err.println("Error" + ex);
+            if (!Account.isEqualAccount(Account.getUser(),
+                    this.tableAccount.getSelectionModel().getSelectedItem())) {
+                Account temp = this.tableAccount.getSelectionModel().getSelectedItem();
+                try {
+                    Connection conn = DBConnection.connectDb();
+                    Statement stmt = conn.createStatement();
+                    String sql = "DELETE FROM account "
+                            + "WHERE userid = ?";
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                    //preparedStatement.setInt(1, 0);//this should be changed
+                    preparedStatement.setInt(1, temp.getUserID());
+                    preparedStatement.executeUpdate();
+                    conn.close();
+                    AccountManagerController.accountData.remove(temp);
+                } catch (SQLException ex) {
+                    System.err.println("Error" + ex);
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Attempt to delete own account");//ripe for translation
+                alert.setHeaderText(null);
+                alert.setContentText("You cannot delete your own account!");//ripe for translation
+                alert.showAndWait();
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No selection");//ripe for translation
+            alert.setHeaderText(null);
+            alert.setContentText("You can only delete an account if you select an entry.");//ripe for translation
+            alert.showAndWait();
         }
     }
 
@@ -190,7 +222,6 @@ public class AccountManagerController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AccountManagerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //return stage;
     }
 
 }

@@ -1,5 +1,6 @@
 package ui;
 
+import backend.Account;
 import backend.UIClass;
 import java.io.IOException;
 import java.net.URL;
@@ -10,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -19,15 +21,14 @@ import javafx.scene.control.Button;
 public class NavigationBarController implements Initializable {
     
     private Node luggageList;
-    private Node luggageForm;
     private Node accountManager;
-    private Node accountManagerEdit;
     private Node statistics;
     private Node configuration;
     private Node home;
     private Node claims;
     private Node logInScreen;
-    
+    @FXML
+    private VBox vboxNavigation;
     @FXML
     private Button buttonHome;
     @FXML
@@ -85,6 +86,14 @@ public class NavigationBarController implements Initializable {
         I18N.bindText(this.buttonAccountManager.getText(), this.buttonAccountManager, (Object[]) null);
         I18N.bindText(this.buttonConfiguration.getText(), this.buttonConfiguration, (Object[]) null);
         I18N.bindText(this.buttonSignOut.getText(), this.buttonSignOut, (Object[]) null); 
+        //Check privilege and hide buttons accordingly.
+        if (Account.getUser().getPrivilege().equals(Account.SIMPLE_PRIVILEGE)){
+            this.vboxNavigation.getChildren().remove(this.buttonAccountManager);
+            this.vboxNavigation.getChildren().remove(this.buttonStatistics);
+        }
+        //there is no claim screen yet, so disable the button.
+        this.vboxNavigation.getChildren().remove(this.buttonClaims);
+
     }    
     
     @FXML

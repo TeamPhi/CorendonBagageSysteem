@@ -3,9 +3,6 @@ package ui;
 import backend.DBConnection;
 import backend.FoundLuggage;
 import backend.LostLuggage;
-import backend.Luggage;
-import backend.LuggageEnum;
-import backend.StatusEnum;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -40,8 +37,8 @@ public class LuggageListController implements Initializable {
     These lists need to be created for the table view.
     Because a table view can only display rows directly taken from objects in an observable list.
     */
-//    public static ObservableList<FoundLuggage> foundLuggageData;
-//    public static ObservableList<LostLuggage> lostLuggageData;
+    public static ObservableList<FoundLuggage> foundLuggageData;
+    public static ObservableList<LostLuggage> lostLuggageData;
 
     @FXML
     private Tab tabFound;
@@ -127,13 +124,10 @@ public class LuggageListController implements Initializable {
     private Button buttonMatchImport;
     @FXML
     private Button buttonMatchForm;
-    
-    public static ObservableList<FoundLuggage> foundLuggageData;
-    public static ObservableList<LostLuggage> lostLuggageData;
-    private DBConnection dbc;
     @FXML
     private Button buttonFoundLoad;
-
+    
+    private DBConnection dbc;
     /**
      * Initializes the controller class.
      */
@@ -239,7 +233,6 @@ public class LuggageListController implements Initializable {
                 foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3),
                         rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
                         rs.getString(8), rs.getString(9), rs.getString(10)));
-
             }
 
         } catch (SQLException ex) {
@@ -289,7 +282,6 @@ public class LuggageListController implements Initializable {
 
     }
 
-
     @FXML
     private void addFoundButtonClicked(ActionEvent event) {
         /* Load the add screen.
@@ -308,7 +300,11 @@ public class LuggageListController implements Initializable {
         }
 
     }
-
+    
+    @FXML
+    private void editFoundButtonClicked(ActionEvent event) {
+        
+    }
     @FXML
     private void searchLostButtonClicked(ActionEvent event) {
 
