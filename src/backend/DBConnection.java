@@ -20,6 +20,9 @@ public class DBConnection {
     public static final int LENGTH_OF_COUNTRY = 45;
     public static final int LENGTH_OF_TELEPHONE = 12;
     public static final int LENGTH_OF_EMAIL = 45;
+    public static final int LENGTH_OF_SURNAME = 45;
+    public static final int LENGTH_OF_PASSWORD = 45;
+    public static final int LENGTH_OF_USERNAME = 45;
 
     /**
      *
@@ -45,8 +48,8 @@ public class DBConnection {
             Time time, String airport) throws SQLException {
         Statement stmt = null;
         //query moet nog ingevoerd worden
-        String addLuggage = ("INSERT INTO foundLuggage (date, time, airport) VALUES (" +
-                date + ", \"" + time + "\", " + airport + ");");
+        String addLuggage = ("INSERT INTO foundLuggage (date, time, airport) VALUES ("
+                + date + ", \"" + time + "\", " + airport + ");");
         try {
             stmt = DBConnection.conn.createStatement();
             stmt.executeQuery(addLuggage);
