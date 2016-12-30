@@ -3,7 +3,8 @@ package backend;
 /**
  * This class is used to create instances of lost luggage pieces.
  *
- * @author Elwin Slokker & Jordy Quak
+ * @author Elwin Slokker
+ * @author Jordy Quak
  */
 public class LostLuggage extends Luggage {
 
@@ -20,7 +21,9 @@ public class LostLuggage extends Luggage {
      * @param date The date of registration.
      * @param status A field specifying the status.
      */
-    public LostLuggage(String labelNumber, String flightNumber, String airport, String destination, String type, String brand, String color, String date, String status) {
+    public LostLuggage(String labelNumber, String flightNumber, String airport, 
+            String destination, String type, String brand, String color, 
+            String date, String status) {
         super(labelNumber, flightNumber, airport, destination, type, brand, color, date, status);
     }
 

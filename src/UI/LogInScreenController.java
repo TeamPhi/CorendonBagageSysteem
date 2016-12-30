@@ -1,5 +1,6 @@
 package ui;
 
+import backend.I18N;
 import backend.Account;
 import backend.DBConnection;
 import corendonbagagesysteem.CorendonBagageSysteem;
@@ -89,7 +90,7 @@ public class LogInScreenController implements Initializable {
             int counter = 0;
             while (rs.next()) {
                 counter++;
-                Account.setNewUser(rs.getString(2), rs.getString(3), 
+                Account.setNewUser(rs.getInt(1), rs.getString(2), rs.getString(3), 
                         rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
             }
             if (counter == 1){
@@ -117,6 +118,7 @@ public class LogInScreenController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("There are two or more accounts with the same name. Contact the system-manager.");//ripe for translation
                 alert.showAndWait();
+                Account.setUser(null);
             }
             conn.close();
         } catch (SQLException ex) {

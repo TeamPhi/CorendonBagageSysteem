@@ -10,9 +10,11 @@ import java.sql.*;
 public class DBConnection {
 
     private static Connection conn;
-    private static String url = "jdbc:mysql://localhost:3306/<vul goede database hier in>";//Location of database
+    private static String url = "jdbc:mysql://localhost:3306/<vul hier goede database naam in>";//Location of database
     private static String user = "root";//Username of database  
     private static String pass = "pass";//Password of database 
+    //The length of varchar fields in the database:
+    //-Passenger
     public static final int LENGTH_OF_NAME = 45;
     public static final int LENGTH_OF_ADDRESS = 45;
     public static final int LENGTH_OF_CITY = 45;
@@ -20,9 +22,21 @@ public class DBConnection {
     public static final int LENGTH_OF_COUNTRY = 45;
     public static final int LENGTH_OF_TELEPHONE = 12;
     public static final int LENGTH_OF_EMAIL = 45;
+    //-acount
+    public static final int LENGTH_OF_REALNAME = 45;
     public static final int LENGTH_OF_SURNAME = 45;
     public static final int LENGTH_OF_PASSWORD = 45;
     public static final int LENGTH_OF_USERNAME = 45;
+    public static final int LENGTH_OF_ROLE = 45;//privilege
+    public static final int LENGTH_OF_WORKER_EMAIL = 45;
+    //-luggage
+    public static final int LENGTH_OF_FLIGHTID = 10;
+    public static final int LENGTH_OF_AIRPORT = 45;
+    public static final int LENGTH_OF_FEATURES = 500;
+    public static final int LENGTH_OF_TYPE = 20;
+    public static final int LENGTH_OF_BRAND = 45;
+    public static final int LENGTH_OF_COLOR = 45;
+    public static final int LENGTH_OF_DESTINATION = 45;
 
     /**
      *

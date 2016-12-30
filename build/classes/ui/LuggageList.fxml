@@ -73,27 +73,28 @@
                <children>
                   <TextField layoutX="14.0" layoutY="10.0" />
                   <Button fx:id="buttonMatchSearch" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" text="buttonSearch" />
-                  <TableView layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
+                  <TableView fx:id="tableMatchedFoundLuggage" layoutX="14.0" layoutY="49.0" onScroll="#scroll" prefHeight="401.0" prefWidth="595.0">
                      <columns>
-                        <TableColumn prefWidth="98.0" text="tableColumnLabel" />
-                        <TableColumn prefWidth="99.0" text="tableColumnAirport" />
-                        <TableColumn prefWidth="99.0" text="tableColumnFlightnumber" />
-                        <TableColumn prefWidth="99.0" text="tableColumnDestination" />
-                        <TableColumn prefWidth="99.0" text="tableColumnDate" />
-                        <TableColumn prefWidth="99.0" text="tableColumnStatus" />
+                        <TableColumn fx:id="columnMatchedFoundLabelnumber" prefWidth="89.0" text="tableColumnLabel" />
+                        <TableColumn fx:id="columnMatchedFoundAirport" minWidth="0.0" prefWidth="108.0" text="tableColumnAirport" />
+                        <TableColumn fx:id="columnMatchedFoundFlightnumber" prefWidth="99.0" text="tableColumnFlightnumber" />
+                        <TableColumn fx:id="columnMatchedLostFound" prefWidth="75.0" text="tableColumnLostFoundID" />
+                        <TableColumn fx:id="columnMatchedFoundDestination" prefWidth="99.0" text="tableColumnDestination" />
+                        <TableColumn fx:id="columnMatchedFoundDate" prefWidth="99.0" text="tableColumnDate" />
+                        <TableColumn fx:id="columnMatchedFoundStatus" prefWidth="99.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
-                  <TableView layoutX="633.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
+                  <TableView fx:id="tableMatchedLostLuggage" layoutX="633.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
                      <columns>
-                        <TableColumn prefWidth="98.0" text="tableColumnLabel" />
-                        <TableColumn prefWidth="99.0" text="tableColumnAirport" />
-                        <TableColumn prefWidth="99.0" text="tableColumnFlightnumber" />
-                        <TableColumn prefWidth="99.0" text="tableColumnDestination" />
-                        <TableColumn prefWidth="99.0" text="tableColumnDate" />
-                        <TableColumn prefWidth="99.0" text="tableColumnStatus" />
+                        <TableColumn fx:id="columnMatchedLostLabelnumber" prefWidth="98.0" text="tableColumnLabel" />
+                        <TableColumn fx:id="columnMatchedLostAirport" prefWidth="99.0" text="tableColumnAirport" />
+                        <TableColumn fx:id="columnMatchedLostFlightnumber" prefWidth="99.0" text="tableColumnFlightnumber" />
+                        <TableColumn fx:id="columnMatchedLostDestination" prefWidth="99.0" text="tableColumnDestination" />
+                        <TableColumn fx:id="columnMatchedLostDate" prefWidth="99.0" text="tableColumnDate" />
+                        <TableColumn fx:id="columnMatchedLostStatus" prefWidth="99.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
-                  <Button fx:id="buttonMatchMatch" layoutX="335.0" layoutY="10.0" mnemonicParsing="false" text="buttonMatch" />
+                  <Button fx:id="buttonMatchMatch" layoutX="335.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchMain" text="buttonMatch" />
                   <Button fx:id="buttonMatchImport" layoutX="622.0" layoutY="10.0" mnemonicParsing="false" text="buttonImport" />
                   <Button fx:id="buttonMatchExport" layoutX="480.0" layoutY="10.0" mnemonicParsing="false" text="buttonExport" />
                   <Button fx:id="buttonMatchForm" layoutX="1001.0" layoutY="10.0" mnemonicParsing="false" text="buttonMakeDeliveryForm" />

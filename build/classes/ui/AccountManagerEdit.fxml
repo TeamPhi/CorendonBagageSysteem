@@ -19,8 +19,8 @@
       <TextField fx:id="textFieldUsername" layoutX="140.0" layoutY="50.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="50.0" />
       <Label fx:id="labelWorkerName" layoutX="19.0" layoutY="105.0" text="workerName" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="105.0" />
       <Label fx:id="labelSurname" layoutX="15.0" layoutY="145.0" text="workerSurname" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="155.0" />
-      <TextField fx:id="textFieldSurname" layoutX="140.0" layoutY="140.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="150.0" />
       <TextField fx:id="textFieldFirstName" layoutX="143.0" layoutY="93.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="100.0" />
+      <TextField fx:id="textFieldSurname" layoutX="140.0" layoutY="140.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="150.0" />
       <TextField fx:id="textFieldEmailAdress" layoutX="150.0" layoutY="187.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="200.0" />
       <Label fx:id="labelEmail" layoutX="17.0" layoutY="200.0" text="labelEmail" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="205.0" />
       <Label fx:id="labelPrivilege" layoutX="18.0" layoutY="239.0" text="privilege" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="255.0" />

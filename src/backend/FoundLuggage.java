@@ -4,7 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 /**
  *
- * @author Elwin Slokker & Jordy Quak
+ * @author Elwin Slokker 
+ * @author Jordy Quak
  */
 public class FoundLuggage extends Luggage{
     /*
@@ -19,7 +20,7 @@ public class FoundLuggage extends Luggage{
      * 
      * @param labelNumber The label number or ID found that was given to the luggage.
      * @param flightNumber The flightnubmer of the airplane the luggage was on.
-     * @param airport 
+     * @param airport The name of the airport where the Luggage was found.
      * @param lostFoundID The ID given by the founder.
      * @param destination The place where the the luggage should go to.
      * @param type What kind of luggage it is.

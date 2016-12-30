@@ -9,7 +9,11 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Elwin Slokker
  */
 public class Account {
-    
+    //The current account thats logged in.
+    private static Account currentUser;
+    //The only two account types.
+    public static final String SIMPLE_PRIVILEGE = "desk clerk";
+    public static final String ADVANCED_PRIVILEGE = "manager";
     
     //the userID can be uncommented to use it.
     private SimpleIntegerProperty userID = new SimpleIntegerProperty(); 
@@ -19,9 +23,6 @@ public class Account {
     private SimpleStringProperty name;
     private SimpleStringProperty surname;
     private SimpleStringProperty email;
-    private static Account currentUser;
-    public static final String SIMPLE_PRIVILEGE = "desk clerk";
-    public static final String ADVANCED_PRIVILEGE = "manager";
     /**This constructor creates an account object.
      * 
      
@@ -103,10 +104,11 @@ public class Account {
     public static void setUser(Account user){
         Account.currentUser = user;
     }
-    public static void setNewUser(String newUsername, String newPassword, 
+    public static void setNewUser(int userID, String newUsername, String newPassword, 
             String newPrivilege, String name, String surname, String newEmail){
         Account.currentUser = new Account(newUsername, newPassword, 
             newPrivilege, name, surname, newEmail);
+        Account.currentUser.userID.set(userID);
     }
     public static Account getUser(){
         return Account.currentUser;

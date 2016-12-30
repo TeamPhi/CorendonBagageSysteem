@@ -1,5 +1,6 @@
 package ui;
 
+import backend.I18N;
 import backend.Account;
 import backend.DBConnection;
 import java.io.IOException;
@@ -204,7 +205,7 @@ public class AccountManagerController implements Initializable {
      * @param addMode True if the screen is called from buttonAdd and false if
      * called by buttonEdit.
      */
-    public void showAccountManagerEdit(Account editAccount, boolean addMode) {
+    private void showAccountManagerEdit(Account editAccount, boolean addMode) {
         /* Load the add/ecit screen.
         First the FXML file is loaded and then a new Stage is made (a window) and shown.
         The initData method passes the arguments to the controller.
@@ -214,9 +215,7 @@ public class AccountManagerController implements Initializable {
         Stage stage = new Stage();
         try {
             stage.setScene(new Scene((Pane) loader.load()));
-            AccountManagerEditController controller
-                    = loader.<AccountManagerEditController>getController();
-            controller.initData(editAccount, addMode);
+            loader.<AccountManagerEditController>getController().initData(editAccount, addMode);
             stage.setTitle("Corendon Bagage Systeem");
             stage.show();
         } catch (IOException ex) {

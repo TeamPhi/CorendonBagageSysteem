@@ -1,5 +1,6 @@
 package ui;
 
+import backend.I18N;
 import java.util.Locale;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

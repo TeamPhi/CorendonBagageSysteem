@@ -1,7 +1,9 @@
 package ui;
 
+import backend.I18N;
 import backend.Account;
 import backend.UIClass;
+import corendonbagagesysteem.CorendonBagageSysteem;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,7 +52,10 @@ public class NavigationBarController implements Initializable {
      */
     public NavigationBarController() throws IOException{
         //load the Luggage List and set the anchorproperties for proper resize.
-        this.luggageList = FXMLLoader.load(getClass().getResource("LuggageList.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LuggageList.fxml"));
+        this.luggageList = fxmlLoader.load();
+        //((LuggageListController)fxmlLoader.getController()).setScrollBarBinding();
+        //this.luggageList = CorendonBagageSysteem.getLuggageList();
         UIClass.setAnchorDistance(this.luggageList, 0.0);
         
         //load the Account Manager screen and set the anchorproperties for proper resize.

@@ -1,5 +1,6 @@
 package ui;
 
+import backend.I18N;
 import backend.Account;
 import backend.DBConnection;
 import java.net.URL;
@@ -130,11 +131,40 @@ public class AccountManagerEditController implements Initializable {
                 || this.textFieldFirstName.getText().isEmpty() == false
                 || this.textFieldSurname.getText().isEmpty() == false
                 || this.textFieldEmailAdress.getText().isEmpty() == false) {
-            if (this.textFieldUsername.getText().length() <= DBConnection.LENGTH_OF_USERNAME
-                    && this.textFieldNewPassword.getText().length() <= DBConnection.LENGTH_OF_PASSWORD
-                    && this.textFieldFirstName.getText().length() <= DBConnection.LENGTH_OF_NAME
-                    && this.textFieldSurname.getText().length() <= DBConnection.LENGTH_OF_SURNAME
-                    && this.textFieldEmailAdress.getText().length() <= DBConnection.LENGTH_OF_EMAIL) {
+            boolean isTooLong = false;
+            if (this.textFieldUsername.getText().length() <= DBConnection.LENGTH_OF_USERNAME) {
+                //System.out.println(this.textFieldUsername.getStyle());
+                this.textFieldUsername.setStyle("-fx-border-color: darkgrey");
+            } else {
+                this.textFieldUsername.setStyle("-fx-border-color: red");
+                isTooLong = true;
+            }
+            if (this.textFieldNewPassword.getText().length() <= DBConnection.LENGTH_OF_PASSWORD) {
+                this.textFieldNewPassword.setStyle("-fx-border-color: darkgray");
+            } else {
+                this.textFieldNewPassword.setStyle("-fx-border-color: red");
+                isTooLong = true;
+            }
+            if (this.textFieldFirstName.getText().length() <= DBConnection.LENGTH_OF_REALNAME) {
+                this.textFieldFirstName.setStyle("-fx-border-color: darkgrey");
+            } else {
+                this.textFieldFirstName.setStyle("-fx-border-color: red");
+                isTooLong = true;
+            }
+            if (this.textFieldSurname.getText().length() <= DBConnection.LENGTH_OF_SURNAME) {
+                this.textFieldSurname.setStyle("-fx-border-color: darkgrey");
+            } else {
+                this.textFieldSurname.setStyle("-fx-border-color: red");
+                isTooLong = true;
+            }
+            if (this.textFieldEmailAdress.getText().length() <= DBConnection.LENGTH_OF_WORKER_EMAIL) {
+                this.textFieldEmailAdress.setStyle("-fx-border-color: darkgrey");
+            } else {
+                this.textFieldEmailAdress.setStyle("-fx-border-color: red");
+                isTooLong = true;
+            }
+
+            if (isTooLong == false) {
                 //create account object from textfields.
                 Account temp = new Account(this.textFieldUsername.getText(),
                         this.textFieldNewPassword.getText(),
@@ -145,71 +175,66 @@ public class AccountManagerEditController implements Initializable {
                 //create DB connection.
                 Connection conn = DBConnection.connectDb();
                 try {
-                    ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM account WHERE username = \'"
-                            + temp.getUsername() + "\';");
                     /*
-                First check if the user made an original username.
-                     */
-                    int counter = 0;
-                    while (rs.next()) {
-                        counter++;
-                    }
-                    if (counter < 1) {
-                        /*
                     Depending whether the user is editing an account or adding one,
                     add or replace the temp account in the database.
+                    */
+                    if (this.addMode) {
+                        /*
+                        First check if the user made an original username.
                          */
-                        if (this.addMode) {
-
-                            String sql = "INSERT INTO account (userid, username, password,"
+                        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM account WHERE username = \'"
+                                + temp.getUsername() + "\';");
+                        int counter = 0;
+                        while (rs.next()) {
+                            counter++;
+                        }
+                        if (counter < 1) {
+                            String sql = "INSERT INTO account (username, password,"
                                     + " privilege, name, surname, email)"
-                                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                                    + "VALUES (?, ?, ?, ?, ?, ?)";
                             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                            preparedStatement.setInt(1, 1);//this should be changed
-                            preparedStatement.setString(2, this.textFieldUsername.getText());
-                            preparedStatement.setString(3, this.textFieldNewPassword.getText());
-                            preparedStatement.setString(4, this.choiceBoxPrivilege.getValue());
-                            preparedStatement.setString(5, this.textFieldFirstName.getText());
-                            preparedStatement.setString(6, this.textFieldSurname.getText());
-                            preparedStatement.setString(7, this.textFieldEmailAdress.getText());
-                            preparedStatement.executeUpdate();
-
-                            //if the data is put in the database, add it to the tableview.
-                            AccountManagerController.accountData.add(temp);
-
-                        } else {
-
-                            String sql = "UPDATE account SET username = ?, password = ?,"
-                                    + " privilege = ?, name = ?, surname = ?, email = ? "
-                                    + "WHERE userid = ?";
-                            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                            //preparedStatement.setInt(1, 1);//this should be changed
                             preparedStatement.setString(1, this.textFieldUsername.getText());
                             preparedStatement.setString(2, this.textFieldNewPassword.getText());
                             preparedStatement.setString(3, this.choiceBoxPrivilege.getValue());
                             preparedStatement.setString(4, this.textFieldFirstName.getText());
                             preparedStatement.setString(5, this.textFieldSurname.getText());
                             preparedStatement.setString(6, this.textFieldEmailAdress.getText());
-                            preparedStatement.setInt(7, 0);//this should be changed
-                            //preparedStatement.setInt(7, temp.getUserID);
                             preparedStatement.executeUpdate();
-                            //replace the account in the table as well.
-                            int replaceIndex = AccountManagerController.accountData.indexOf(this.editable);
-                            AccountManagerController.accountData.remove(replaceIndex);
-                            AccountManagerController.accountData.add(replaceIndex, temp);
-                            //AccountManagerController.accountData.add(temp);
-
+                            //if the data is put in the database, add it to the tableview.
+                            AccountManagerController.accountData.add(temp);
+                        } else {
+                            //error message
+                            Alert alert = new Alert(AlertType.WARNING);
+                            alert.setTitle("Registration failure");//ripe for translation
+                            alert.setHeaderText(null);
+                            alert.setContentText("The username already exists.");//ripe for translation
+                            alert.showAndWait();
                         }
-                        //finally, close the window
-                        Stage stage = (Stage) this.buttonSave.getScene().getWindow();
-                        stage.close();
                     } else {
-                        //error message
-                        Alert alert = new Alert(AlertType.WARNING);
-                        alert.setTitle("Registration failure");//ripe for translation
-                        alert.setHeaderText(null);
-                        alert.setContentText("The username already exists.");//ripe for translation
-                        alert.showAndWait();
+                        //temp.setUserID(AccountManagerController.accountData.);
+                        String sql = "UPDATE account SET username = ?, password = ?,"
+                                + " privilege = ?, name = ?, surname = ?, email = ? "
+                                + "WHERE userid = ?";
+                        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                        preparedStatement.setString(1, this.textFieldUsername.getText());
+                        preparedStatement.setString(2, this.textFieldNewPassword.getText());
+                        preparedStatement.setString(3, this.choiceBoxPrivilege.getValue());
+                        preparedStatement.setString(4, this.textFieldFirstName.getText());
+                        preparedStatement.setString(5, this.textFieldSurname.getText());
+                        preparedStatement.setString(6, this.textFieldEmailAdress.getText());
+                        preparedStatement.setInt(7, this.editable.getUserID());
+                        preparedStatement.executeUpdate();
+                        //replace the account in the table as well.
+                        int replaceIndex = AccountManagerController.accountData.indexOf(this.editable);
+                        AccountManagerController.accountData.remove(replaceIndex);
+                        AccountManagerController.accountData.add(replaceIndex, temp);
+                        //AccountManagerController.accountData.add(temp);
                     }
+                    //finally, close the window
+                    Stage stage = (Stage) this.buttonSave.getScene().getWindow();
+                    stage.close();
                     conn.close();
                 } catch (SQLException ex) {
                     System.err.println("Error" + ex);
@@ -243,6 +268,7 @@ public class AccountManagerEditController implements Initializable {
             this.textFieldNewPasswordRepeat.setVisible(false);
             this.labelResetPass.setVisible(false);
         } else {
+            this.textFieldUsername.disableProperty().set(true);
             this.textFieldFirstName.setText(account.getName());
             this.textFieldSurname.setText(account.getSurname());
             this.textFieldUsername.setText(account.getUsername());

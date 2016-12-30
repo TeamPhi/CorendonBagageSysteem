@@ -22,7 +22,7 @@ public class Passenger {
     private String email;
     private String flightNumber;
     private String destination;
-    private List<LostLuggage> lostLuggage;
+    private List<LostLuggage> lostLuggage = new ArrayList<>();
     //The list has a getter, a remover and an adder but no setter.
     
     public Passenger(String newName, String newAddress, String newCity, 
@@ -37,7 +37,6 @@ public class Passenger {
         this.email = newEmail;
         this.flightNumber = newFlightNumber;
         this.destination = newDestination;
-        this.lostLuggage = new ArrayList<LostLuggage>();
     }
     
     public Passenger(String newFlightNumber, String newDestination, List newLostLuggage) {
