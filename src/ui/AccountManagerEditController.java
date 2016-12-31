@@ -256,7 +256,11 @@ public class AccountManagerEditController implements Initializable {
             alert.showAndWait();
         }
     }
-
+    /**Futher prepares the window by putting passed data in the correct fields.
+     * 
+     * @param account The Account to edit, if any.
+     * @param addMode Whether the screen should start in add mode or edit mode.
+     */
     public void initData(Account account, boolean addMode) {
         this.addMode = addMode;
         this.editable = account;

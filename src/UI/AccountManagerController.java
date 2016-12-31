@@ -164,10 +164,11 @@ public class AccountManagerController implements Initializable {
         /*
         First check whether the user has selected an editable account.
          */
-        if (this.tableAccount.getSelectionModel().getSelectedItem() != null) {
+        Account selectedAccount = this.tableAccount.getSelectionModel().getSelectedItem();
+        if (selectedAccount != null) {
             if (!Account.isEqualAccount(Account.getUser(),
                     this.tableAccount.getSelectionModel().getSelectedItem())) {
-                Account temp = this.tableAccount.getSelectionModel().getSelectedItem();
+                
                 try {
                     Connection conn = DBConnection.connectDb();
                     Statement stmt = conn.createStatement();
@@ -175,10 +176,10 @@ public class AccountManagerController implements Initializable {
                             + "WHERE userid = ?";
                     PreparedStatement preparedStatement = conn.prepareStatement(sql);
                     //preparedStatement.setInt(1, 0);//this should be changed
-                    preparedStatement.setInt(1, temp.getUserID());
+                    preparedStatement.setInt(1, selectedAccount.getUserID());
                     preparedStatement.executeUpdate();
                     conn.close();
-                    AccountManagerController.accountData.remove(temp);
+                    AccountManagerController.accountData.remove(selectedAccount);
                 } catch (SQLException ex) {
                     System.err.println("Error" + ex);
                 }
@@ -216,7 +217,7 @@ public class AccountManagerController implements Initializable {
         try {
             stage.setScene(new Scene((Pane) loader.load()));
             loader.<AccountManagerEditController>getController().initData(editAccount, addMode);
-            stage.setTitle("Corendon Bagage Systeem");
+            stage.titleProperty().bind(I18N.createStringBinding(I18N.PROGRAM_NAME_KEY,(Object[]) null));
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(AccountManagerController.class.getName()).log(Level.SEVERE, null, ex);

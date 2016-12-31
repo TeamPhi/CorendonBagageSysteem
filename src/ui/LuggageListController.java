@@ -4,31 +4,30 @@ import backend.I18N;
 import backend.DBConnection;
 import backend.FoundLuggage;
 import backend.LostLuggage;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
+import backend.Luggage;
+import backend.Passenger;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Orientation;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -53,6 +52,7 @@ public class LuggageListController implements Initializable {
     public static ObservableList<FoundLuggage> matchedFoundLuggageData;
     public static ObservableList<LostLuggage> matchedLostLuggageData;
 
+    //private DBConnection dbc;
     @FXML
     private Tab tabFound;
     //TableView and their columns need to know which objects are contained.
@@ -91,6 +91,8 @@ public class LuggageListController implements Initializable {
     @FXML
     private Button buttonFoundAdd;
     @FXML
+    private Button buttonFoundDelete;
+    @FXML
     private Tab tabLost;
     @FXML
     private TableView<LostLuggage> tableLostLuggage;
@@ -124,6 +126,8 @@ public class LuggageListController implements Initializable {
     private Button buttonLostEdit;
     @FXML
     private Button buttonLostAdd;
+    @FXML
+    private Button buttonLostDelete;
 
     @FXML
     private Tab tabMatches;
@@ -183,15 +187,12 @@ public class LuggageListController implements Initializable {
     @FXML
     private Button buttonFoundLoad;
 
-    private DBConnection dbc;
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        dbc = new DBConnection();
         loadFoundLuggage();
 
         /* The section of the found luggage initialization.
@@ -214,6 +215,8 @@ public class LuggageListController implements Initializable {
         I18N.bindText(this.buttonFoundImport.getText(), this.buttonFoundImport, (Object[]) null);
         I18N.bindText(this.buttonFoundEdit.getText(), this.buttonFoundEdit, (Object[]) null);
         I18N.bindText(this.buttonFoundAdd.getText(), this.buttonFoundAdd, (Object[]) null);
+        I18N.bindText(this.buttonFoundDelete.getText(), this.buttonFoundDelete, (Object[]) null);
+        I18N.bindText(this.buttonFoundLoad.getText(), this.buttonFoundLoad, (Object[]) null);
 
         //Connect list with table
 //        this.tableFoundLuggage.setItems(foundLuggageData);
@@ -236,7 +239,9 @@ public class LuggageListController implements Initializable {
         I18N.bindText(this.buttonLostImport.getText(), this.buttonLostImport, (Object[]) null);
         I18N.bindText(this.buttonLostEdit.getText(), this.buttonLostEdit, (Object[]) null);
         I18N.bindText(this.buttonLostAdd.getText(), this.buttonLostAdd, (Object[]) null);
-
+        I18N.bindText(this.buttonLostDelete.getText(), this.buttonLostDelete, (Object[]) null);
+        //make the list.
+        LuggageListController.lostLuggageData = FXCollections.observableArrayList();
         /* The section of the matched luggage initialization.
         First all the controls are bound the translation.
          */
@@ -274,7 +279,7 @@ public class LuggageListController implements Initializable {
         LuggageListController.matchedFoundLuggageData.add(f);
         LuggageListController.matchedFoundLuggageData.add(f);
 
-        this.tableMatchedFoundLuggage.setItems(null);
+        //this.tableMatchedFoundLuggage.setItems(null);
         this.tableMatchedFoundLuggage.setItems(LuggageListController.matchedFoundLuggageData);
 
         this.columnMatchedLostLabelnumber.setCellValueFactory(new PropertyValueFactory<>("labelNumber"));
@@ -307,23 +312,24 @@ public class LuggageListController implements Initializable {
         LuggageListController.matchedLostLuggageData.add(l);
         LuggageListController.matchedLostLuggageData.add(l);
         LuggageListController.matchedLostLuggageData.add(l);
-        this.tableMatchedLostLuggage.setItems(null);
+        //this.tableMatchedLostLuggage.setItems(null);
         this.tableMatchedLostLuggage.setItems(LuggageListController.matchedLostLuggageData);
     }
 
     @FXML
     public void loadDataFromFoundLuggage(ActionEvent event) {
-        Connection conn = dbc.connectDb();
+        Connection conn = DBConnection.connectDb();
         foundLuggageData = FXCollections.observableArrayList();
-
+        /*This statements needs to rewritten for the newest database.*/
         try {
+
             ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM luggage");
             // string from database
             while (rs.next()) {
                 foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3),
                         rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
                         rs.getString(8), rs.getString(9), rs.getString(10)));
-
+                conn.close();
             }
 
         } catch (SQLException ex) {
@@ -347,45 +353,38 @@ public class LuggageListController implements Initializable {
 
     }
 
-    public void loadFoundLuggage() {
-        Connection conn = dbc.connectDb();
-        foundLuggageData = FXCollections.observableArrayList();
-
-        try {
-            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM luggage");
-            // string from database
-            while (rs.next()) {
-                foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
-                        rs.getString(8), rs.getString(9), rs.getString(10)));
+    @FXML
+    private void deleteFoundLuggage(ActionEvent event) {
+        if (isTableSelection(this.tableFoundLuggage)) {
+            if (this.promptDelete()) {
+                /*
+                SQL-Statement to delete the luggage.
+                 */
+                LuggageListController.foundLuggageData.remove(this.tableFoundLuggage.getSelectionModel().getSelectedItem());
+            } else {
+                //nothing
             }
-
-        } catch (SQLException ex) {
-            System.err.println("Error" + ex);
+        } else {
+            this.showWarning("No selection", "You have selected an entry to delete it.");//ripe for translation
         }
-
-        this.columnFoundLabelnumber.setCellValueFactory(new PropertyValueFactory<>("labelNumber"));
-        this.columnFoundAirport.setCellValueFactory(new PropertyValueFactory<>("airport"));
-        this.columnFoundFlightnumber.setCellValueFactory(new PropertyValueFactory<>("flightnumber"));
-        this.columnLostFound.setCellValueFactory(new PropertyValueFactory<>("lostFoundID"));
-        this.columnFoundDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        this.columnFoundType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        this.columnFoundBrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        this.columnFoundColor.setCellValueFactory(new PropertyValueFactory<>("color"));
-        this.columnFoundDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        this.columnFoundStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-        tableFoundLuggage.setItems(null);
-        tableFoundLuggage.setItems(foundLuggageData);
     }
 
-//    public ObservableList<FoundLuggage> getFoundLuggageDate() {
-//        return LuggageListController.foundLuggageData;
-//    }
-//
-//    public ObservableList<LostLuggage> getLostLuggageDate() {
-//        return LuggageListController.lostLuggageData;
-//    }
+    @FXML
+    private void deleteLostLuggage(ActionEvent event) {
+        if (isTableSelection(this.tableLostLuggage)) {
+            if (this.promptDelete()) {
+                /*
+                SQL-Statement to delete the luggage.
+                 */
+                LuggageListController.lostLuggageData.remove(this.tableLostLuggage.getSelectionModel().getSelectedItem());
+            } else {
+                //nothing
+            }
+        } else {
+            this.showWarning("No selection", "You have selected an entry to delete it.");//ripe for translation
+        }
+    }
+
     @FXML
     private void searchFoundButtonClicked(ActionEvent event) {
 
@@ -408,8 +407,64 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void addFoundButtonClicked(ActionEvent event) {
-        showAddFoundLuggage(null, true);
+        showAddLuggage(null, null, true, true);
+    }
 
+    @FXML
+    private void editFoundButtonClicked(ActionEvent event) {
+        if (isTableSelection(this.tableFoundLuggage)) {
+            /*
+            Passenger information needs to be retrieved here.
+            */
+            //showAddLuggage(this.tableFoundLuggage.getSelectionModel().getSelectedItem(), false, true);
+        } else if (LuggageListController.foundLuggageData.isEmpty()) {
+            //error if there is no luggage yet.
+            this.showWarning("No entries", "You can only edit luggage if you have at least one entry.");//ripe for translation
+        } else {
+            //error if here is no selection.
+            this.showWarning("No selection", "You can only edit luggage if you have selected an entry.");
+        }
+    }
+
+    @FXML
+    private void searchLostButtonClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void matchLostButtonClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void exportLostButtonClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void importLostButtonClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void addLostButtonClicked(ActionEvent event) {
+        showAddLuggage(null, null, true, false);
+    }
+
+    @FXML
+    private void editLostButtonClicked(ActionEvent event) {
+        if (isTableSelection(this.tableLostLuggage)) {
+            /*
+            Passenger information needs to be retrieved here.
+            */
+            //showAddLuggage(this.tableLostLuggage.getSelectionModel().getSelectedItem(), false, false);
+        } else if (LuggageListController.lostLuggageData.isEmpty()) {
+            //error if there is no luggage yet.
+            this.showWarning("No entries", "You can only edit luggage if you have at least one entry.");//ripe for translation
+        } else {
+            //error if here is no selection.
+            this.showWarning("No selection", "You can only edit luggage if you have selected an entry.");//ripe for translation
+        }
     }
 
     @FXML
@@ -446,77 +501,17 @@ public class LuggageListController implements Initializable {
     }
 
     @FXML
-    private void scroll(ScrollEvent scroller) {
-        
-        this.tableMatchedLostLuggage.scrollTo((int)(scroller.getDeltaY()*scroller.getMultiplierY()));
-        
-//        ScrollBar scroll = new ScrollBar();
-//        scroll.valueProperty().addListener(new ChangeListener() {
-//            @Override
-//            public void changed(ObservableValue ov, Object t, Object t1) {
-//
-//                //Scroll your tableview according to the table row index
-//                tableMatchedLostLuggage.scrollTo(((Number)t1).intValue());
-//                
-//                tableMatchedLostLuggage.scrollTo(((Number)t1).intValue());
-//                
-//            }
-//
-//        });
+    private void scrollFoundTable(ScrollEvent event) {
+
+        this.tableMatchedLostLuggage.scrollTo((int) (event.getDeltaY() * event.getMultiplierY()));
 
     }
 
     @FXML
-    private void editFoundButtonClicked(ActionEvent event) {
-        if(this.tableFoundLuggage.getSelectionModel().getSelectedItem() != null){
-            showAddFoundLuggage(this.tableFoundLuggage.getSelectionModel().getSelectedItem(), false);
-        }else if (AccountManagerController.accountData.isEmpty()) {
-            //error if there is no account yet.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No entries");//ripe for translation
-            alert.setHeaderText(null);
-            alert.setContentText("You can only edit luggage if you have at least one entry.");//ripe for translation
-            alert.showAndWait();
-        }else{
-            //error if here is no selection.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No selection");//ripe for translation
-            alert.setHeaderText(null);
-            alert.setContentText("You can only edit luggage if you select an entry.");//ripe for translation
-            alert.showAndWait();
-        }
-        
+    private void scrollLostTable(ScrollEvent event) {
+        //this.tableMatchedFoundLuggage
     }
 
-    @FXML
-    private void searchLostButtonClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void matchLostButtonClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void exportLostButtonClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void importLostButtonClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void ediLostButtonClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void addLostButtonClicked(ActionEvent event) {
-
-    }
     /*
     @SuppressWarnings("rawtypes")
     private void bindScrollBars(TableView<?> tableView1, TableView<?> tableView2,
@@ -560,29 +555,105 @@ public class LuggageListController implements Initializable {
         bindScrollBars(this.tableMatchedFoundLuggage, this.tableMatchedLostLuggage, Orientation.VERTICAL);
     }*/
     /**
-     * 
+     *
      */
-    private void showAddFoundLuggage(FoundLuggage editLuggage, boolean addMode){
-        /* Load the add/ecit screen.
+    public void loadFoundLuggage() {
+        Connection conn = DBConnection.connectDb();
+        foundLuggageData = FXCollections.observableArrayList();
+
+        try {
+            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM luggage");
+            // string from database
+            while (rs.next()) {
+                foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
+                        rs.getString(8), rs.getString(9), rs.getString(10)));
+                conn.close();
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+
+        this.columnFoundLabelnumber.setCellValueFactory(new PropertyValueFactory<>("labelNumber"));
+        this.columnFoundAirport.setCellValueFactory(new PropertyValueFactory<>("airport"));
+        this.columnFoundFlightnumber.setCellValueFactory(new PropertyValueFactory<>("flightnumber"));
+        this.columnLostFound.setCellValueFactory(new PropertyValueFactory<>("lostFoundID"));
+        this.columnFoundDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
+        this.columnFoundType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        this.columnFoundBrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
+        this.columnFoundColor.setCellValueFactory(new PropertyValueFactory<>("color"));
+        this.columnFoundDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        this.columnFoundStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        tableFoundLuggage.setItems(null);
+        tableFoundLuggage.setItems(foundLuggageData);
+    }
+
+    /**
+     *
+     * @param editLuggage
+     * @param addMode
+     * @param foundMode
+     */
+    private void showAddLuggage(Luggage editLuggage, Passenger editPassenger, boolean addMode, boolean foundMode) {
+        /* Load the add/edit screen.
         First the FXML file is loaded and then a new Stage is made (a window) and shown.
         The initData method passes the arguments to the controller.
          */
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddFoundLuggage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddLuggage.fxml"));
 
         Stage stage = new Stage();
         try {
             stage.setScene(new Scene((Pane) loader.load()));
-            loader.<AddFoundLuggageController>getController().initData(editLuggage, addMode);
-            stage.setTitle("Corendon Bagage Systeem");
+            loader.<AddLuggageController>getController().initData(editLuggage, editPassenger, addMode, foundMode);
+            stage.titleProperty().bind(I18N.createStringBinding(I18N.PROGRAM_NAME_KEY, (Object[]) null));
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(AccountManagerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    /**maybe if Lost and Found need seperate methods.
+     *
+     */
+    private void showAddLostLuggage() {
+
+    }
+
+    /**Check if the table has a selected item.
+     *
+     * @param table The tableView to check.
+     * @return true if there is a selection, false otherwise.
+     */
+    private boolean isTableSelection(TableView table) {
+        return (table.getSelectionModel().getSelectedItem() != null);
+    }
     /**
      * 
+     * @return 
      */
-    private void showAddLostLuggage(){
-        
+    private boolean promptDelete() {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirm deletion");//ripe for translation
+        alert.setHeaderText(null);
+        alert.setContentText("Really delete?");//ripe for translation
+        ButtonType buttonYes = new ButtonType("Yes");//ripe for translation
+        ButtonType buttonNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);//ripe for translation
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get().equals(buttonYes);
+    }
+    /**
+     * 
+     * @param header
+     * @param prompt 
+     */
+    private void showWarning(String header, String prompt) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(header);//ripe for translation
+        alert.setHeaderText(null);
+        alert.setContentText(prompt);
+        alert.showAndWait();
     }
 }

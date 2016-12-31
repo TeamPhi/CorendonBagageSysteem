@@ -21,4 +21,7 @@ public abstract class UIClass {
         AnchorPane.setRightAnchor(e, distance);
         AnchorPane.setTopAnchor(e, distance);
     }
+    /*
+    error messages?
+    */
 }

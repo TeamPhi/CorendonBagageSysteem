@@ -2,14 +2,13 @@ package backend;
 
 /**
  * 
+ * @autoh Oracle
  * @author Elwin Slokker
  */
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +19,6 @@ import java.util.concurrent.Callable;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumnBase;
 
 /**
  * I18N utility class.
@@ -29,7 +27,7 @@ public final class I18N {
 
     /** the current selected Locale. */
     public static final ObjectProperty<Locale> LOCALE;
-
+    public static final String PROGRAM_NAME_KEY = "programTitle";
     static {
         LOCALE = new SimpleObjectProperty<>(getDefaultLocale());
         LOCALE.addListener((observable, oldValue, newValue) -> Locale.setDefault(newValue));

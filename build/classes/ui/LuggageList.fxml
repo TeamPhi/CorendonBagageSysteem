@@ -35,6 +35,7 @@
                   <Button fx:id="buttonFoundImport" layoutX="598.0" layoutY="10.0" mnemonicParsing="false" onAction="#importFoundButtonClicked" text="buttonImport" />
                   <Button fx:id="buttonFoundExport" layoutX="458.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportFoundButtonClicked" text="buttonExport" />
                   <Button fx:id="buttonFoundLoad" layoutX="977.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadDataFromFoundLuggage" text="buttonLoad" />
+                  <Button fx:id="buttonFoundDelete" layoutX="938.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteFoundLuggage" text="buttonDelete" />
                </children>
             </AnchorPane>
          </content>
@@ -48,7 +49,7 @@
                   <Button fx:id="buttonLostExport" layoutX="456.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportLostButtonClicked" text="buttonExport" />
                   <Button fx:id="buttonLostImport" layoutX="599.0" layoutY="10.0" mnemonicParsing="false" onAction="#importLostButtonClicked" text="buttonImport" />
                   <Button fx:id="buttonLostAdd" layoutX="877.0" layoutY="10.0" mnemonicParsing="false" onAction="#addLostButtonClicked" text="buttonAdd" />
-                  <Button fx:id="buttonLostEdit" layoutX="761.0" layoutY="10.0" mnemonicParsing="false" onAction="#ediLostButtonClicked" text="buttonEdit" />
+                  <Button fx:id="buttonLostEdit" layoutX="761.0" layoutY="10.0" mnemonicParsing="false" onAction="#editLostButtonClicked" text="buttonEdit" />
                   <Button fx:id="buttonLostMatch" layoutX="302.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchLostButtonClicked" text="buttonMatch" />
                   <TableView fx:id="tableLostLuggage" layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
                      <columns>
@@ -63,6 +64,7 @@
                         <TableColumn fx:id="columnLostStatus" prefWidth="109.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
+                  <Button fx:id="buttonLostDelete" layoutX="933.0" layoutY="180.0" mnemonicParsing="false" onAction="#deleteLostLuggage" text="buttonDelete" />
                </children>
             </AnchorPane>
          </content>
@@ -73,7 +75,7 @@
                <children>
                   <TextField layoutX="14.0" layoutY="10.0" />
                   <Button fx:id="buttonMatchSearch" layoutX="169.0" layoutY="10.0" mnemonicParsing="false" text="buttonSearch" />
-                  <TableView fx:id="tableMatchedFoundLuggage" layoutX="14.0" layoutY="49.0" onScroll="#scroll" prefHeight="401.0" prefWidth="595.0">
+                  <TableView fx:id="tableMatchedFoundLuggage" layoutX="14.0" layoutY="49.0" onScroll="#scrollFoundTable" prefHeight="401.0" prefWidth="595.0">
                      <columns>
                         <TableColumn fx:id="columnMatchedFoundLabelnumber" prefWidth="89.0" text="tableColumnLabel" />
                         <TableColumn fx:id="columnMatchedFoundAirport" minWidth="0.0" prefWidth="108.0" text="tableColumnAirport" />
@@ -84,7 +86,7 @@
                         <TableColumn fx:id="columnMatchedFoundStatus" prefWidth="99.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
-                  <TableView fx:id="tableMatchedLostLuggage" layoutX="633.0" layoutY="49.0" prefHeight="401.0" prefWidth="595.0">
+                  <TableView fx:id="tableMatchedLostLuggage" layoutX="633.0" layoutY="49.0" onScroll="#scrollLostTable" prefHeight="401.0" prefWidth="595.0">
                      <columns>
                         <TableColumn fx:id="columnMatchedLostLabelnumber" prefWidth="98.0" text="tableColumnLabel" />
                         <TableColumn fx:id="columnMatchedLostAirport" prefWidth="99.0" text="tableColumnAirport" />

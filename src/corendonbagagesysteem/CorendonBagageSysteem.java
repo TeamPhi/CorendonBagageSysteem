@@ -1,5 +1,6 @@
 package corendonbagagesysteem;
 
+import backend.I18N;
 import backend.UIClass;
 import java.io.IOException;
 import javafx.application.Application;
@@ -27,10 +28,9 @@ public class CorendonBagageSysteem extends Application {
         setRoot(startScreen);
         
         Scene scene = new Scene(root);
-        
         scene.getStylesheets().add("/css/style.css");
-        
-        primaryStage.setTitle("Corendon Bagage Systeem");
+
+        primaryStage.titleProperty().bind(I18N.createStringBinding(I18N.PROGRAM_NAME_KEY,(Object[]) null));
         primaryStage.setScene(scene);
         primaryStage.show();
         
