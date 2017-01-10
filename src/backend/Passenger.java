@@ -16,7 +16,7 @@ public class Passenger {
     private String city;
     private String zipcode;
     private String country;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String flightNumber;
     private String destination;
@@ -24,7 +24,7 @@ public class Passenger {
     //The list has a getter, a remover and an adder but no setter.
 
     public Passenger(String newName, String newAddress, String newCity,
-            String newZipCode, String newCountry, int newPhoneNumber,
+            String newZipCode, String newCountry, String newPhoneNumber,
             String newEmail, String newFlightNumber, String newDestination) {
         this.name = newName;
         this.address = newAddress;
@@ -63,7 +63,7 @@ public class Passenger {
         return this.country;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return this.phoneNumber;
     }
 
@@ -78,12 +78,11 @@ public class Passenger {
     public String getDestination() {
         return this.destination;
     }
-
+    /*
     public List getLostLuggage() {
         return this.lostLuggage;
     }
-
-    //hier komen nog een remover en een adder.
+    */
     public void setName(String name) {
         this.name = name;
     }
@@ -104,7 +103,7 @@ public class Passenger {
         this.country = country;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

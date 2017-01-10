@@ -11,6 +11,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -31,6 +32,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
@@ -51,7 +53,7 @@ public class LuggageListController implements Initializable {
     public static ObservableList<LostLuggage> lostLuggageData;
     public static ObservableList<FoundLuggage> matchedFoundLuggageData;
     public static ObservableList<LostLuggage> matchedLostLuggageData;
-
+    private static ArrayList<Passenger> passengerList = new ArrayList<>();
     //private DBConnection dbc;
     @FXML
     private Tab tabFound;
@@ -78,6 +80,8 @@ public class LuggageListController implements Initializable {
     private TableColumn<FoundLuggage, String> columnFoundDate;
     @FXML
     private TableColumn<FoundLuggage, String> columnFoundStatus;
+    @FXML
+    private TextField textFieldFoundSearch;
     @FXML
     private Button buttonFoundSearch;
     @FXML
@@ -114,6 +118,8 @@ public class LuggageListController implements Initializable {
     private TableColumn<LostLuggage, String> columnLostDate;
     @FXML
     private TableColumn<LostLuggage, String> columnLostStatus;
+    @FXML
+    private TextField textFieldFoundLost;
     @FXML
     private Button buttonLostSearch;
     @FXML
@@ -192,9 +198,12 @@ public class LuggageListController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        //First load the passengers from data base
+        //Then load there luggage and connect it.
         loadFoundLuggage();
-
+        //Passenger p 
+        //LuggageListController.passengerList.add(p);
+        //p.addLostLuggage(tempLuggage);
         /* The section of the found luggage initialization.
         First all the controls are bound the translation.
          */
@@ -365,7 +374,7 @@ public class LuggageListController implements Initializable {
                 //nothing
             }
         } else {
-            this.showWarning("No selection", "You have selected an entry to delete it.");//ripe for translation
+            this.showWarning("No selection", "You have to select an entry to delete it.");//ripe for translation
         }
     }
 
@@ -381,7 +390,7 @@ public class LuggageListController implements Initializable {
                 //nothing
             }
         } else {
-            this.showWarning("No selection", "You have selected an entry to delete it.");//ripe for translation
+            this.showWarning("No selection", "You have to select an entry to delete it.");//ripe for translation
         }
     }
 

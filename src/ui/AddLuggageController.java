@@ -2,6 +2,7 @@ package ui;
 
 import backend.DBConnection;
 import backend.FoundLuggage;
+import backend.I18N;
 import backend.LostLuggage;
 import backend.Luggage;
 import backend.Passenger;
@@ -49,7 +50,7 @@ public class AddLuggageController implements Initializable {
     @FXML
     private Label labelLabelID;
     @FXML
-    private Label labelFlighID;
+    private Label labelFlightID;
     @FXML
     private Label labelDestination;
     @FXML
@@ -73,7 +74,7 @@ public class AddLuggageController implements Initializable {
     @FXML
     private Label labelCity;
     @FXML
-    private Label labeZipcode;
+    private Label labelZipcode;
     @FXML
     private Label labelCountry;
     @FXML
@@ -119,7 +120,7 @@ public class AddLuggageController implements Initializable {
     private TextField textFieldPhoneNumber;
     @FXML
     private TextField textFieldEmail;
-    
+
     @FXML
     private Button buttonSave;
     @FXML
@@ -139,6 +140,34 @@ public class AddLuggageController implements Initializable {
         //The send button should be disabled by default.
         this.buttonSend.disableProperty().set(true);
         this.buttonSend.visibleProperty().set(false);
+        
+        I18N.bindText(this.labelDate.getText(), this.labelDate, (Object[]) null);
+        I18N.bindText(this.labelTime.getText(), this.labelTime, (Object[]) null);
+        I18N.bindText(this.labelAirport.getText(), this.labelAirport, (Object[]) null);
+        I18N.bindText(this.labelLAFID.getText(), this.labelLAFID, (Object[]) null);
+        I18N.bindText(this.labelStatus.getText(), this.labelStatus, (Object[]) null);
+        I18N.bindText(this.labelFlightHeader.getText(), this.labelFlightHeader, (Object[]) null);
+        I18N.bindText(this.labelLabelID.getText(), this.labelLabelID, (Object[]) null);
+        I18N.bindText(this.labelFlightID.getText(), this.labelFlightID, (Object[]) null);
+        I18N.bindText(this.labelDestination.getText(), this.labelDestination, (Object[]) null);
+        I18N.bindText(this.labelLuggageHeader.getText(), this.labelLuggageHeader, (Object[]) null);
+        I18N.bindText(this.labelType.getText(), this.labelType, (Object[]) null);
+        I18N.bindText(this.labelBrand.getText(), this.labelBrand, (Object[]) null);
+        I18N.bindText(this.labelColor.getText(), this.labelColor, (Object[]) null);
+        I18N.bindText(this.labelFeatures.getText(), this.labelFeatures, (Object[]) null);
+        I18N.bindText(this.labelPassengerHeader.getText(), this.labelPassengerHeader, (Object[]) null);
+        I18N.bindText(this.labelName.getText(), this.labelAddress, (Object[]) null);
+        I18N.bindText(this.labelCity.getText(), this.labelCity, (Object[]) null);
+        I18N.bindText(this.labelZipcode.getText(), this.labelZipcode, (Object[]) null);
+        I18N.bindText(this.labelCountry.getText(), this.labelCountry, (Object[]) null);
+        I18N.bindText(this.labelPhoneNumber.getText(), this.labelPhoneNumber, (Object[]) null);
+        I18N.bindText(this.labelEmail.getText(), this.labelEmail, (Object[]) null);
+        I18N.bindText(this.buttonSend.getText(), this.buttonSend, (Object[]) null);
+        I18N.bindText(this.buttonCancel.getText(), this.buttonCancel, (Object[]) null);
+        I18N.bindText(this.buttonMatchSave.getText(), this.buttonMatchSave, (Object[]) null);
+        I18N.bindText(this.buttonSave.getText(), this.buttonSave, (Object[]) null);
+        I18N.bindText(this.buttonAddMore.getText(), this.buttonAddMore, (Object[]) null);
+       
     }
 
     @FXML
@@ -190,9 +219,12 @@ public class AddLuggageController implements Initializable {
     private void sendDHL(ActionEvent event) {
 
     }
-    /**Save the data from the form (in the database and in the table).
-     * 
-     * @return true if the data was put in the database and written to the table correctly.
+
+    /**
+     * Save the data from the form (in the database and in the table).
+     *
+     * @return true if the data was put in the database and written to the table
+     * correctly.
      */
     private boolean save() {
         boolean passed = true;
@@ -217,8 +249,7 @@ public class AddLuggageController implements Initializable {
                         SQL INSERT INTO statement
                         IT Does not work yet.
                          */
-                        //create DB connection.
-
+                        /*
                         String sql = "INSERT INTO foundluggage (userid, username, password,"
                                 + " privilege, name, surname, email)"
                                 + "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -234,6 +265,7 @@ public class AddLuggageController implements Initializable {
                         preparedStatement.setString(9, this.textFieldDate.getText());
                         preparedStatement.setString(10, this.textFieldStatus.getText());
                         preparedStatement.executeUpdate();
+                        */
                         //if the data is put in the database, add it to the tableview.
                         LuggageListController.foundLuggageData.add(newLuggage);
 
@@ -309,7 +341,7 @@ public class AddLuggageController implements Initializable {
      * @param foundMode Whether the screen should be in found (true) or lost
      * mode.
      */
-    public void initData(Luggage editLuggage,Passenger editPassenger, boolean addMode, boolean foundMode) {
+    public void initData(Luggage editLuggage, Passenger editPassenger, boolean addMode, boolean foundMode) {
         this.addMode = addMode;
         this.foundMode = foundMode;
         this.editableLuggage = editLuggage;
@@ -321,8 +353,11 @@ public class AddLuggageController implements Initializable {
             this.labelLAFID.setVisible(false);
             this.labelStatus.setLayoutY(this.labelStatus.getLayoutY() - 28.0);
             this.textFieldStatus.setLayoutY(this.textFieldStatus.getLayoutY() - 28.0);
+            I18N.bindText("labelHeaderFound", this.labelHeader, (Object[]) null);
+        }else{
+            I18N.bindText("labelHeaderLost", this.labelHeader, (Object[]) null);
         }
-        if (!addMode){
+        if (!addMode) {
             //add all editable information to the textFields
             //luggage information here.
             this.textFieldName.setText(editPassenger.getName());
@@ -361,7 +396,6 @@ public class AddLuggageController implements Initializable {
             check = this.isEmptyTextField(this.textFieldZipcode, check);
             check = this.isEmptyTextField(this.textFieldCity, check);
             check = this.isEmptyTextField(this.textFieldCountry, check);
-
         }
         if (!check) {
             //error message
@@ -399,12 +433,21 @@ public class AddLuggageController implements Initializable {
      * @return
      */
     private boolean isEmptyTextField(TextField textField, boolean check) {
-        if (textField.getText().isEmpty()) {
-            check = false;
+        if (!check) {
+            if (textField.getText().isEmpty()) {
+                this.setTextFieldIndicatorBorder(textField, true);
+            } else {
+                this.setTextFieldIndicatorBorder(textField, false);
+            }
         } else {
-            check = true;
+            if (textField.getText().isEmpty()) {
+                check = false;
+            } else {
+                check = true;
+            }
+            this.setTextFieldIndicatorBorder(textField, !check);
         }
-        this.setTextFieldIndicatorBorder(textField, !check);
+
         return check;
     }
 

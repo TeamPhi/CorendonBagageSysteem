@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -168,20 +171,22 @@ public class AccountManagerController implements Initializable {
         if (selectedAccount != null) {
             if (!Account.isEqualAccount(Account.getUser(),
                     this.tableAccount.getSelectionModel().getSelectedItem())) {
-                
-                try {
-                    Connection conn = DBConnection.connectDb();
-                    Statement stmt = conn.createStatement();
-                    String sql = "DELETE FROM account "
-                            + "WHERE userid = ?";
-                    PreparedStatement preparedStatement = conn.prepareStatement(sql);
-                    //preparedStatement.setInt(1, 0);//this should be changed
-                    preparedStatement.setInt(1, selectedAccount.getUserID());
-                    preparedStatement.executeUpdate();
-                    conn.close();
-                    AccountManagerController.accountData.remove(selectedAccount);
-                } catch (SQLException ex) {
-                    System.err.println("Error" + ex);
+                if (this.promptDelete()) {
+
+                    try {
+                        Connection conn = DBConnection.connectDb();
+                        Statement stmt = conn.createStatement();
+                        String sql = "DELETE FROM account "
+                                + "WHERE userid = ?";
+                        PreparedStatement preparedStatement = conn.prepareStatement(sql);
+                        //preparedStatement.setInt(1, 0);//this should be changed
+                        preparedStatement.setInt(1, selectedAccount.getUserID());
+                        preparedStatement.executeUpdate();
+                        conn.close();
+                        AccountManagerController.accountData.remove(selectedAccount);
+                    } catch (SQLException ex) {
+                        System.err.println("Error" + ex);
+                    }
                 }
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -217,11 +222,27 @@ public class AccountManagerController implements Initializable {
         try {
             stage.setScene(new Scene((Pane) loader.load()));
             loader.<AccountManagerEditController>getController().initData(editAccount, addMode);
-            stage.titleProperty().bind(I18N.createStringBinding(I18N.PROGRAM_NAME_KEY,(Object[]) null));
+            stage.titleProperty().bind(I18N.createStringBinding(I18N.PROGRAM_NAME_KEY, (Object[]) null));
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(AccountManagerController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    /**
+     *
+     * @return
+     */
+    private boolean promptDelete() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm deletion");//ripe for translation
+        alert.setHeaderText(null);
+        alert.setContentText("Really delete?");//ripe for translation
+        ButtonType buttonYes = new ButtonType("Yes");//ripe for translation
+        ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);//ripe for translation
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.get().equals(buttonYes);
     }
 
 }

@@ -91,7 +91,6 @@ public class AccountManagerEditController implements Initializable {
         I18N.bindText(this.labelPassRepeat.getText(), this.labelPassRepeat, (Object[]) null);
         I18N.bindText(this.labelResetPass.getText(), this.labelResetPass, (Object[]) null);
         I18N.bindText(this.buttonResetPassword.getText(), this.buttonResetPassword, (Object[]) null);
-        I18N.bindText(this.buttonSave.getText(), this.buttonSave, (Object[]) null);
         //add items to the ChoiceBox
         this.choiceBoxPrivilege.setItems(FXCollections.observableArrayList(Account.SIMPLE_PRIVILEGE, Account.ADVANCED_PRIVILEGE));
     }
@@ -271,6 +270,7 @@ public class AccountManagerEditController implements Initializable {
             this.textFieldNewPasswordRepeat.disableProperty().set(true);
             this.textFieldNewPasswordRepeat.setVisible(false);
             this.labelResetPass.setVisible(false);
+            I18N.bindText(this.buttonSave.getText(), this.buttonSave, (Object[]) null);
         } else {
             this.textFieldUsername.disableProperty().set(true);
             this.textFieldFirstName.setText(account.getName());
@@ -279,6 +279,7 @@ public class AccountManagerEditController implements Initializable {
             this.textFieldNewPassword.setText(account.getPassword());
             this.textFieldEmailAdress.setText(account.getEmail());
             this.choiceBoxPrivilege.setValue(account.getPrivilege());
+            I18N.bindText("buttonSaveChanges", this.buttonSave, (Object[]) null);
             //this.textFieldFirstName.setText(account.getName());
         }
     }
