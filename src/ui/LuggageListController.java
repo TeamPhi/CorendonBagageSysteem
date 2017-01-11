@@ -6,6 +6,7 @@ import backend.FoundLuggage;
 import backend.LostLuggage;
 import backend.Luggage;
 import backend.Passenger;
+import backend.UIClass;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -226,7 +227,6 @@ public class LuggageListController implements Initializable {
         I18N.bindText(this.buttonFoundEdit.getText(), this.buttonFoundEdit, (Object[]) null);
         I18N.bindText(this.buttonFoundAdd.getText(), this.buttonFoundAdd, (Object[]) null);
         I18N.bindText(this.buttonFoundDelete.getText(), this.buttonFoundDelete, (Object[]) null);
-        I18N.bindText(this.buttonFoundLoad.getText(), this.buttonFoundLoad, (Object[]) null);
 
         //Connect list with table
 //        this.tableFoundLuggage.setItems(foundLuggageData);
@@ -334,7 +334,7 @@ public class LuggageListController implements Initializable {
     @FXML
     private void deleteFoundLuggage(ActionEvent event) {
         if (isTableSelection(this.tableFoundLuggage)) {
-            if (this.promptDelete()) {
+            if (UIClass.promptDelete()) {
                 /*
                 SQL-Statement to delete the luggage.
                  */
@@ -343,14 +343,14 @@ public class LuggageListController implements Initializable {
                 //nothing
             }
         } else {
-            this.showWarning("No selection", "You have to select an entry to delete it.");//ripe for translation
+            UIClass.showPopup("errorNoSelectionTitle", "errorNSDeleteDesc");
         }
     }
 
     @FXML
     private void deleteLostLuggage(ActionEvent event) {
         if (isTableSelection(this.tableLostLuggage)) {
-            if (this.promptDelete()) {
+            if (UIClass.promptDelete()) {
                 /*
                 SQL-Statement to delete the luggage.
                  */
@@ -359,7 +359,7 @@ public class LuggageListController implements Initializable {
                 //nothing
             }
         } else {
-            this.showWarning("No selection", "You have to select an entry to delete it.");//ripe for translation
+            UIClass.showPopup("errorNoSelectionTitle", "errorNSDeleteDesc");
         }
     }
 
@@ -397,10 +397,10 @@ public class LuggageListController implements Initializable {
             //showAddLuggage(this.tableFoundLuggage.getSelectionModel().getSelectedItem(), false, true);
         } else if (LuggageListController.foundLuggageData.isEmpty()) {
             //error if there is no luggage yet.
-            this.showWarning("No entries", "You can only edit luggage if you have at least one entry.");//ripe for translation
+            UIClass.showPopup("errorNoEntriesTitle", "errorNELuggageDesc");
         } else {
             //error if here is no selection.
-            this.showWarning("No selection", "You can only edit luggage if you have selected an entry.");
+            UIClass.showPopup("errorNoSelectionTitle", "errorNSLugaggeDesc");
         }
     }
 
@@ -437,10 +437,10 @@ public class LuggageListController implements Initializable {
             //showAddLuggage(this.tableLostLuggage.getSelectionModel().getSelectedItem(), false, false);
         } else if (LuggageListController.lostLuggageData.isEmpty()) {
             //error if there is no luggage yet.
-            this.showWarning("No entries", "You can only edit luggage if you have at least one entry.");//ripe for translation
+            UIClass.showPopup("errorNoEntriesTitle", "errorNELuggageDesc");//ripe for translation
         } else {
             //error if here is no selection.
-            this.showWarning("No selection", "You can only edit luggage if you have selected an entry.");//ripe for translation
+            UIClass.showPopup("errorNoSelectionTitle", "errorNSLuggageDesc");//ripe for translation
         }
     }
 
@@ -684,32 +684,5 @@ public class LuggageListController implements Initializable {
      */
     private boolean isTableSelection(TableView table) {
         return (table.getSelectionModel().getSelectedItem() != null);
-    }
-    /**
-     * 
-     * @return 
-     */
-    private boolean promptDelete() {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Confirm deletion");//ripe for translation
-        alert.setHeaderText(null);
-        alert.setContentText("Really delete?");//ripe for translation
-        ButtonType buttonYes = new ButtonType("Yes");//ripe for translation
-        ButtonType buttonNo = new ButtonType("No", ButtonData.CANCEL_CLOSE);//ripe for translation
-        alert.getButtonTypes().setAll(buttonYes, buttonNo);
-        Optional<ButtonType> result = alert.showAndWait();
-        return result.get().equals(buttonYes);
-    }
-    /**
-     * 
-     * @param header
-     * @param prompt 
-     */
-    private void showWarning(String header, String prompt) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(header);//ripe for translation
-        alert.setHeaderText(null);
-        alert.setContentText(prompt);
-        alert.showAndWait();
     }
 }

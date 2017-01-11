@@ -6,6 +6,7 @@ import backend.I18N;
 import backend.LostLuggage;
 import backend.Luggage;
 import backend.Passenger;
+import backend.UIClass;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -403,11 +404,7 @@ public class AddLuggageController implements Initializable {
         }
         if (!check) {
             //error message
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Registration failure");//ripe for translation
-            alert.setHeaderText(null);
-            alert.setContentText("One or more of the fields is empty.");//ripe for translation
-            alert.showAndWait();
+            UIClass.showPopup("errorRegistrationTitle", "errorEmptyFieldsDesc");
             return check;
         } else {
             /*
@@ -421,11 +418,7 @@ public class AddLuggageController implements Initializable {
              */
         }
         if (!check) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Registration failure");//ripe for translation
-            alert.setHeaderText(null);
-            alert.setContentText("One or more of the fields contains too many characters.");//ripe for translation
-            alert.showAndWait();
+            UIClass.showPopup("errorRegistrationTitle", "errorTooManyCharsDesc");
         }
         return check;
 

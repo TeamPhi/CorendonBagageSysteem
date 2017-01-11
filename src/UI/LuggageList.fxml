@@ -34,8 +34,7 @@
                   <Button fx:id="buttonFoundAdd" layoutX="870.0" layoutY="10.0" mnemonicParsing="false" onAction="#addFoundButtonClicked" text="buttonAdd" />
                   <Button fx:id="buttonFoundImport" layoutX="598.0" layoutY="10.0" mnemonicParsing="false" onAction="#importFoundButtonClicked" text="buttonImport" />
                   <Button fx:id="buttonFoundExport" layoutX="458.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportFoundButtonClicked" text="buttonExport" />
-                  <Button fx:id="buttonFoundLoad" layoutX="977.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadDataFromFoundLuggage" text="buttonLoad" />
-                  <Button fx:id="buttonFoundDelete" layoutX="938.0" layoutY="149.0" mnemonicParsing="false" onAction="#deleteFoundLuggage" text="buttonDelete" />
+                  <Button fx:id="buttonFoundDelete" layoutX="989.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteFoundLuggage" text="buttonDelete" />
                </children>
             </AnchorPane>
          </content>
@@ -64,7 +63,7 @@
                         <TableColumn fx:id="columnLostStatus" prefWidth="109.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
-                  <Button fx:id="buttonLostDelete" layoutX="933.0" layoutY="180.0" mnemonicParsing="false" onAction="#deleteLostLuggage" text="buttonDelete" />
+                  <Button fx:id="buttonLostDelete" layoutX="996.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteLostLuggage" text="buttonDelete" />
                </children>
             </AnchorPane>
          </content>

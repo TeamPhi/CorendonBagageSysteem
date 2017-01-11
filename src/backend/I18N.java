@@ -79,7 +79,10 @@ public final class I18N {
         ResourceBundle bundle = ResourceBundle.getBundle("resource.LanguageBundle", getLocale());
         return MessageFormat.format(bundle.getString(key), args);
     }
-
+    public static String getTranslation(final String key) {
+        ResourceBundle bundle = ResourceBundle.getBundle("resource.LanguageBundle", getLocale());
+        return get(key, (Object[]) null);
+    }
     /**
      * creates a String binding to a localized String for the given message bundle key
      *

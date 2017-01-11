@@ -17,7 +17,7 @@ public class MainUIController implements Initializable{
     private VBox navigationBar;
     private HBox languageBar;
     
-    private static AnchorPane contentBox;
+    private static AnchorPane contentBox = new AnchorPane();
         
     @FXML
     private AnchorPane paneContent;
@@ -28,13 +28,7 @@ public class MainUIController implements Initializable{
     
     public MainUIController() throws IOException {
         this.navigationBar = FXMLLoader.load(getClass().getResource("NavigationBar.fxml"));
-        this.languageBar = FXMLLoader.load(getClass().getResource("LanguageBar.fxml"));
-        this.paneContent = FXMLLoader.load(getClass().getResource("Home.fxml"));
-        //this.paneNavigation.getChildren().setAll(navigationBar);
-        //this.paneHome = FXMLLoader.load(getClass().getResource("Home.fxml"));
-        //this.paneContent.getChildren().setAll(paneHome);
-        //this.paneHeader.getChildren().setAll(languagebox);
-        
+        this.languageBar = FXMLLoader.load(getClass().getResource("LanguageBar.fxml"));        
     }
     
     @Override
@@ -44,9 +38,12 @@ public class MainUIController implements Initializable{
          AnchorPane.setRightAnchor(this.languageBar, 0.0);
          MainUIController.contentBox = this.paneContent;
     }  
-    
+    /**This method is used for changing the main screen contents.
+     * 
+     * 
+     * @return A reference to the content holding screen.
+     */
     public static AnchorPane getContentBox(){
-        //System.out.println(MainUIController.contentBox);
         return MainUIController.contentBox;
     }
      

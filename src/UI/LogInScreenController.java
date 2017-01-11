@@ -3,6 +3,7 @@ package ui;
 import backend.I18N;
 import backend.Account;
 import backend.DBConnection;
+import backend.UIClass;
 import corendonbagagesysteem.CorendonBagageSysteem;
 import java.io.IOException;
 import java.net.URL;
@@ -57,7 +58,6 @@ public class LogInScreenController implements Initializable {
         //this.mainScreen = FXMLLoader.load(resource);
         //Load the languagebar from FXML.
         this.languageBar = FXMLLoader.load(getClass().getResource("LanguageBar.fxml"));
-        //this.mainScreen = FXMLLoader.load(getClass().getResource("/ui/logInScreen.fxml"));
     }
     
     /**
@@ -98,26 +98,24 @@ public class LogInScreenController implements Initializable {
                 Node mainScreen;
                 URL resource = getClass().getResource("Main.fxml");
                 try {
+                    //load the main screen and overwrite it on the window.
                     mainScreen = FXMLLoader.load(resource);
                     CorendonBagageSysteem.setRoot(mainScreen);
+                    //Load the luggage screen and set it as the current screen.
+                    Node luggageScreen = FXMLLoader.load(getClass().getResource("LuggageList.fxml"));
+                    UIClass.setAnchorDistance(luggageScreen, 0.0);
+                    MainUIController.getContentBox().getChildren().setAll(luggageScreen);
+                    
                 } catch (IOException ex) {
                     Logger.getLogger(LogInScreenController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             }else if(counter == 0){
                 //No matching account so do nothing and alert the user.
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("No such account");//ripe for translation
-                alert.setHeaderText(null);
-                alert.setContentText("Username or password is wrong.");//ripe for translation
-                alert.showAndWait();
+                UIClass.showPopup("No such account", "Username or password is wrong.");
             }else{
                 //Too many matching account so do nothing and alert the user.
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Database error");//ripe for translation
-                alert.setHeaderText(null);
-                alert.setContentText("There are two or more accounts with the same name. Contact the system-manager.");//ripe for translation
-                alert.showAndWait();
+                UIClass.showPopup("errorDoubleAccountTitle", "errorDoubleAccountDesc");
                 Account.setUser(null);
             }
             conn.close();

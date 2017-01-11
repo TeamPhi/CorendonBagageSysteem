@@ -19,7 +19,7 @@ public class LanguageBarController {
 
     @FXML
     private void changeLanguageEnglish(ActionEvent event) {
-            I18N.setLocale(new Locale("en","EN"));
+            I18N.setLocale(new Locale("en","GB"));
             //I18N.setLocale(Locale.ENGLISH);
     }
 

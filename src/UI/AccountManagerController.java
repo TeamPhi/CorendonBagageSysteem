@@ -3,6 +3,7 @@ package ui;
 import backend.I18N;
 import backend.Account;
 import backend.DBConnection;
+import backend.UIClass;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -129,26 +130,15 @@ public class AccountManagerController implements Initializable {
                     this.tableAccount.getSelectionModel().getSelectedItem())) {
                 showAccountManagerEdit(this.tableAccount.getSelectionModel().getSelectedItem(), false);
             } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Attempt to edit own account");//ripe for translation
-                alert.setHeaderText(null);
-                alert.setContentText("You cannot edit your own account!");//ripe for translation
-                alert.showAndWait();
+                //one cannot edit its own account
+                UIClass.showPopup("noteEditOwnACTitle", "noteEditOwnACDesc");
             }
         } else if (AccountManagerController.accountData.isEmpty()) {
             //error if there is no account yet.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No entries");//ripe for translation
-            alert.setHeaderText(null);
-            alert.setContentText("You can only edit an account if you have at least one entry.");//ripe for translation
-            alert.showAndWait();
+            UIClass.showPopup("errorNoEntriesTitle", "errorNEAccountDesc");
         } else {
             //error if here is no selection.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No selection");//ripe for translation
-            alert.setHeaderText(null);
-            alert.setContentText("You can only edit an account if you select an entry.");//ripe for translation
-            alert.showAndWait();
+            UIClass.showPopup("errorNoSelectionTitle", "errorNSAccountDesc");
         }
 
     }
@@ -171,7 +161,7 @@ public class AccountManagerController implements Initializable {
         if (selectedAccount != null) {
             if (!Account.isEqualAccount(Account.getUser(),
                     this.tableAccount.getSelectionModel().getSelectedItem())) {
-                if (this.promptDelete()) {
+                if (UIClass.promptDelete()) {
 
                     try {
                         Connection conn = DBConnection.connectDb();
@@ -189,18 +179,14 @@ public class AccountManagerController implements Initializable {
                     }
                 }
             } else {
+                //one cannot delete the account he is logged on with.
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Attempt to delete own account");//ripe for translation
-                alert.setHeaderText(null);
-                alert.setContentText("You cannot delete your own account!");//ripe for translation
-                alert.showAndWait();
+                UIClass.showPopup("noteDelOwnACTitle", "noteDelOwnACDesc");
             }
         } else {
+            //no selection
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No selection");//ripe for translation
-            alert.setHeaderText(null);
-            alert.setContentText("You can only delete an account if you select an entry.");//ripe for translation
-            alert.showAndWait();
+            UIClass.showPopup("errorNoSelectionTitle", "errorNSACDeleteDesc");
         }
     }
 
@@ -228,21 +214,4 @@ public class AccountManagerController implements Initializable {
             Logger.getLogger(AccountManagerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    /**
-     *
-     * @return
-     */
-    private boolean promptDelete() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirm deletion");//ripe for translation
-        alert.setHeaderText(null);
-        alert.setContentText("Really delete?");//ripe for translation
-        ButtonType buttonYes = new ButtonType("Yes");//ripe for translation
-        ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);//ripe for translation
-        alert.getButtonTypes().setAll(buttonYes, buttonNo);
-        Optional<ButtonType> result = alert.showAndWait();
-        return result.get().equals(buttonYes);
-    }
-
 }

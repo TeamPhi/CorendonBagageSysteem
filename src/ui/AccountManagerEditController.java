@@ -3,6 +3,7 @@ package ui;
 import backend.I18N;
 import backend.Account;
 import backend.DBConnection;
+import backend.UIClass;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -106,18 +107,10 @@ public class AccountManagerEditController implements Initializable {
         } else if (this.textFieldNewPassword.getText().isEmpty() == false
                 || this.textFieldNewPasswordRepeat.getText().isEmpty() == false) {
             //Error message if one of the fields is empty.
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Password warning");//ripe for translation
-            alert.setHeaderText(null);
-            alert.setContentText("The password fields may not be empty.");//ripe for translation
-            alert.showAndWait();
+            UIClass.showPopup("notePasswordsTitle", "notePasswordsEDesc");
         } else {
             //Error message that appears when the passwords are not equal.
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Password warning");//ripe for translation
-            alert.setHeaderText(null);
-            alert.setContentText("The passwords must be exactly the same.");//ripe for translation
-            alert.showAndWait();
+            UIClass.showPopup("notePasswordsTitle", "notePasswordsDDesc");
         }
     }
 
@@ -240,19 +233,11 @@ public class AccountManagerEditController implements Initializable {
                 }
             } else {
                 //error message
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("Registration failure");//ripe for translation
-                alert.setHeaderText(null);
-                alert.setContentText("One or more of the fields contain to many characters");//ripe for translation
-                alert.showAndWait();
+                UIClass.showPopup("errorRegistrationTitle","errorTooManyCharsDesc");
             }
         } else {
             //error message
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Registration failure");//ripe for translation
-            alert.setHeaderText(null);
-            alert.setContentText("One or more of the fields is empty.");//ripe for translation
-            alert.showAndWait();
+            UIClass.showPopup("errorRegistrationTitle","errorEmptyFieldsDesc");
         }
     }
     /**Futher prepares the window by putting passed data in the correct fields.
