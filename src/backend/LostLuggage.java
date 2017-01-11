@@ -21,10 +21,10 @@ public class LostLuggage extends Luggage {
      * @param date The date of registration.
      * @param status A field specifying the status.
      */
-    public LostLuggage(String labelNumber, String flightNumber, String airport, 
+    public LostLuggage(String luggageID, String labelNumber, String flightNumber, String airport, 
             String destination, String type, String brand, String color, 
             String date, String status) {
-        super(labelNumber, flightNumber, airport, destination, type, brand, color, date, status);
+        super(luggageID, labelNumber, flightNumber, airport, destination, type, brand, color, date, status);
     }
 
 }

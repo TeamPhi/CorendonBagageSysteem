@@ -201,6 +201,7 @@ public class LuggageListController implements Initializable {
         //First load the passengers from data base
         //Then load there luggage and connect it.
         loadFoundLuggage();
+        loadLostLuggage();
         //Passenger p 
         //LuggageListController.passengerList.add(p);
         //p.addLostLuggage(tempLuggage);
@@ -250,7 +251,7 @@ public class LuggageListController implements Initializable {
         I18N.bindText(this.buttonLostAdd.getText(), this.buttonLostAdd, (Object[]) null);
         I18N.bindText(this.buttonLostDelete.getText(), this.buttonLostDelete, (Object[]) null);
         //make the list.
-        LuggageListController.lostLuggageData = FXCollections.observableArrayList();
+        //LuggageListController.lostLuggageData = FXCollections.observableArrayList();
         /* The section of the matched luggage initialization.
         First all the controls are bound the translation.
          */
@@ -267,7 +268,7 @@ public class LuggageListController implements Initializable {
         this.columnMatchedFoundDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         this.columnMatchedFoundStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         LuggageListController.matchedFoundLuggageData = FXCollections.observableArrayList();
-        FoundLuggage f = new FoundLuggage("a", "b", "c", "d", "e", "f", "g", "h", "i", "j");
+        FoundLuggage f = new FoundLuggage("a", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j");
         LuggageListController.matchedFoundLuggageData.add(f);
         LuggageListController.matchedFoundLuggageData.add(f);
         LuggageListController.matchedFoundLuggageData.add(f);
@@ -301,7 +302,7 @@ public class LuggageListController implements Initializable {
         this.columnMatchedLostDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         this.columnMatchedLostStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         LuggageListController.matchedLostLuggageData = FXCollections.observableArrayList();
-        LostLuggage l = new LostLuggage("a", "b", "c", "d", "e", "f", "g", "h", "i");
+        LostLuggage l = new LostLuggage("a", "a", "b", "c", "d", "e", "f", "g", "h", "i");
         LuggageListController.matchedLostLuggageData.add(l);
         LuggageListController.matchedLostLuggageData.add(l);
         LuggageListController.matchedLostLuggageData.add(l);
@@ -327,39 +328,7 @@ public class LuggageListController implements Initializable {
 
     @FXML
     public void loadDataFromFoundLuggage(ActionEvent event) {
-        Connection conn = DBConnection.connectDb();
-        foundLuggageData = FXCollections.observableArrayList();
-        /*This statements needs to rewritten for the newest database.*/
-        try {
-
-            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM luggage");
-            // string from database
-            while (rs.next()) {
-                foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
-                        rs.getString(8), rs.getString(9), rs.getString(10)));
-                conn.close();
-            }
-
-        } catch (SQLException ex) {
-            System.err.println("Error" + ex);
-        }
-
-        //init collumns and decide what values are stored in them.
-        this.columnFoundLabelnumber.setCellValueFactory(new PropertyValueFactory<>("labelNumber"));
-        this.columnFoundAirport.setCellValueFactory(new PropertyValueFactory<>("airport"));
-        this.columnFoundFlightnumber.setCellValueFactory(new PropertyValueFactory<>("flightnumber"));
-        this.columnLostFound.setCellValueFactory(new PropertyValueFactory<>("lostFoundID"));
-        this.columnFoundDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        this.columnFoundType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        this.columnFoundBrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        this.columnFoundColor.setCellValueFactory(new PropertyValueFactory<>("color"));
-        this.columnFoundDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        this.columnFoundStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-        tableFoundLuggage.setItems(null);
-        tableFoundLuggage.setItems(foundLuggageData);
-
+        loadFoundLuggage();
     }
 
     @FXML
@@ -401,7 +370,7 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void matchFoundButtonClicked(ActionEvent event) {
-
+        matchLuggage(tableFoundLuggage.getSelectionModel().getSelectedItem());
     }
 
     @FXML
@@ -442,8 +411,7 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void matchLostButtonClicked(ActionEvent event) {
-
-    }
+        matchLuggage(tableLostLuggage.getSelectionModel().getSelectedItem());    }
 
     @FXML
     private void exportLostButtonClicked(ActionEvent event) {
@@ -571,14 +539,18 @@ public class LuggageListController implements Initializable {
         foundLuggageData = FXCollections.observableArrayList();
 
         try {
-            ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM luggage");
+            ResultSet rs = conn.createStatement().executeQuery(
+                    "SELECT l.luggageID, labelID, fl.flightID, airport, lostAndFoundID, destination, type, brand, color, date\n" +
+                    "FROM luggage l INNER JOIN foundluggage f ON f.luggageID=l.luggageID INNER JOIN flight fl ON l.flightID=fl.flightID;");
             // string from database
             while (rs.next()) {
-                foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
-                        rs.getString(8), rs.getString(9), rs.getString(10)));
-                conn.close();
+                foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                        rs.getString(9), rs.getString(10), "kek"));
+                        //TODO status
             }
+            
+            conn.close();
 
         } catch (SQLException ex) {
             System.err.println("Error" + ex);
@@ -586,7 +558,7 @@ public class LuggageListController implements Initializable {
 
         this.columnFoundLabelnumber.setCellValueFactory(new PropertyValueFactory<>("labelNumber"));
         this.columnFoundAirport.setCellValueFactory(new PropertyValueFactory<>("airport"));
-        this.columnFoundFlightnumber.setCellValueFactory(new PropertyValueFactory<>("flightnumber"));
+        this.columnFoundFlightnumber.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
         this.columnLostFound.setCellValueFactory(new PropertyValueFactory<>("lostFoundID"));
         this.columnFoundDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
         this.columnFoundType.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -597,6 +569,81 @@ public class LuggageListController implements Initializable {
 
         tableFoundLuggage.setItems(null);
         tableFoundLuggage.setItems(foundLuggageData);
+        
+    }
+    
+    public void loadLostLuggage() {
+        Connection conn = DBConnection.connectDb();
+        lostLuggageData = FXCollections.observableArrayList();
+
+        try {
+            ResultSet rs = conn.createStatement().executeQuery(
+                   "SELECT lug.luggageID, labelID, fli.flightID, airport, destination, type, brand, color, date\n" +
+                    "FROM luggage lug INNER JOIN lostluggage los ON los.luggageID=lug.luggageID INNER JOIN flight fli ON lug.flightID=fli.flightID;");
+            // string from database
+            while (rs.next()) {
+                lostLuggageData.add(new LostLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), "kek"));
+                        //TODO status
+            }
+            
+            conn.close();
+
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+
+        this.columnLostLabelnumber.setCellValueFactory(new PropertyValueFactory<>("labelNumber"));
+        this.columnLostAirport.setCellValueFactory(new PropertyValueFactory<>("airport"));
+        this.columnLostFlightnumber.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
+        this.columnLostDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
+        this.columnLostType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        this.columnLostBrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
+        this.columnLostColor.setCellValueFactory(new PropertyValueFactory<>("color"));
+        this.columnLostDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        this.columnLostStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        tableLostLuggage.setItems(null);
+        tableLostLuggage.setItems(lostLuggageData);
+    }
+    
+    public void matchLuggage(Luggage selectedLuggage) {
+        
+        Connection conn = DBConnection.connectDb();
+ 
+        String luggageID = selectedLuggage.getLuggageID();
+
+        try {
+            ResultSet rs = conn.createStatement().executeQuery(
+                    "SELECT luggageID FROM luggage WHERE luggageID=(\n" +
+                    "SELECT b.luggageID FROM luggage a INNER JOIN luggage b ON\n" +
+                    "a.flightID=b.flightID\n" +
+                    "OR a.labelID=b.labelID\n" +
+                    "WHERE a.luggageID=" + luggageID +" AND NOT b.luggageID=" + luggageID + "\n" +
+                    "AND a.type=b.type\n" +
+                    "AND a.brand=b.brand\n" +
+                    "AND a.color=b.color);"
+                   );
+            if(rs.next()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Match");//ripe for translation
+                alert.setHeaderText(null);
+                alert.setContentText(rs.getString(1));//ripe for translation
+                alert.showAndWait();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("No matches");//ripe for translation
+                alert.setHeaderText(null);
+                alert.setContentText("No matches have been found.");//ripe for translation
+                alert.showAndWait();
+            }
+
+            conn.close();
+
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+        
     }
 
     /**

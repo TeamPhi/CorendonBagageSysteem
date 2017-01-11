@@ -29,8 +29,8 @@ public class FoundLuggage extends Luggage{
      * @param date The date of the day the luggage was found.
      * @param status A field specifying the status.
      */
-    public FoundLuggage(String labelNumber, String flightNumber, String airport, String lostFoundID, String destination, String type, String brand, String color, String date, String status) {
-        super(labelNumber, flightNumber, airport, destination, type, brand, color, date, status);
+    public FoundLuggage(String luggageID, String labelNumber, String flightNumber, String airport, String lostFoundID, String destination, String type, String brand, String color, String date, String status) {
+        super(luggageID, labelNumber, flightNumber, airport, destination, type, brand, color, date, status);
         this.lostFoundID = new SimpleStringProperty(lostFoundID);
     }
 

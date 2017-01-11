@@ -10,9 +10,9 @@ import java.sql.*;
 public class DBConnection {
 
     private static Connection conn;
-    private static String url = "jdbc:mysql://localhost:3306/<vul hier goede database naam in>";//Location of database
+    private static String url = "jdbc:mysql://localhost:3306/corendon_bagage";//Location of database
     private static String user = "root";//Username of database  
-    private static String pass = "pass";//Password of database 
+    private static String pass = "pepe123123";//Password of database 
     //The length of varchar fields in the database:
     //-Passenger
     public static final int LENGTH_OF_NAME = 45;

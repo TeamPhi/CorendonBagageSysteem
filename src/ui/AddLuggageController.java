@@ -232,8 +232,11 @@ public class AddLuggageController implements Initializable {
             Connection conn = DBConnection.connectDb();
             try {
                 if (this.foundMode) {
+                    
+                    String luggageID = "1";
                     //make FoundLuggage
                     FoundLuggage newLuggage = new FoundLuggage(
+                            luggageID,
                             this.textFieldLabelId.getText(),
                             this.textFieldFlightId.getText(),
                             this.textFieldAirport.getText(),
@@ -298,6 +301,7 @@ public class AddLuggageController implements Initializable {
                 } else {//lost mode
                     //make LostLuggge
                     LostLuggage newLuggage = new LostLuggage(
+                            "1",
                             this.textFieldLabelId.getText(),
                             this.textFieldFlightId.getText(),
                             this.textFieldAirport.getText(),

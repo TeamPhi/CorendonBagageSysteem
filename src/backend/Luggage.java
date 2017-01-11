@@ -17,6 +17,7 @@ public abstract class Luggage {
     Properties are a sort of java wrappers.
     They are mostly used to bind a 'property' to a element/control.
      */
+    private final SimpleStringProperty luggageID;
     private final SimpleStringProperty labelNumber;
     private final SimpleStringProperty flightNumber;
     private final SimpleStringProperty airport;
@@ -41,9 +42,10 @@ public abstract class Luggage {
      * @param date The date of registration or found date.
      * @param status A field specifying the status.
      */
-    public Luggage(String labelNumber, String flightNumber, String airport,
+    public Luggage(String luggageID, String labelNumber, String flightNumber, String airport,
             String destination, String type, String brand, String color,
             String date, String status) {
+        this.luggageID = new SimpleStringProperty(luggageID);
         this.labelNumber = new SimpleStringProperty(labelNumber);
         this.flightNumber = new SimpleStringProperty(flightNumber);
         this.airport = new SimpleStringProperty(airport);
@@ -54,7 +56,11 @@ public abstract class Luggage {
         this.date = new SimpleStringProperty(date);
         this.status = new SimpleStringProperty(status);
     }
-
+    
+     public String getLuggageID() {
+        return luggageID.get();
+    }
+    
     public String getLabelNumber() {
         return labelNumber.get();
     }
