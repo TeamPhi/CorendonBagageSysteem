@@ -6,6 +6,7 @@ import backend.FoundLuggage;
 import backend.LostLuggage;
 import backend.Luggage;
 import backend.Passenger;
+import backend.LuggageSearchBarLogic;
 import backend.UIClass;
 import java.io.IOException;
 import java.net.URL;
@@ -26,10 +27,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -120,7 +118,9 @@ public class LuggageListController implements Initializable {
     @FXML
     private TableColumn<LostLuggage, String> columnLostStatus;
     @FXML
-    private TextField textFieldFoundLost;
+    private TextField textFieldFoundLost;//removable?
+    @FXML
+    private TextField textFieldLostSearch;
     @FXML
     private Button buttonLostSearch;
     @FXML
@@ -364,8 +364,9 @@ public class LuggageListController implements Initializable {
     }
 
     @FXML
-    private void searchFoundButtonClicked(ActionEvent event) {
-
+    private void searchActionFound(ActionEvent event) {
+        this.tableFoundLuggage.setItems((ObservableList) FXCollections.observableArrayList(LuggageSearchBarLogic.interpretSearchString(this.textFieldFoundSearch.getText(),
+                new ArrayList<>(LuggageListController.foundLuggageData), true)));
     }
 
     @FXML
@@ -393,7 +394,7 @@ public class LuggageListController implements Initializable {
         if (isTableSelection(this.tableFoundLuggage)) {
             /*
             Passenger information needs to be retrieved here.
-            */
+             */
             //showAddLuggage(this.tableFoundLuggage.getSelectionModel().getSelectedItem(), false, true);
         } else if (LuggageListController.foundLuggageData.isEmpty()) {
             //error if there is no luggage yet.
@@ -405,13 +406,15 @@ public class LuggageListController implements Initializable {
     }
 
     @FXML
-    private void searchLostButtonClicked(ActionEvent event) {
-
+    private void searchActionLost(ActionEvent event) {
+        this.tableLostLuggage.setItems((ObservableList) FXCollections.observableArrayList(LuggageSearchBarLogic.interpretSearchString(this.textFieldLostSearch.getText(),
+                new ArrayList<>(LuggageListController.foundLuggageData), false)));
     }
 
     @FXML
     private void matchLostButtonClicked(ActionEvent event) {
-        matchLuggage(tableLostLuggage.getSelectionModel().getSelectedItem());    }
+        matchLuggage(tableLostLuggage.getSelectionModel().getSelectedItem());
+    }
 
     @FXML
     private void exportLostButtonClicked(ActionEvent event) {
@@ -433,7 +436,7 @@ public class LuggageListController implements Initializable {
         if (isTableSelection(this.tableLostLuggage)) {
             /*
             Passenger information needs to be retrieved here.
-            */
+             */
             //showAddLuggage(this.tableLostLuggage.getSelectionModel().getSelectedItem(), false, false);
         } else if (LuggageListController.lostLuggageData.isEmpty()) {
             //error if there is no luggage yet.
@@ -540,16 +543,16 @@ public class LuggageListController implements Initializable {
 
         try {
             ResultSet rs = conn.createStatement().executeQuery(
-                    "SELECT l.luggageID, labelID, fl.flightID, airport, lostAndFoundID, destination, type, brand, color, date\n" +
-                    "FROM luggage l INNER JOIN foundluggage f ON f.luggageID=l.luggageID INNER JOIN flight fl ON l.flightID=fl.flightID;");
+                    "SELECT l.luggageID, labelID, fl.flightID, airport, lostAndFoundID, destination, type, brand, color, date\n"
+                    + "FROM luggage l INNER JOIN foundluggage f ON f.luggageID=l.luggageID INNER JOIN flight fl ON l.flightID=fl.flightID;");
             // string from database
             while (rs.next()) {
                 foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
                         rs.getString(9), rs.getString(10), "kek"));
-                        //TODO status
+                //TODO status
             }
-            
+
             conn.close();
 
         } catch (SQLException ex) {
@@ -569,24 +572,24 @@ public class LuggageListController implements Initializable {
 
         tableFoundLuggage.setItems(null);
         tableFoundLuggage.setItems(foundLuggageData);
-        
+
     }
-    
+
     public void loadLostLuggage() {
         Connection conn = DBConnection.connectDb();
         lostLuggageData = FXCollections.observableArrayList();
 
         try {
             ResultSet rs = conn.createStatement().executeQuery(
-                   "SELECT lug.luggageID, labelID, fli.flightID, airport, destination, type, brand, color, date\n" +
-                    "FROM luggage lug INNER JOIN lostluggage los ON los.luggageID=lug.luggageID INNER JOIN flight fli ON lug.flightID=fli.flightID;");
+                    "SELECT lug.luggageID, labelID, fli.flightID, airport, destination, type, brand, color, date\n"
+                    + "FROM luggage lug INNER JOIN lostluggage los ON los.luggageID=lug.luggageID INNER JOIN flight fli ON lug.flightID=fli.flightID;");
             // string from database
             while (rs.next()) {
                 lostLuggageData.add(new LostLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), "kek"));
-                        //TODO status
+                //TODO status
             }
-            
+
             conn.close();
 
         } catch (SQLException ex) {
@@ -606,31 +609,31 @@ public class LuggageListController implements Initializable {
         tableLostLuggage.setItems(null);
         tableLostLuggage.setItems(lostLuggageData);
     }
-    
+
     public void matchLuggage(Luggage selectedLuggage) {
-        
+
         Connection conn = DBConnection.connectDb();
- 
+
         String luggageID = selectedLuggage.getLuggageID();
 
         try {
             ResultSet rs = conn.createStatement().executeQuery(
-                    "SELECT luggageID FROM luggage WHERE luggageID=(\n" +
-                    "SELECT b.luggageID FROM luggage a INNER JOIN luggage b ON\n" +
-                    "a.flightID=b.flightID\n" +
-                    "OR a.labelID=b.labelID\n" +
-                    "WHERE a.luggageID=" + luggageID +" AND NOT b.luggageID=" + luggageID + "\n" +
-                    "AND a.type=b.type\n" +
-                    "AND a.brand=b.brand\n" +
-                    "AND a.color=b.color);"
-                   );
-            if(rs.next()) {
+                    "SELECT luggageID FROM luggage WHERE luggageID=(\n"
+                    + "SELECT b.luggageID FROM luggage a INNER JOIN luggage b ON\n"
+                    + "a.flightID=b.flightID\n"
+                    + "OR a.labelID=b.labelID\n"
+                    + "WHERE a.luggageID=" + luggageID + " AND NOT b.luggageID=" + luggageID + "\n"
+                    + "AND a.type=b.type\n"
+                    + "AND a.brand=b.brand\n"
+                    + "AND a.color=b.color);"
+            );
+            if (rs.next()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Match");//ripe for translation
                 alert.setHeaderText(null);
                 alert.setContentText(rs.getString(1));//ripe for translation
                 alert.showAndWait();
-            }else{
+            } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("No matches");//ripe for translation
                 alert.setHeaderText(null);
@@ -643,12 +646,12 @@ public class LuggageListController implements Initializable {
         } catch (SQLException ex) {
             System.err.println("Error" + ex);
         }
-        
+
     }
 
-    /**
-     *
-     * @param editLuggage
+    /**This method opens the AddLuggage screen.
+     * Depening on the arguments, the screen will be in 'add' or 'edit', 'found' or 'lost' modes.
+     * @param editLuggage 
      * @param addMode
      * @param foundMode
      */
@@ -670,14 +673,16 @@ public class LuggageListController implements Initializable {
         }
     }
 
-    /**maybe if Lost and Found need seperate methods.
+    /**
+     * maybe if Lost and Found need seperate methods.
      *
      */
     private void showAddLostLuggage() {
 
     }
 
-    /**Check if the table has a selected item.
+    /**
+     * Check if the table has a selected item.
      *
      * @param table The tableView to check.
      * @return true if there is a selection, false otherwise.

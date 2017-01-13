@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -157,7 +156,8 @@ public class AddLuggageController implements Initializable {
         I18N.bindText(this.labelColor.getText(), this.labelColor, (Object[]) null);
         I18N.bindText(this.labelFeatures.getText(), this.labelFeatures, (Object[]) null);
         I18N.bindText(this.labelPassengerHeader.getText(), this.labelPassengerHeader, (Object[]) null);
-        I18N.bindText(this.labelName.getText(), this.labelAddress, (Object[]) null);
+        I18N.bindText(this.labelName.getText(), this.labelName, (Object[]) null);
+        I18N.bindText(this.labelAddress.getText(), this.labelAddress, (Object[]) null);
         I18N.bindText(this.labelCity.getText(), this.labelCity, (Object[]) null);
         I18N.bindText(this.labelZipcode.getText(), this.labelZipcode, (Object[]) null);
         I18N.bindText(this.labelCountry.getText(), this.labelCountry, (Object[]) null);

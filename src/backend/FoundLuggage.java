@@ -45,4 +45,21 @@ public class FoundLuggage extends Luggage{
     public StringProperty lostFoundIDProperty() {
         return lostFoundID;
     }
+    /**A string representation of the object.
+     * Also the LAFID is added.
+     * @return The value of every property separated by spaces.
+     */
+    @Override
+    public String toString(){
+        return getLuggageID() + " " + getLabelNumber() + " " + getFlightNumber() +
+                getAirport() + " " + getDestination() + " " + getType() + " " +
+                getBrand() + " " + getColor() + " " +  getDate() + " " + 
+                getStatus() + " " + getLostFoundID();
+        }
+    /*
+        "labelDate",
+        "labelAirport", "labelLAFID", "labelLuggageID", "labelStatus",
+        "labelFlightnumber", "labelDestination", "labelType", "labelBrand",
+        "labelColor", "labelFeatures"
+    */
 }

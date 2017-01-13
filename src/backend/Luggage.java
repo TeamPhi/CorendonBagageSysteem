@@ -2,6 +2,7 @@ package backend;
 
 import java.util.Date;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -12,7 +13,21 @@ import javafx.beans.property.StringProperty;
  * @author Jordy Quak
  */
 public abstract class Luggage {
-
+    /*
+    These maybe removed, but I kept them just in case.
+    public static final String LUGGAGEID_PROPERTY_NAME = "luggageID";
+    public static final String LABEL_NUMBER_PROPERTY_NAME = "labelNumber";
+    public static final String FLIGHT_NUMBER_PROPERTY_NAME = "flightNumber";
+    public static final String AIRPORT_PROPERTY_NAME = "airport";
+    public static final String DESTINATION_PROPERTY_NAME = "destination";
+    public static final String TYPE_PROPERTY_NAME = "type";
+    public static final String BRAND_PROPERTY_NAME = "brand";
+    public static final String COLOR_PROPERTY_NAME = "color";
+    public static final String DATE_PROPERTY_NAME = "date";
+    public static final String STATUS_PROPERTY_NAME = "status";
+    public static final String LAFID_PROPERTY_NAME = "lostFoundID";
+    */ 
+    
     /*
     Properties are a sort of java wrappers.
     They are mostly used to bind a 'property' to a element/control.
@@ -57,7 +72,7 @@ public abstract class Luggage {
         this.status = new SimpleStringProperty(status);
     }
     
-     public String getLuggageID() {
+    public String getLuggageID() {
         return luggageID.get();
     }
     
@@ -168,5 +183,10 @@ public abstract class Luggage {
     public StringProperty statusProperty() {
         return status;
     }
-
+    /**The toString() method is declared abstract here, so both luggage types can
+     * have toString() called without problems.
+     * @return 
+     */
+    @Override
+    public abstract String toString();
 }
