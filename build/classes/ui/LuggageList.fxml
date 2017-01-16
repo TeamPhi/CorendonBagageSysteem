@@ -13,8 +13,8 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
                <children>
-                  <TextField fx:id="textFieldFoundSearch" layoutX="14.0" layoutY="10.0" />
-                  <Button fx:id="buttonFoundSearch" layoutX="173.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchFoundButtonClicked" text="buttonSearch" />
+                  <TextField fx:id="textFieldFoundSearch" layoutX="14.0" layoutY="10.0" onAction="#searchActionFound" />
+                  <Button fx:id="buttonFoundSearch" layoutX="173.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchActionFound" text="buttonSearch" />
                   <TableView fx:id="tableFoundLuggage" layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
                      <columns>
                         <TableColumn fx:id="columnFoundLabelnumber" prefWidth="98.0" text="tableColumnLabel" />
@@ -43,8 +43,8 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
                <children>
-                  <TextField fx:id="textFieldLostSearch" layoutX="14.0" layoutY="10.0" />
-                  <Button fx:id="buttonLostSearch" layoutX="164.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchLostButtonClicked" text="buttonSearch" />
+                  <TextField fx:id="textFieldLostSearch" layoutX="14.0" layoutY="10.0" onAction="#searchActionLost" />
+                  <Button fx:id="buttonLostSearch" layoutX="164.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchActionLost" text="buttonSearch" />
                   <Button fx:id="buttonLostExport" layoutX="456.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportLostButtonClicked" text="buttonExport" />
                   <Button fx:id="buttonLostImport" layoutX="599.0" layoutY="10.0" mnemonicParsing="false" onAction="#importLostButtonClicked" text="buttonImport" />
                   <Button fx:id="buttonLostAdd" layoutX="877.0" layoutY="10.0" mnemonicParsing="false" onAction="#addLostButtonClicked" text="buttonAdd" />

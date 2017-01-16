@@ -26,5 +26,15 @@ public class LostLuggage extends Luggage {
             String date, String status) {
         super(luggageID, labelNumber, flightNumber, airport, destination, type, brand, color, date, status);
     }
-
+    /**A string representation of the object.
+     * 
+     * @return The value of every property separated by spaces.
+     */
+    @Override
+    public String toString(){
+        return getLuggageID() + " " + getLabelNumber() + " " + getFlightNumber() +
+                getAirport() + " " + getDestination() + " " + getType() + " " +
+                getBrand() + " " + getColor() + " " +  getDate() + " " + 
+                getStatus();
+    }
 }

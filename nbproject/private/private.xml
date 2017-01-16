@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/F:/Users/Atori/Documents/GitHub/CorendonBagageSysteem/src/ui/LuggageListController.java</file>
+            <file>file:/F:/Users/Atori/Documents/GitHub/CorendonBagageSysteem/src/ui/LuggageList.fxml</file>
+            <file>file:/F:/Users/Atori/Documents/GitHub/CorendonBagageSysteem/src/ui/AddLostLuggageController.java</file>
+            <file>file:/F:/Users/Atori/Documents/GitHub/CorendonBagageSysteem/src/ui/NavigationBarController.java</file>
+            <file>file:/F:/Users/Atori/Documents/GitHub/CorendonBagageSysteem/src/ui/AddLuggageController.java</file>
+            <file>file:/F:/Users/Atori/Documents/GitHub/CorendonBagageSysteem/src/ui/MainUIController.java</file>
+            <file>file:/F:/Users/Atori/Documents/GitHub/CorendonBagageSysteem/src/ui/AddLostLuggage.fxml</file>
+            <file>file:/F:/Users/Atori/Documents/GitHub/CorendonBagageSysteem/src/backend/DBConnection.java</file>
+        </group>
     </open-files>
 </project-private>

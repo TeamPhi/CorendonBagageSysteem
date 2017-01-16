@@ -2,7 +2,7 @@ package backend;
 
 /**
  * 
- * @autoh Oracle
+ * @author Oracle
  * @author Elwin Slokker
  */
 import javafx.beans.binding.Bindings;
@@ -28,6 +28,7 @@ public final class I18N {
     /** the current selected Locale. */
     public static final ObjectProperty<Locale> LOCALE;
     public static final String PROGRAM_NAME_KEY = "programTitle";
+    public static final String FULL_PATH_LANGUAGE_BUNDLE = "resource.LanguageBundle";
     static {
         LOCALE = new SimpleObjectProperty<>(getDefaultLocale());
         LOCALE.addListener((observable, oldValue, newValue) -> Locale.setDefault(newValue));
@@ -76,11 +77,15 @@ public final class I18N {
      * @return localized formatted string
      */
     public static String get(final String key, final Object... args) {
-        ResourceBundle bundle = ResourceBundle.getBundle("resource.LanguageBundle", getLocale());
+        ResourceBundle bundle = ResourceBundle.getBundle(FULL_PATH_LANGUAGE_BUNDLE, getLocale());
         return MessageFormat.format(bundle.getString(key), args);
     }
     public static String getTranslation(final String key) {
-        ResourceBundle bundle = ResourceBundle.getBundle("resource.LanguageBundle", getLocale());
+        ResourceBundle bundle = ResourceBundle.getBundle(FULL_PATH_LANGUAGE_BUNDLE, getLocale());
+        return get(key, (Object[]) null);
+    }
+    public static String getEnglishTranslation(final String key) {
+        ResourceBundle bundle = ResourceBundle.getBundle(FULL_PATH_LANGUAGE_BUNDLE, Locale.ENGLISH);
         return get(key, (Object[]) null);
     }
     /**
