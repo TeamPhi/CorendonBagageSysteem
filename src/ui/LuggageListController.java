@@ -55,6 +55,7 @@ public class LuggageListController implements Initializable {
     public static ObservableList<FoundLuggage> matchedFoundLuggageData;
     public static ObservableList<LostLuggage> matchedLostLuggageData;
     private static ArrayList<Passenger> passengerList = new ArrayList<>();
+    
     //private DBConnection dbc;
     @FXML
     private Tab tabFound;
@@ -325,7 +326,8 @@ public class LuggageListController implements Initializable {
         //this.tableMatchedLostLuggage.setItems(null);
         this.tableMatchedLostLuggage.setItems(LuggageListController.matchedLostLuggageData);
     }
-
+    
+    
     @FXML
     public void loadDataFromFoundLuggage(ActionEvent event) {
         loadFoundLuggage();
@@ -380,12 +382,12 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void importFoundButtonClicked(ActionEvent event) {
-
+        
     }
 
     @FXML
     private void addFoundButtonClicked(ActionEvent event) {
-        showAddLuggage(null, null, true, true);
+        showAddLuggage();
     }
 
     @FXML
@@ -425,16 +427,18 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void addLostButtonClicked(ActionEvent event) {
-        showAddLuggage(null, null, true, false);
+        showAddLuggage();
     }
 
     @FXML
     private void editLostButtonClicked(ActionEvent event) {
         if (isTableSelection(this.tableLostLuggage)) {
-            /*
-            Passenger information needs to be retrieved here.
-            */
-            //showAddLuggage(this.tableLostLuggage.getSelectionModel().getSelectedItem(), false, false);
+            FXMLLoader loader = showAddLuggage();
+            try {
+                loader.<AddLostLuggageController>getController().fillFields(1);
+            } catch (SQLException ex) {
+                Logger.getLogger(LuggageListController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if (LuggageListController.lostLuggageData.isEmpty()) {
             //error if there is no luggage yet.
             UIClass.showPopup("errorNoEntriesTitle", "errorNELuggageDesc");//ripe for translation
@@ -652,22 +656,21 @@ public class LuggageListController implements Initializable {
      * @param addMode
      * @param foundMode
      */
-    private void showAddLuggage(Luggage editLuggage, Passenger editPassenger, boolean addMode, boolean foundMode) {
-        /* Load the add/edit screen.
-        First the FXML file is loaded and then a new Stage is made (a window) and shown.
-        The initData method passes the arguments to the controller.
-         */
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddLuggage.fxml"));
-
+    private FXMLLoader showAddLuggage(){
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddLostLuggage.fxml"));
         Stage stage = new Stage();
+        
         try {
             stage.setScene(new Scene((Pane) loader.load()));
-            loader.<AddLuggageController>getController().initData(editLuggage, editPassenger, addMode, foundMode);
             stage.titleProperty().bind(I18N.createStringBinding(I18N.PROGRAM_NAME_KEY, (Object[]) null));
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(AccountManagerController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LuggageListController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return loader;
+        
     }
 
     /**maybe if Lost and Found need seperate methods.
