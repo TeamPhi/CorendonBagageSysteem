@@ -32,7 +32,7 @@
                   <Button fx:id="buttonFoundMatch" layoutX="316.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchFoundButtonClicked" text="buttonMatch" />
                   <Button fx:id="buttonFoundEdit" layoutX="746.0" layoutY="10.0" mnemonicParsing="false" onAction="#editFoundButtonClicked" text="buttonEdit" />
                   <Button fx:id="buttonFoundAdd" layoutX="870.0" layoutY="10.0" mnemonicParsing="false" onAction="#addFoundButtonClicked" text="buttonAdd" />
-                  <Button fx:id="buttonFoundImport" layoutX="598.0" layoutY="10.0" mnemonicParsing="false" onAction="#importFoundButtonClicked" text="Refresh" />
+                  <Button fx:id="buttonFoundImport" layoutX="598.0" layoutY="10.0" mnemonicParsing="false" onAction="#importFoundButtonClicked" text="buttonImport" />
                   <Button fx:id="buttonFoundExport" layoutX="458.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportFoundButtonClicked" text="buttonExport" />
                   <Button fx:id="buttonFoundDelete" layoutX="989.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteFoundLuggage" text="buttonDelete" />
                </children>
@@ -83,7 +83,7 @@
                      </columns>
                   </TableView>
                   <Button fx:id="buttonMatchMatch" layoutX="335.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchMain" text="buttonMatch" />
-                  <Button fx:id="buttonMatchImport" layoutX="622.0" layoutY="10.0" mnemonicParsing="false" text="Refresh" onAction="#matchRefresh" />
+                  <Button fx:id="buttonMatchImport" layoutX="622.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchRefresh" text="Refresh" />
                   <Button fx:id="buttonMatchExport" layoutX="480.0" layoutY="10.0" mnemonicParsing="false" text="buttonExport" />
                   <Button fx:id="buttonMatchForm" layoutX="750.0" layoutY="10.0" mnemonicParsing="false" text="buttonMakeDeliveryForm" />
                </children>

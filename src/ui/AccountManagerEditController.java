@@ -183,7 +183,7 @@ public class AccountManagerEditController implements Initializable {
                         }
                         if (counter < 1) {
                             String sql = "INSERT INTO account (username, password,"
-                                    + " privilege, name, surname, email)"
+                                    + " role, name, surname, email)"
                                     + "VALUES (?, ?, ?, ?, ?, ?)";
                             PreparedStatement preparedStatement = conn.prepareStatement(sql);
                             //preparedStatement.setInt(1, 1);//this should be changed
@@ -207,7 +207,7 @@ public class AccountManagerEditController implements Initializable {
                     } else {
                         //temp.setUserID(AccountManagerController.accountData.);
                         String sql = "UPDATE account SET username = ?, password = ?,"
-                                + " privilege = ?, name = ?, surname = ?, email = ? "
+                                + " role = ?, name = ?, surname = ?, email = ? "
                                 + "WHERE userid = ?";
                         PreparedStatement preparedStatement = conn.prepareStatement(sql);
                         preparedStatement.setString(1, this.textFieldUsername.getText());

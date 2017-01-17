@@ -165,7 +165,7 @@ public class AccountManagerController implements Initializable {
                         Connection conn = DBConnection.connectDb();
                         Statement stmt = conn.createStatement();
                         String sql = "DELETE FROM account "
-                                + "WHERE userid = ?";
+                                + "WHERE userID = ?";
                         PreparedStatement preparedStatement = conn.prepareStatement(sql);
                         //preparedStatement.setInt(1, 0);//this should be changed
                         preparedStatement.setInt(1, selectedAccount.getUserID());

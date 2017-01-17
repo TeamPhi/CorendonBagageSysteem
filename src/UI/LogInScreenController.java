@@ -112,7 +112,7 @@ public class LogInScreenController implements Initializable {
                 
             }else if(counter == 0){
                 //No matching account so do nothing and alert the user.
-                UIClass.showPopup("No such account", "Username or password is wrong.");
+                UIClass.showPopup("errorNoAccountTitle", "errorNoAccountDesc");
             }else{
                 //Too many matching account so do nothing and alert the user.
                 UIClass.showPopup("errorDoubleAccountTitle", "errorDoubleAccountDesc");

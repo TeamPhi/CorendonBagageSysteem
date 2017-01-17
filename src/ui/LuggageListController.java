@@ -169,8 +169,10 @@ public class LuggageListController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //First load the passengers from data base
         //Then load there luggage and connect it.
-        
-        
+        this.buttonFoundDelete.disableProperty().set(true);
+        this.buttonFoundDelete.visibleProperty().set(false);
+        this.buttonLostDelete.disableProperty().set(true);
+        this.buttonLostDelete.visibleProperty().set(false);
         loadFoundLuggage();
         loadLostLuggage();
         //Passenger p 
