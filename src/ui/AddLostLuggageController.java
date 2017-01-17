@@ -376,6 +376,31 @@ public class AddLostLuggageController implements Initializable {
         check = this.isEmptyTextField(this.textFieldZipcode, check);
         check = this.isEmptyTextField(this.textFieldCity, check);
         check = this.isEmptyTextField(this.textFieldCountry, check);
+        check = this.isEmptyTextField(this.textFieldPhoneNumber, check);
+        check = this.isEmptyTextField(this.textFieldEmail, check);
+        
+        //REGEX
+        check = this.isEmptyTextField(this.textFieldDate, this.textFieldDate.getText().matches("^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$"));
+        check = this.isEmptyTextField(this.textFieldTime, this.textFieldTime.getText().matches("^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d)$"));
+        check = this.isValidTextField(this.textFieldAirport, this.textFieldAirport.getText().matches("^.{0," + DBConnection.LENGTH_OF_AIRPORT + "}$"));
+        
+        check = this.isValidTextField(this.textFieldLabelId, this.textFieldLabelId.getText().matches("^[0-9]{1,}$"));
+        check = this.isValidTextField(this.textFieldFlightId, this.textFieldFlightId.getText().matches("^.{0," + DBConnection.LENGTH_OF_FLIGHTID + "}$"));
+        check = this.isValidTextField(this.textFieldDestination, this.textFieldDestination.getText().matches("^.{0," + DBConnection.LENGTH_OF_DESTINATION + "}$"));
+        
+        check = this.isEmptyTextField(this.textFieldType, this.textFieldType.getText().matches("^.{0," + DBConnection.LENGTH_OF_TYPE + "}$"));
+        check = this.isValidTextField(this.textFieldBrand, this.textFieldBrand.getText().matches("^.{0," + DBConnection.LENGTH_OF_BRAND + "}$"));
+        check = this.isEmptyTextField(this.textFieldColor, this.textFieldColor.getText().matches("^.{0," + DBConnection.LENGTH_OF_COLOR + "}$"));
+        
+        check = this.isEmptyTextField(this.textFieldName, this.textFieldName.getText().matches("^.{0," + DBConnection.LENGTH_OF_NAME + "}$"));
+        check = this.isEmptyTextField(this.textFieldAddress, this.textFieldAddress.getText().matches("^.{0," + DBConnection.LENGTH_OF_ADDRESS + "}$"));
+        check = this.isEmptyTextField(this.textFieldZipcode, this.textFieldZipcode.getText().matches("^.{0," + DBConnection.LENGTH_OF_ZIPCODE + "}$"));
+        check = this.isEmptyTextField(this.textFieldCity, this.textFieldCity.getText().matches("^.{0," + DBConnection.LENGTH_OF_CITY + "}$"));
+        check = this.isEmptyTextField(this.textFieldCountry, this.textFieldCountry.getText().matches("^.{0," + DBConnection.LENGTH_OF_COUNTRY + "}$"));
+        check = this.isEmptyTextField(this.textFieldPhoneNumber, this.textFieldPhoneNumber.getText().matches("^.{0," + DBConnection.LENGTH_OF_TELEPHONE + "}$"));
+        check = this.isEmptyTextField(this.textFieldEmail, this.textFieldEmail.getText().matches("^.{0," + DBConnection.LENGTH_OF_EMAIL + "}$"));
+        
+        
         
         if (!check) {
             //error message
@@ -405,7 +430,7 @@ public class AddLostLuggageController implements Initializable {
             if (textField.getText().isEmpty()) {
                 this.setTextFieldIndicatorBorder(textField, true);
             } else {
-                this.setTextFieldIndicatorBorder(textField, false);
+                this.setTextFieldIndicatorBorder(textField, !check);
             }
         } else {
             if (textField.getText().isEmpty()) {
@@ -413,6 +438,16 @@ public class AddLostLuggageController implements Initializable {
             } else {
                 check = true;
             }
+            this.setTextFieldIndicatorBorder(textField, !check);
+        }
+
+        return check;
+    }
+    
+    private boolean isValidTextField(TextField textField, boolean check) {
+        if (!check) {
+            this.setTextFieldIndicatorBorder(textField, true);
+        } else {
             this.setTextFieldIndicatorBorder(textField, !check);
         }
 
