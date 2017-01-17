@@ -33,13 +33,13 @@ import javafx.stage.Stage;
  *
  * @author Atori
  */
-public class AddLostLuggageController implements Initializable {
-    
+public class AddFoundLuggageController implements Initializable {
+   
     @FXML
     private boolean edit = true;
     @FXML
     private String luggageID = "1";
-   
+    
     @FXML
     private Label labelHeader;
     @FXML
@@ -48,6 +48,8 @@ public class AddLostLuggageController implements Initializable {
     private Label labelTime;
     @FXML
     private Label labelAirport;
+    @FXML
+    private Label labelLAFID;
     @FXML
     private Label labelFlightHeader;
     @FXML
@@ -69,21 +71,7 @@ public class AddLostLuggageController implements Initializable {
     @FXML
     private Label labelStatus;
     @FXML
-    private Label labelPassengerHeader;
-    @FXML
     private Label labelName;
-    @FXML
-    private Label labelAddress;
-    @FXML
-    private Label labelCity;
-    @FXML
-    private Label labelZipcode;
-    @FXML
-    private Label labelCountry;
-    @FXML
-    private Label labelPhoneNumber;
-    @FXML
-    private Label labelEmail;
 
     @FXML
     private TextField textFieldTime;
@@ -111,18 +99,6 @@ public class AddLostLuggageController implements Initializable {
     private TextArea textAreaFeatures;
     @FXML
     private TextField textFieldName;
-    @FXML
-    private TextField textFieldAddress;
-    @FXML
-    private TextField textFieldCity;
-    @FXML
-    private TextField textFieldZipcode;
-    @FXML
-    private TextField textFieldCountry;
-    @FXML
-    private TextField textFieldPhoneNumber;
-    @FXML
-    private TextField textFieldEmail;
 
     @FXML
     private Button buttonSave;
@@ -144,6 +120,7 @@ public class AddLostLuggageController implements Initializable {
         I18N.bindText(this.labelDate.getText(), this.labelDate, (Object[]) null);
         I18N.bindText(this.labelTime.getText(), this.labelTime, (Object[]) null);
         I18N.bindText(this.labelAirport.getText(), this.labelAirport, (Object[]) null);
+        I18N.bindText(this.labelLAFID.getText(), this.labelLAFID, (Object[]) null);
         I18N.bindText(this.labelStatus.getText(), this.labelStatus, (Object[]) null);
         I18N.bindText(this.labelFlightHeader.getText(), this.labelFlightHeader, (Object[]) null);
         I18N.bindText(this.labelLabelID.getText(), this.labelLabelID, (Object[]) null);
@@ -154,20 +131,13 @@ public class AddLostLuggageController implements Initializable {
         I18N.bindText(this.labelBrand.getText(), this.labelBrand, (Object[]) null);
         I18N.bindText(this.labelColor.getText(), this.labelColor, (Object[]) null);
         I18N.bindText(this.labelFeatures.getText(), this.labelFeatures, (Object[]) null);
-        I18N.bindText(this.labelPassengerHeader.getText(), this.labelPassengerHeader, (Object[]) null);
         I18N.bindText(this.labelName.getText(), this.labelName, (Object[]) null);
-        I18N.bindText(this.labelAddress.getText(), this.labelAddress, (Object[]) null);
-        I18N.bindText(this.labelCity.getText(), this.labelCity, (Object[]) null);
-        I18N.bindText(this.labelZipcode.getText(), this.labelZipcode, (Object[]) null);
-        I18N.bindText(this.labelCountry.getText(), this.labelCountry, (Object[]) null);
-        I18N.bindText(this.labelPhoneNumber.getText(), this.labelPhoneNumber, (Object[]) null);
-        I18N.bindText(this.labelEmail.getText(), this.labelEmail, (Object[]) null);
+
         I18N.bindText(this.buttonSend.getText(), this.buttonSend, (Object[]) null);
         I18N.bindText(this.buttonCancel.getText(), this.buttonCancel, (Object[]) null);
         I18N.bindText(this.buttonSave.getText(), this.buttonSave, (Object[]) null);
         
     }
-    
     
     @FXML
     public void setEdit(boolean edit){
@@ -179,7 +149,6 @@ public class AddLostLuggageController implements Initializable {
         this.luggageID = luggageID;
     }
     
-    
     @FXML
     private void cancel(ActionEvent event) {
         //useless beacause of the x button?
@@ -190,11 +159,12 @@ public class AddLostLuggageController implements Initializable {
     @FXML
     private void saveRegular(ActionEvent event) {
         try {
-           if(this.edit){
+            if(this.edit){
             edit(this.luggageID);
             }else{
             save();
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(AddLostLuggageController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -204,21 +174,20 @@ public class AddLostLuggageController implements Initializable {
         
         if (this.isFilledCorrectly()) {
         
+            
+
+                String SQL_INSERT_FLIGHT = "INSERT IGNORE INTO `corendon_bagage`.`flight` (`flightID`, `destination`) \n" +
+        "VALUES ('" + this.textFieldFlightId.getText() + "', '" + this.textFieldDestination.getText() + "');";
+
+                String SQL_INSERT_LUGGAGE = "INSERT INTO `corendon_bagage`.`luggage` (`labelID`, `type`, `brand`, `color`, `features`, `flightID`, `lostAndFoundID`) \n" +
+        "VALUES ('" + this.textFieldLabelId.getText() + "', '" + this.textFieldType.getText() + "', '" + this.textFieldBrand.getText() + "', '" + this.textFieldColor.getText() + "',"
+                        + " '" + this.textAreaFeatures.getText() + "', '" + this.textFieldFlightId.getText() + "', '" + this.textFieldLAFID.getText() + "');";
+
+                String SQL_INSERT_LUGGAGE_FOUND = "INSERT INTO `corendon_bagage`.`foundluggage` (`luggageID`, `date`, `time`, `airport`, `passagerName`) \n" +
+        "VALUES (LAST_INSERT_ID(), '" + this.textFieldDate.getText() + "', '" + this.textFieldTime.getText() + "', '" + this.textFieldAirport.getText() + "', '" + this.textFieldName.getText() + "');";
+            
+            
             Connection conn = DBConnection.connectDb();
-
-            String SQL_INSERT_PASSAGER = "INSERT INTO `corendon_bagage`.`passager` (`naam`, `adres`, `woonplaats`, `postalcode`, `country`, `telephone`, `email`) \n" +
-    "VALUES ('" + this.textFieldName.getText() + "', '" + this.textFieldAddress.getText() + "', '" + this.textFieldCity.getText() + "', '" + this.textFieldZipcode.getText() + "',"
-                    + " '" + this.textFieldCountry.getText() + "', '" + this.textFieldPhoneNumber.getText() + "', '" + this.textFieldEmail.getText() + "');";
-
-            String SQL_INSERT_FLIGHT = "INSERT IGNORE INTO `corendon_bagage`.`flight` (`flightID`, `destination`) \n" +
-    "VALUES ('" + this.textFieldFlightId.getText() + "', '" + this.textFieldDestination.getText() + "');";
-
-            String SQL_INSERT_LUGGAGE = "INSERT INTO `corendon_bagage`.`luggage` (`labelID`, `type`, `brand`, `color`, `features`, `passagerID`, `flightID`) \n" +
-    "VALUES ('" + this.textFieldLabelId.getText() + "', '" + this.textFieldType.getText() + "', '" + this.textFieldBrand.getText() + "', '" + this.textFieldColor.getText() + "',"
-                    + " '" + this.textAreaFeatures.getText() + "', LAST_INSERT_ID(), '" + this.textFieldFlightId.getText() + "');";
-
-            String SQL_INSERT_LUGGAGE_LOST = "INSERT INTO `corendon_bagage`.`lostluggage` (`luggageID`, `date`, `time`, `airport`) \n" +
-    "VALUES (LAST_INSERT_ID(), '" + this.textFieldDate.getText() + "', '" + this.textFieldTime.getText() + "', '" + this.textFieldAirport.getText() + "');";
             
             Boolean insertSucces = false;
             Statement statement;
@@ -226,9 +195,8 @@ public class AddLostLuggageController implements Initializable {
                 statement = conn.createStatement();
                 
                 statement.addBatch(SQL_INSERT_FLIGHT);
-                statement.addBatch(SQL_INSERT_PASSAGER);
                 statement.addBatch(SQL_INSERT_LUGGAGE);
-                statement.addBatch(SQL_INSERT_LUGGAGE_LOST);
+                statement.addBatch(SQL_INSERT_LUGGAGE_FOUND);
 
                 statement.executeBatch();
                 
@@ -254,26 +222,19 @@ public class AddLostLuggageController implements Initializable {
         
     }
     
-    
     private void edit(String luggageID) throws SQLException{
         if (this.isFilledCorrectly()) {
             
                 String SQL_INSERT_FLIGHT="INSERT IGNORE INTO `corendon_bagage`.`flight` (`flightID`, `destination`) \n" +
 "VALUES ('" + this.textFieldFlightId.getText() + "', '" + this.textFieldDestination.getText() + "');";
-                
-                String SQL_INSERT_PASSAGER="UPDATE luggage lug\n" +
-                    "JOIN passager pas ON lug.passagerID=pas.passagerID\n" +
-                    "SET pas.naam='" + this.textFieldName.getText() + "', pas.adres='" + this.textFieldAddress.getText() + "', pas.woonplaats='" + this.textFieldCity.getText() + "', \n" +
-                    "pas.postalcode='" + this.textFieldZipcode.getText() + "', pas.country='" + this.textFieldCountry.getText() + "', pas.telephone='" + this.textFieldPhoneNumber.getText() + "', pas.email='" + this.textFieldEmail.getText() + "' \n" +
-                    "WHERE lug.luggageID='" + luggageID + "';";
                  
                 String SQL_INSERT_LUGGAGE="UPDATE `corendon_bagage`.`luggage`\n" +
 "SET labelID='" + this.textFieldLabelId.getText() + "', `type`='" + this.textFieldType.getText() + "', brand='" + this.textFieldBrand.getText() + "', color='" + this.textFieldColor.getText() + "', \n" +
-"features='" + this.textAreaFeatures.getText() + "', flightID='" + this.textFieldFlightId.getText() + "'\n" +
+"features='" + this.textAreaFeatures.getText() + "', flightID='" + this.textFieldFlightId.getText() + "', lostAndFoundID='" + this.textFieldLAFID.getText() + "'\n" +
 "WHERE luggageID='" + luggageID + "';";
                  
-                String SQL_INSERT_LUGGAGE_FOUND="UPDATE `corendon_bagage`.`lostluggage` \n" +
-"SET `date`='" + this.textFieldDate.getText() + "', `time`='" + this.textFieldTime.getText() + "', airport='" + this.textFieldAirport.getText() + "'\n" +
+                String SQL_INSERT_LUGGAGE_FOUND="UPDATE `corendon_bagage`.`foundluggage` \n" +
+"SET `date`='" + this.textFieldDate.getText() + "', `time`='" + this.textFieldTime.getText() + "', airport='" + this.textFieldAirport.getText() + "', passagerName='" + this.textFieldName.getText() + "'\n" +
 "WHERE luggageID='" + luggageID + "';";
                  
             
@@ -286,7 +247,6 @@ public class AddLostLuggageController implements Initializable {
                 statement = conn.createStatement();
                 
                 statement.addBatch(SQL_INSERT_FLIGHT);
-                statement.addBatch(SQL_INSERT_PASSAGER);
                 statement.addBatch(SQL_INSERT_LUGGAGE);
                 statement.addBatch(SQL_INSERT_LUGGAGE_FOUND);
 
@@ -312,22 +272,18 @@ public class AddLostLuggageController implements Initializable {
         
     }
     
-    
     public void fillFields(String luggageID) throws SQLException{
         
         Connection conn = DBConnection.connectDb();
         
         String SQL_SELECT_LUGGAGE = "SELECT \n" +
-            "los.date, los.time, los.airport, \n" +
-            "lug.labelID, fli.flightID, fli.destination,\n" +
-            "lug.type, lug.brand, lug.color, lug.features,\n" +
-            "pas.naam, pas.adres, pas.woonplaats, pas.postalcode, pas.country,\n" +
-            "pas.telephone, pas.email \n" +
-            "FROM lostluggage los\n" +
-            "	JOIN luggage lug ON los.luggageID=lug.luggageID \n" +
-            "    JOIN passager pas ON lug.passagerID=pas.passagerID \n" +
-            "    JOIN flight fli ON lug.flightID=fli.flightID\n" +
-        "WHERE los.luggageID=" + luggageID + ";";
+            "fou.date, fou.time, fou.airport, lug.lostAndFoundID, \n" +
+            "lug.labelID, fli.flightID, fli.destination, fou.passagerName,\n" +
+            "lug.type, lug.brand, lug.color, lug.features\n" +
+            "FROM foundluggage fou\n" +
+            "	JOIN luggage lug ON fou.luggageID=lug.luggageID \n" +
+            "   JOIN flight fli ON lug.flightID=fli.flightID\n" +
+        "WHERE fou.luggageID=" + luggageID + ";";
         
          try {
             ResultSet rs = conn.createStatement().executeQuery(SQL_SELECT_LUGGAGE);
@@ -336,23 +292,19 @@ public class AddLostLuggageController implements Initializable {
                 this.textFieldDate.setText(rs.getString(1));
                 this.textFieldTime.setText(rs.getString(2));
                 this.textFieldAirport.setText(rs.getString(3));
+                this.textFieldLAFID.setText(rs.getString(4));
                 
-                this.textFieldLabelId.setText(rs.getString(4));
-                this.textFieldFlightId.setText(rs.getString(5));
-                this.textFieldDestination.setText(rs.getString(6));
+                this.textFieldLabelId.setText(rs.getString(5));
+                this.textFieldFlightId.setText(rs.getString(6));
+                this.textFieldDestination.setText(rs.getString(7));
+                this.textFieldName.setText(rs.getString(8));
+                 
+                this.textFieldType.setText(rs.getString(9));
+                this.textFieldBrand.setText(rs.getString(10));
+                this.textFieldColor.setText(rs.getString(11));
+                this.textAreaFeatures.setText(rs.getString(12));
                 
-                this.textFieldType.setText(rs.getString(7));
-                this.textFieldBrand.setText(rs.getString(8));
-                this.textFieldColor.setText(rs.getString(9));
-                this.textAreaFeatures.setText(rs.getString(10));
-                
-                this.textFieldName.setText(rs.getString(11));
-                this.textFieldAddress.setText(rs.getString(12));
-                this.textFieldCity.setText(rs.getString(13));
-                this.textFieldZipcode.setText(rs.getString(14));
-                this.textFieldCountry.setText(rs.getString(15));
-                this.textFieldPhoneNumber.setText(rs.getString(16));
-                this.textFieldEmail.setText(rs.getString(17));
+               
             }
             
             conn.close();
@@ -371,11 +323,7 @@ public class AddLostLuggageController implements Initializable {
         check = this.isEmptyTextField(this.textFieldDate, check);
         check = this.isEmptyTextField(this.textFieldType, check);
         check = this.isEmptyTextField(this.textFieldColor, check);
-        check = this.isEmptyTextField(this.textFieldName, check);
-        check = this.isEmptyTextField(this.textFieldAddress, check);
-        check = this.isEmptyTextField(this.textFieldZipcode, check);
-        check = this.isEmptyTextField(this.textFieldCity, check);
-        check = this.isEmptyTextField(this.textFieldCountry, check);
+        check = this.isEmptyTextField(this.textFieldLAFID, check);
         
         if (!check) {
             //error message

@@ -7,6 +7,7 @@ import backend.LostLuggage;
 import backend.Luggage;
 import backend.Passenger;
 import backend.LuggageSearchBarLogic;
+import backend.Match;
 import backend.UIClass;
 import java.io.IOException;
 import java.net.URL;
@@ -50,9 +51,7 @@ public class LuggageListController implements Initializable {
      */
     public static ObservableList<FoundLuggage> foundLuggageData;
     public static ObservableList<LostLuggage> lostLuggageData;
-    public static ObservableList<FoundLuggage> matchedFoundLuggageData;
-    public static ObservableList<LostLuggage> matchedLostLuggageData;
-    private static ArrayList<Passenger> passengerList = new ArrayList<>();
+    public static ObservableList<Match> matchedFoundLuggageData;
     
     //private DBConnection dbc;
     @FXML
@@ -140,48 +139,16 @@ public class LuggageListController implements Initializable {
     @FXML
     private Tab tabMatches;
     @FXML
-    private TableView<FoundLuggage> tableMatchedFoundLuggage;
+    private TableView<Match> tableMatchedFoundLuggage;
     @FXML
-    private TableColumn<FoundLuggage, String> columnMatchedFoundLabelnumber;
+    private TableColumn<Match, String> columnMatchedLostLabel;
     @FXML
-    private TableColumn<FoundLuggage, String> columnMatchedFoundAirport;
+    private TableColumn<Match, String> columnMatchedFoundLabel;
     @FXML
-    private TableColumn<FoundLuggage, String> columnMatchedLostFound;
+    private TableColumn<Match, String> columnMatchedLAFID;
     @FXML
-    private TableColumn<FoundLuggage, String> columnMatchedFoundFlightnumber;
-    @FXML
-    private TableColumn<FoundLuggage, String> columnMatchedFoundDestination;
-    @FXML
-    private TableColumn<FoundLuggage, String> columnMatchedFoundType;
-    @FXML
-    private TableColumn<FoundLuggage, String> columnMatchedFoundBrand;
-    @FXML
-    private TableColumn<FoundLuggage, String> columnMatchedFoundColor;
-    @FXML
-    private TableColumn<FoundLuggage, String> columnMatchedFoundDate;
-    @FXML
-    private TableColumn<FoundLuggage, String> columnMatchedFoundStatus;
+    private TableColumn<Match, String> columnMatchedStatus;
 
-    @FXML
-    private TableView<LostLuggage> tableMatchedLostLuggage;
-    @FXML
-    private TableColumn<LostLuggage, String> columnMatchedLostLabelnumber;
-    @FXML
-    private TableColumn<LostLuggage, String> columnMatchedLostAirport;
-    @FXML
-    private TableColumn<LostLuggage, String> columnMatchedLostFlightnumber;
-    @FXML
-    private TableColumn<LostLuggage, String> columnMatchedLostDestination;
-    @FXML
-    private TableColumn<LostLuggage, String> columnMatchedLostType;
-    @FXML
-    private TableColumn<LostLuggage, String> columnMatchedLostBrand;
-    @FXML
-    private TableColumn<LostLuggage, String> columnMatchedLostColor;
-    @FXML
-    private TableColumn<LostLuggage, String> columnMatchedLostDate;
-    @FXML
-    private TableColumn<LostLuggage, String> columnMatchedLostStatus;
     @FXML
     private Button buttonMatchSearch;
     @FXML
@@ -194,7 +161,7 @@ public class LuggageListController implements Initializable {
     private Button buttonMatchForm;
     @FXML
     private Button buttonFoundLoad;
-
+    
     /**
      * Initializes the controller class.
      */
@@ -202,6 +169,8 @@ public class LuggageListController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //First load the passengers from data base
         //Then load there luggage and connect it.
+        
+        
         loadFoundLuggage();
         loadLostLuggage();
         //Passenger p 
@@ -258,75 +227,9 @@ public class LuggageListController implements Initializable {
          */
         I18N.bindTabText(this.tabMatches.getText(), this.tabMatches, (Object[]) null);
 
-        this.columnMatchedFoundLabelnumber.setCellValueFactory(new PropertyValueFactory<>("labelNumber"));
-        this.columnMatchedFoundAirport.setCellValueFactory(new PropertyValueFactory<>("airport"));
-        this.columnMatchedFoundFlightnumber.setCellValueFactory(new PropertyValueFactory<>("flightnumber"));
-        this.columnMatchedLostFound.setCellValueFactory(new PropertyValueFactory<>("lostFoundID"));
-        this.columnMatchedFoundDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        //this.columnMatchedFoundType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        //this.columnMatchedFoundBrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        //this.columnMatchedFoundColor.setCellValueFactory(new PropertyValueFactory<>("color"));
-        this.columnMatchedFoundDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        this.columnMatchedFoundStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        LuggageListController.matchedFoundLuggageData = FXCollections.observableArrayList();
-        FoundLuggage f = new FoundLuggage("a", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j");
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-        LuggageListController.matchedFoundLuggageData.add(f);
-
-        //this.tableMatchedFoundLuggage.setItems(null);
-        this.tableMatchedFoundLuggage.setItems(LuggageListController.matchedFoundLuggageData);
-
-        this.columnMatchedLostLabelnumber.setCellValueFactory(new PropertyValueFactory<>("labelNumber"));
-        this.columnMatchedLostAirport.setCellValueFactory(new PropertyValueFactory<>("airport"));
-        this.columnMatchedLostFlightnumber.setCellValueFactory(new PropertyValueFactory<>("flightnumber"));
-        this.columnMatchedLostDestination.setCellValueFactory(new PropertyValueFactory<>("destination"));
-        //this.columnMatchedLostType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        //this.columnMatchedLostBrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        //this.columnMatchedLostColor.setCellValueFactory(new PropertyValueFactory<>("color"));
-        this.columnMatchedLostDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        this.columnMatchedLostStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        LuggageListController.matchedLostLuggageData = FXCollections.observableArrayList();
-        LostLuggage l = new LostLuggage("a", "a", "b", "c", "d", "e", "f", "g", "h", "i");
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        LuggageListController.matchedLostLuggageData.add(l);
-        //this.tableMatchedLostLuggage.setItems(null);
-        this.tableMatchedLostLuggage.setItems(LuggageListController.matchedLostLuggageData);
+        loadMatches();
     }
-    
+   
     
     @FXML
     public void loadDataFromFoundLuggage(ActionEvent event) {
@@ -373,7 +276,7 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void matchFoundButtonClicked(ActionEvent event) {
-        matchLuggage(tableFoundLuggage.getSelectionModel().getSelectedItem());
+        matchLuggage(tableFoundLuggage.getSelectionModel().getSelectedItem(), true);
     }
 
     @FXML
@@ -383,21 +286,30 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void importFoundButtonClicked(ActionEvent event) {
-        
+        loadFoundLuggage();
     }
 
     @FXML
     private void addFoundButtonClicked(ActionEvent event) {
-        showAddLuggage();
+        FXMLLoader loader = showAddFoundLuggage();
+        loader.<AddFoundLuggageController>getController().setEdit(false);
     }
 
     @FXML
     private void editFoundButtonClicked(ActionEvent event) {
         if (isTableSelection(this.tableFoundLuggage)) {
-            /*
-            Passenger information needs to be retrieved here.
-             */
-            //showAddLuggage(this.tableFoundLuggage.getSelectionModel().getSelectedItem(), false, true);
+            
+            FXMLLoader loader = showAddFoundLuggage();
+            try {
+                loader.<AddFoundLuggageController>getController().fillFields(this.tableFoundLuggage.getSelectionModel().getSelectedItem().getLuggageID());
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(LuggageListController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            loader.<AddFoundLuggageController>getController().setEdit(Boolean.TRUE);
+            loader.<AddFoundLuggageController>getController().setLuggageID(this.tableFoundLuggage.getSelectionModel().getSelectedItem().getLuggageID());
+            
         } else if (LuggageListController.foundLuggageData.isEmpty()) {
             //error if there is no luggage yet.
             UIClass.showPopup("errorNoEntriesTitle", "errorNELuggageDesc");
@@ -405,6 +317,9 @@ public class LuggageListController implements Initializable {
             //error if here is no selection.
             UIClass.showPopup("errorNoSelectionTitle", "errorNSLugaggeDesc");
         }
+        
+        
+        
     }
 
     @FXML
@@ -415,35 +330,44 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void matchLostButtonClicked(ActionEvent event) {
-        matchLuggage(tableLostLuggage.getSelectionModel().getSelectedItem());
+        matchLuggage(tableLostLuggage.getSelectionModel().getSelectedItem(), false);
     }
 
     @FXML
     private void exportLostButtonClicked(ActionEvent event) {
 
     }
+    
+    @FXML
+    private void matchRefresh(ActionEvent event) {
+        loadMatches();
+    }
 
     @FXML
     private void importLostButtonClicked(ActionEvent event) {
-
+        loadLostLuggage();
     }
 
     @FXML
     private void addLostButtonClicked(ActionEvent event) {
-        showAddLuggage();
+        FXMLLoader loader = showAddLostLuggage();
+        loader.<AddLostLuggageController>getController().setEdit(false);
     }
 
     @FXML
     private void editLostButtonClicked(ActionEvent event) {
         if (isTableSelection(this.tableLostLuggage)) {
 
-            FXMLLoader loader = showAddLuggage();
+            FXMLLoader loader = showAddLostLuggage();
             try {
-                loader.<AddLostLuggageController>getController().fillFields(1);
+                loader.<AddLostLuggageController>getController().fillFields(this.tableLostLuggage.getSelectionModel().getSelectedItem().getLuggageID());
             } catch (SQLException ex) {
                 Logger.getLogger(LuggageListController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
+            loader.<AddLostLuggageController>getController().setEdit(true);
+            loader.<AddLostLuggageController>getController().setLuggageID(this.tableFoundLuggage.getSelectionModel().getSelectedItem().getLuggageID());
+            
             
         } else if (LuggageListController.lostLuggageData.isEmpty()) {
             //error if there is no luggage yet.
@@ -487,63 +411,6 @@ public class LuggageListController implements Initializable {
 
     }
 
-    @FXML
-    private void scrollFoundTable(ScrollEvent event) {
-
-        this.tableMatchedLostLuggage.scrollTo((int) (event.getDeltaY() * event.getMultiplierY()));
-
-    }
-
-    @FXML
-    private void scrollLostTable(ScrollEvent event) {
-        //this.tableMatchedFoundLuggage
-    }
-
-    /*
-    @SuppressWarnings("rawtypes")
-    private void bindScrollBars(TableView<?> tableView1, TableView<?> tableView2,
-            Orientation orientation) {
-
-        // Get the scrollbar of first table
-        VirtualFlow vf = (VirtualFlow) tableView1.getChildrenUnmodifiable().get(1);
-        ScrollBar scrollBar1 = null;
-        for (final Node subNode : vf.getChildrenUnmodifiable()) {
-            if (subNode instanceof ScrollBar
-                    && ((ScrollBar) subNode).getOrientation() == orientation) {
-                scrollBar1 = (ScrollBar) subNode;
-            }
-        }
-
-        // Get the scrollbar of second table
-        vf = (VirtualFlow) tableView2.getChildrenUnmodifiable().get(1);
-        ScrollBar scrollBar2 = null;
-        for (final Node subNode : vf.getChildrenUnmodifiable()) {
-            if (subNode instanceof ScrollBar
-                    && ((ScrollBar) subNode).getOrientation() == orientation) {
-                scrollBar2 = (ScrollBar) subNode;
-            }
-        }
-
-        // Set min/max of visible scrollbar to min/max of a table scrollbar
-        //scrollBar.setMin(scrollBar1.getMin());
-        //scrollBar.setMax(scrollBar1.getMax());
-
-        // bind the hidden scrollbar valueProterty the visible scrollbar
-        scrollBar2.valueProperty().bindBidirectional(scrollBar1.valueProperty());
-        scrollBar1.valueProperty().bindBidirectional(scrollBar2.valueProperty());
-    }
-     */
- /*
-    * This method must be called in Application.start() after the stage is shown,
-    * because the hidden scrollbars exist only when the tables are rendered
-     */
- /*
-    public void setScrollBarBinding() {
-        bindScrollBars(this.tableMatchedFoundLuggage, this.tableMatchedLostLuggage, Orientation.VERTICAL);
-    }*/
-    /**
-     *
-     */
     public void loadFoundLuggage() {
         Connection conn = DBConnection.connectDb();
         foundLuggageData = FXCollections.observableArrayList();
@@ -556,7 +423,7 @@ public class LuggageListController implements Initializable {
             while (rs.next()) {
                 foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
-                        rs.getString(9), rs.getString(10), "kek"));
+                        rs.getString(9), rs.getString(10), ""));
                 //TODO status
             }
 
@@ -593,7 +460,7 @@ public class LuggageListController implements Initializable {
             // string from database
             while (rs.next()) {
                 lostLuggageData.add(new LostLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), "kek"));
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), ""));
                 //TODO status
             }
 
@@ -617,7 +484,7 @@ public class LuggageListController implements Initializable {
         tableLostLuggage.setItems(lostLuggageData);
     }
 
-    public void matchLuggage(Luggage selectedLuggage) {
+    public void matchLuggage(Luggage selectedLuggage, boolean found) {
 
         Connection conn = DBConnection.connectDb();
 
@@ -638,8 +505,17 @@ public class LuggageListController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Match");//ripe for translation
                 alert.setHeaderText(null);
-                alert.setContentText(rs.getString(1));//ripe for translation
+                alert.setContentText("Luggage Matched");//ripe for translation
                 alert.showAndWait();
+                
+                    String query="INSERT INTO `corendon_bagage`.`match` (`lostLuggage`, `foundLuggage`) VALUES ('" + luggageID + "', '" + rs.getString(1) + "');";
+                
+                    if(found){
+                        query = "INSERT INTO `corendon_bagage`.`match` (`lostLuggage`, `foundLuggage`) VALUES ('" + rs.getString(1) + "', '" + luggageID + "');";
+                    }
+                
+                    int rs2 = conn.createStatement().executeUpdate(query);
+                
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("No matches");//ripe for translation
@@ -655,6 +531,38 @@ public class LuggageListController implements Initializable {
         }
 
     }
+    
+    public void loadMatches(){
+        Connection conn = DBConnection.connectDb();
+        matchedFoundLuggageData = FXCollections.observableArrayList();
+
+        try {
+            ResultSet rs = conn.createStatement().executeQuery(
+                    "SELECT loslug.labelID, foulug.labelID, foulug.lostAndFoundID FROM `match` mat\n" +
+                    "JOIN luggage loslug ON mat.lostLuggage=loslug.luggageID \n" +
+                    "JOIN luggage foulug ON mat.foundLuggage=foulug.luggageID;");
+            // string from database
+            while (rs.next()) {
+                matchedFoundLuggageData.add(new Match(rs.getString(1), rs.getString(2), rs.getString(3), ""));
+            }
+
+            conn.close();
+
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+        
+        
+        
+        this.columnMatchedLostLabel.setCellValueFactory(new PropertyValueFactory<Match, String>("lostLabelID"));
+        this.columnMatchedFoundLabel.setCellValueFactory(new PropertyValueFactory<Match, String>("foundLabelID"));
+        this.columnMatchedLAFID.setCellValueFactory(new PropertyValueFactory<Match, String>("lostFoundID"));
+        this.columnMatchedStatus.setCellValueFactory(new PropertyValueFactory<Match, String>("status"));
+
+        this.tableMatchedFoundLuggage.setItems(null);
+        this.tableMatchedFoundLuggage.setItems(matchedFoundLuggageData);
+        
+    }
 
     /**This method opens the AddLuggage screen.
      * Depening on the arguments, the screen will be in 'add' or 'edit', 'found' or 'lost' modes.
@@ -662,7 +570,8 @@ public class LuggageListController implements Initializable {
      * @param addMode
      * @param foundMode
      */
-    private FXMLLoader showAddLuggage(){
+    private FXMLLoader showAddLostLuggage(){
+        
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddLostLuggage.fxml"));
         Stage stage = new Stage();
@@ -675,16 +584,30 @@ public class LuggageListController implements Initializable {
             Logger.getLogger(LuggageListController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
+        
         return loader;
         
     }
-
-    /**
-     * maybe if Lost and Found need seperate methods.
-     *
-     */
-    private void showAddLostLuggage() {
-
+    
+    private FXMLLoader showAddFoundLuggage(){
+        
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddFoundLuggage.fxml"));
+        Stage stage = new Stage();
+        
+        try {
+            stage.setScene(new Scene((Pane) loader.load()));
+            stage.titleProperty().bind(I18N.createStringBinding(I18N.PROGRAM_NAME_KEY, (Object[]) null));
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(LuggageListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        return loader;
+        
     }
 
     /**
@@ -696,4 +619,9 @@ public class LuggageListController implements Initializable {
     private boolean isTableSelection(TableView table) {
         return (table.getSelectionModel().getSelectedItem() != null);
     }
+    
+    
+    
+    
+    
 }

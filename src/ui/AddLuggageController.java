@@ -169,6 +169,8 @@ public class AddLuggageController implements Initializable {
         I18N.bindText(this.buttonSave.getText(), this.buttonSave, (Object[]) null);
         I18N.bindText(this.buttonAddMore.getText(), this.buttonAddMore, (Object[]) null);
        
+        
+        
     }
 
     @FXML

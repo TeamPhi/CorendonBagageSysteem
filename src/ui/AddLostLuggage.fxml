@@ -64,9 +64,7 @@
       <Label fx:id="labelEmail" layoutX="500.0" layoutY="224.0" text="labelEmail" />
       <TextField fx:id="textFieldEmail" layoutX="609.0" layoutY="218.0" />
       <Button fx:id="buttonSend" layoutX="28.0" layoutY="624.0" mnemonicParsing="false" text="buttonMakeDeliveryForm" />
-      <Button fx:id="buttonCancel" layoutX="450.0" layoutY="624.0" mnemonicParsing="false" text="buttonCancel" />
+      <Button fx:id="buttonCancel" layoutX="450.0" layoutY="624.0" mnemonicParsing="false" onAction="#cancel" text="buttonCancel" />
       <Button fx:id="buttonSave" layoutX="810.0" layoutY="624.0" mnemonicParsing="false" onAction="#saveRegular" text="buttonSave" />
-      <Button fx:id="buttonMatchSave" layoutX="698.0" layoutY="624.0" mnemonicParsing="false" onAction="#saveAndMatch" text="buttonSaveAndMatch" />
-      <Button fx:id="buttonAddMore" layoutX="767.0" layoutY="573.0" mnemonicParsing="false" onAction="#saveAndContinue" text="buttonAddMore" />
    </children>
 </AnchorPane>
