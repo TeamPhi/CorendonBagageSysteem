@@ -13,6 +13,7 @@ public class DBConnection {
     private static String url = "jdbc:mysql://localhost:3306/corendon_bagage";//Location of database
     private static String user = "root";//Username of database  
     private static String pass = "pepe123123";//Password of database 
+    public static void setPassword(String password){pass = password;}
     //The length of varchar fields in the database:
     //-Passenger
     public static final int LENGTH_OF_NAME = 45;

@@ -1,8 +1,15 @@
 package corendonbagagesysteem;
 
+import backend.DBConnection;
 import backend.I18N;
 import backend.UIClass;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -40,6 +47,31 @@ public class CorendonBagageSysteem extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //retrieve database password
+        File passwordFile = new File("password.txt");
+        if (!passwordFile.exists()){
+            try {
+                passwordFile.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(CorendonBagageSysteem.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(passwordFile));
+            DBConnection.setPassword(br.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        //launch FX window
         launch(args);
     }
     /**
