@@ -50,7 +50,7 @@ public class LuggageListController implements Initializable {
     These lists need to be created for the table view.
     Because a table view can only display rows directly taken from objects in an observable list.
      */
-    public static ObservableList<FoundLuggage> luggage;
+    public static ObservableList<FoundLuggage> foundLuggageData;
     public static ObservableList<LostLuggage> lostLuggageData;
     public static ObservableList<Match> matchedFoundLuggageData;
     
@@ -169,7 +169,7 @@ public class LuggageListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //First load the passengers from data base
-        //Then load there luggage and connect it.
+        //Then load there foundLuggageData and connect it.
         this.buttonFoundDelete.disableProperty().set(true);
         this.buttonFoundDelete.visibleProperty().set(false);
         this.buttonLostDelete.disableProperty().set(true);
@@ -179,7 +179,7 @@ public class LuggageListController implements Initializable {
         //Passenger p 
         //LuggageListController.passengerList.add(p);
         //p.addLostLuggage(tempLuggage);
-        /* The section of the found luggage initialization.
+        /* The section of the found foundLuggageData initialization.
         First all the controls are bound the translation.
          */
         I18N.bindTabText(this.tabFound.getText(), this.tabFound, (Object[]) null);
@@ -203,7 +203,7 @@ public class LuggageListController implements Initializable {
 
         //Connect list with table
 //        this.tableFoundLuggage.setItems(foundLuggageData);
-        /* The section of the lost luggage initialization.
+        /* The section of the lost foundLuggageData initialization.
         First all the controls are bound the translation.
          */
         I18N.bindTabText(this.tabLost.getText(), this.tabLost, (Object[]) null);
@@ -225,7 +225,7 @@ public class LuggageListController implements Initializable {
         I18N.bindText(this.buttonLostDelete.getText(), this.buttonLostDelete, (Object[]) null);
         //make the list.
         //LuggageListController.lostLuggageData = FXCollections.observableArrayList();
-        /* The section of the matched luggage initialization.
+        /* The section of the matched foundLuggageData initialization.
         First all the controls are bound the translation.
          */
         I18N.bindTabText(this.tabMatches.getText(), this.tabMatches, (Object[]) null);
@@ -244,9 +244,9 @@ public class LuggageListController implements Initializable {
         if (isTableSelection(this.tableFoundLuggage)) {
             if (UIClass.promptDelete()) {
                 /*
-                SQL-Statement to delete the luggage.
+                SQL-Statement to delete the foundLuggageData.
                  */
-                LuggageListController.luggage.remove(this.tableFoundLuggage.getSelectionModel().getSelectedItem());
+                LuggageListController.foundLuggageData.remove(this.tableFoundLuggage.getSelectionModel().getSelectedItem());
             } else {
                 //nothing
             }
@@ -260,7 +260,7 @@ public class LuggageListController implements Initializable {
         if (isTableSelection(this.tableLostLuggage)) {
             if (UIClass.promptDelete()) {
                 /*
-                SQL-Statement to delete the luggage.
+                SQL-Statement to delete the foundLuggageData.
                  */
                 LuggageListController.lostLuggageData.remove(this.tableLostLuggage.getSelectionModel().getSelectedItem());
             } else {
@@ -274,7 +274,7 @@ public class LuggageListController implements Initializable {
     @FXML
     private void searchActionFound(ActionEvent event) {
         this.tableFoundLuggage.setItems((ObservableList) FXCollections.observableArrayList(LuggageSearchBarLogic.interpretSearchString(this.textFieldFoundSearch.getText(),
-                new ArrayList<>(LuggageListController.luggage), true)));
+                new ArrayList<>(LuggageListController.foundLuggageData), true)));
     }
 
     @FXML
@@ -284,7 +284,7 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void exportFoundButtonClicked(ActionEvent event) throws IOException {
-        PDFExport.generateLuggagePDF(luggage);
+        PDFExport.generateLuggagePDF(foundLuggageData);
     }
 
     @FXML
@@ -313,8 +313,8 @@ public class LuggageListController implements Initializable {
             loader.<AddFoundLuggageController>getController().setEdit(Boolean.TRUE);
             loader.<AddFoundLuggageController>getController().setLuggageID(this.tableFoundLuggage.getSelectionModel().getSelectedItem().getLuggageID());
             
-        } else if (LuggageListController.luggage.isEmpty()) {
-            //error if there is no luggage yet.
+        } else if (LuggageListController.foundLuggageData.isEmpty()) {
+            //error if there is no foundLuggageData yet.
             UIClass.showPopup("errorNoEntriesTitle", "errorNELuggageDesc");
         } else {
             //error if here is no selection.
@@ -328,7 +328,7 @@ public class LuggageListController implements Initializable {
     @FXML
     private void searchActionLost(ActionEvent event) {
         this.tableLostLuggage.setItems((ObservableList) FXCollections.observableArrayList(LuggageSearchBarLogic.interpretSearchString(this.textFieldLostSearch.getText(),
-                new ArrayList<>(LuggageListController.luggage), false)));
+                new ArrayList<>(LuggageListController.foundLuggageData), false)));
     }
 
     @FXML
@@ -373,7 +373,7 @@ public class LuggageListController implements Initializable {
             
             
         } else if (LuggageListController.lostLuggageData.isEmpty()) {
-            //error if there is no luggage yet.
+            //error if there is no foundLuggageData yet.
             UIClass.showPopup("errorNoEntriesTitle", "errorNELuggageDesc");//ripe for translation
         } else {
             //error if here is no selection.
@@ -416,7 +416,7 @@ public class LuggageListController implements Initializable {
 
     public void loadFoundLuggage() {
         Connection conn = DBConnection.connectDb();
-        luggage = FXCollections.observableArrayList();
+        foundLuggageData = FXCollections.observableArrayList();
 
         try {
             ResultSet rs = conn.createStatement().executeQuery(
@@ -424,7 +424,7 @@ public class LuggageListController implements Initializable {
                     + "FROM luggage l INNER JOIN foundluggage f ON f.luggageID=l.luggageID INNER JOIN flight fl ON l.flightID=fl.flightID;");
             // string from database
             while (rs.next()) {
-                luggage.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
                         rs.getString(9), rs.getString(10), ""));
                 //TODO status
@@ -448,7 +448,7 @@ public class LuggageListController implements Initializable {
         this.columnFoundStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         tableFoundLuggage.setItems(null);
-        tableFoundLuggage.setItems(luggage);
+        tableFoundLuggage.setItems(foundLuggageData);
 
     }
 

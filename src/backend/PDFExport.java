@@ -8,6 +8,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import ui.LuggageListController;
 
 /**
@@ -20,17 +21,17 @@ public class PDFExport {
     private static final File DIRECTORY = new File("C:" + File.separator + "Users" + File.separator
             + System.getProperty("user.name") + File.separator + "Documents"
             + File.separator + "CorendonBagageSysteem");
-    //directory where found luggage is saved.
+    //directory where found foundLuggageData is saved.
     private static final File FOUND_DIR = new File(DIRECTORY + File.separator + "Found");
-    //directory where lost luggage is saved.
+    //directory where lost foundLuggageData is saved.
     private static final File LOST_DIR = new File(DIRECTORY + File.separator + "Lost");
 
     /**
-     * Generate .pdf files for all luggage items in the given list.
+     * Generate .pdf files for all foundLuggageData items in the given list.
      *
-     * @param <X> this parameter exists to make sure both lost and found luggage
-     * can be exported.
-     * @param luggage the list of luggage items to be exported.
+     * @param <X> this parameter exists to make sure both lost and found
+     * foundLuggageData can be exported.
+     * @param luggage the list of foundLuggageData items to be exported.
      * @throws IOException
      */
     public static <X extends Luggage> void generateLuggagePDF(ObservableList<X> luggage) throws IOException {
@@ -53,54 +54,83 @@ public class PDFExport {
             contentStream.beginText();
             contentStream.setFont(font, 12);
             contentStream.setLeading(14.5f);
-            contentStream.moveTextPositionByAmount(100, 700);
+            contentStream.newLineAtOffset(100, 700);
 
             //generate the text in the .pdf file
-            contentStream.drawString("Luggage item: #" + luggage.get(i).getLabelNumber()
+            contentStream.showText("Luggage item: #" + luggage.get(i).getLuggageID()
                     + " has been succesfully registered with the following data:");
             contentStream.newLine();
             contentStream.newLine();
-            contentStream.drawString("labelNumber: " + luggage.get(i).getLabelNumber());
-            contentStream.newLine();
-            contentStream.drawString("flightNumber: " + luggage.get(i).getFlightNumber());
-            contentStream.newLine();
-            contentStream.drawString("airport: " + luggage.get(i).getAirport());
-            contentStream.newLine();
+            contentStream.showText("labelNumber: ");
+            contentStream.newLineAtOffset(100, 0);
+            contentStream.showText(luggage.get(i).getLabelNumber());
+            contentStream.newLineAtOffset(-100, -14.5f);
+
+            contentStream.showText("flightNumber: ");
+            contentStream.newLineAtOffset(100, 0);
+            contentStream.showText(luggage.get(i).getFlightNumber());
+            contentStream.newLineAtOffset(-100, -14.5f);
+
+            contentStream.showText("airport: ");
+            contentStream.newLineAtOffset(100, 0);
+            contentStream.showText(luggage.get(i).getAirport());
+            contentStream.newLineAtOffset(-100, -14.5f);
+
             if (luggage.get(i) instanceof FoundLuggage) {
-                contentStream.drawString("lostFoundID: " + LuggageListController.luggage.get(i).getLostFoundID());
-                contentStream.newLine();
+                contentStream.showText("lostFoundID: ");
+                contentStream.newLineAtOffset(100, 0);
+                contentStream.showText(LuggageListController.foundLuggageData.get(i).getLostFoundID());
+                contentStream.newLineAtOffset(-100, -14.5f);
             }
-            contentStream.drawString("destination: " + luggage.get(i).getDestination());
-            contentStream.newLine();
-            contentStream.drawString("type: " + luggage.get(i).getType());
-            contentStream.newLine();
-            contentStream.drawString("brand: " + luggage.get(i).getBrand());
-            contentStream.newLine();
-            contentStream.drawString("color: " + luggage.get(i).getColor());
-            contentStream.newLine();
-            contentStream.drawString("date: " + luggage.get(i).getDate());
+            contentStream.showText("destination: ");
+            contentStream.newLineAtOffset(100, 0);
+            contentStream.showText(luggage.get(i).getDestination());
+            contentStream.newLineAtOffset(-100, -14.5f);
+
+            contentStream.showText("type: ");
+            contentStream.newLineAtOffset(100, 0);
+            contentStream.showText(luggage.get(i).getType());
+            contentStream.newLineAtOffset(-100, -14.5f);
+
+            contentStream.showText("brand: ");
+            contentStream.newLineAtOffset(100, 0);
+            contentStream.showText(luggage.get(i).getBrand());
+            contentStream.newLineAtOffset(-100, -14.5f);
+
+            contentStream.showText("color: ");
+            contentStream.newLineAtOffset(100, 0);
+            contentStream.showText(luggage.get(i).getColor());
+            contentStream.newLineAtOffset(-100, -14.5f);
+
+            contentStream.showText("date: ");
+            contentStream.newLineAtOffset(100, 0);
+            contentStream.showText(luggage.get(i).getDate());
             contentStream.newLine();
 
             contentStream.endText();
 
             contentStream.close();
-            //create the correct directory if it doesn't exist.
             if (luggage.get(i) instanceof FoundLuggage) {
+                //create the correct directory if it doesn't exist.
                 if (!FOUND_DIR.exists()) {
                     FOUND_DIR.mkdir();
                 }
-                document.save(FOUND_DIR + File.separator + luggage.get(i).getLabelNumber() + ".pdf");
-                System.out.println("Found luggage document saved");
+                //save the document.
+                document.save(FOUND_DIR + File.separator + luggage.get(i).getLuggageID() + ".pdf");
+                System.out.println("Found luggage document: " + luggage.get(i).getLuggageID() + ".pdf saved");
                 document.close();
             } else if (luggage.get(i) instanceof LostLuggage) {
+                //create the correct directory if it doesn't exist.
                 if (!LOST_DIR.exists()) {
                     LOST_DIR.mkdir();
                 }
-                document.save(LOST_DIR + File.separator + luggage.get(i).getLabelNumber() + ".pdf");
-                System.out.println("Lost luggage document saved");
+                //save the document.
+                document.save(LOST_DIR + File.separator + luggage.get(i).getLuggageID() + ".pdf");
+                System.out.println("Lost luggage document: " + luggage.get(i).getLuggageID() + ".pdf saved");
                 document.close();
             } else {
-                System.out.println("Document not saved, " + luggage.get(i).getLabelNumber() + " is not a valid luggage item");
+                //inform the user that the document could not be saved.
+                System.out.println("Document not saved, " + luggage.get(i).getLuggageID() + " is not a valid luggage item");
             }
         }
     }
