@@ -8,6 +8,7 @@ import backend.Luggage;
 import backend.Passenger;
 import backend.LuggageSearchBarLogic;
 import backend.Match;
+import backend.PDFExport;
 import backend.UIClass;
 import java.io.IOException;
 import java.net.URL;
@@ -49,7 +50,7 @@ public class LuggageListController implements Initializable {
     These lists need to be created for the table view.
     Because a table view can only display rows directly taken from objects in an observable list.
      */
-    public static ObservableList<FoundLuggage> foundLuggageData;
+    public static ObservableList<FoundLuggage> luggage;
     public static ObservableList<LostLuggage> lostLuggageData;
     public static ObservableList<Match> matchedFoundLuggageData;
     
@@ -245,7 +246,7 @@ public class LuggageListController implements Initializable {
                 /*
                 SQL-Statement to delete the luggage.
                  */
-                LuggageListController.foundLuggageData.remove(this.tableFoundLuggage.getSelectionModel().getSelectedItem());
+                LuggageListController.luggage.remove(this.tableFoundLuggage.getSelectionModel().getSelectedItem());
             } else {
                 //nothing
             }
@@ -273,7 +274,7 @@ public class LuggageListController implements Initializable {
     @FXML
     private void searchActionFound(ActionEvent event) {
         this.tableFoundLuggage.setItems((ObservableList) FXCollections.observableArrayList(LuggageSearchBarLogic.interpretSearchString(this.textFieldFoundSearch.getText(),
-                new ArrayList<>(LuggageListController.foundLuggageData), true)));
+                new ArrayList<>(LuggageListController.luggage), true)));
     }
 
     @FXML
@@ -282,8 +283,8 @@ public class LuggageListController implements Initializable {
     }
 
     @FXML
-    private void exportFoundButtonClicked(ActionEvent event) {
-
+    private void exportFoundButtonClicked(ActionEvent event) throws IOException {
+        PDFExport.generateLuggagePDF(luggage);
     }
 
     @FXML
@@ -312,7 +313,7 @@ public class LuggageListController implements Initializable {
             loader.<AddFoundLuggageController>getController().setEdit(Boolean.TRUE);
             loader.<AddFoundLuggageController>getController().setLuggageID(this.tableFoundLuggage.getSelectionModel().getSelectedItem().getLuggageID());
             
-        } else if (LuggageListController.foundLuggageData.isEmpty()) {
+        } else if (LuggageListController.luggage.isEmpty()) {
             //error if there is no luggage yet.
             UIClass.showPopup("errorNoEntriesTitle", "errorNELuggageDesc");
         } else {
@@ -327,7 +328,7 @@ public class LuggageListController implements Initializable {
     @FXML
     private void searchActionLost(ActionEvent event) {
         this.tableLostLuggage.setItems((ObservableList) FXCollections.observableArrayList(LuggageSearchBarLogic.interpretSearchString(this.textFieldLostSearch.getText(),
-                new ArrayList<>(LuggageListController.foundLuggageData), false)));
+                new ArrayList<>(LuggageListController.luggage), false)));
     }
 
     @FXML
@@ -336,8 +337,8 @@ public class LuggageListController implements Initializable {
     }
 
     @FXML
-    private void exportLostButtonClicked(ActionEvent event) {
-
+    private void exportLostButtonClicked(ActionEvent event) throws IOException {
+        PDFExport.generateLuggagePDF(lostLuggageData);
     }
     
     @FXML
@@ -415,7 +416,7 @@ public class LuggageListController implements Initializable {
 
     public void loadFoundLuggage() {
         Connection conn = DBConnection.connectDb();
-        foundLuggageData = FXCollections.observableArrayList();
+        luggage = FXCollections.observableArrayList();
 
         try {
             ResultSet rs = conn.createStatement().executeQuery(
@@ -423,7 +424,7 @@ public class LuggageListController implements Initializable {
                     + "FROM luggage l INNER JOIN foundluggage f ON f.luggageID=l.luggageID INNER JOIN flight fl ON l.flightID=fl.flightID;");
             // string from database
             while (rs.next()) {
-                foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                luggage.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
                         rs.getString(9), rs.getString(10), ""));
                 //TODO status
@@ -447,7 +448,7 @@ public class LuggageListController implements Initializable {
         this.columnFoundStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         tableFoundLuggage.setItems(null);
-        tableFoundLuggage.setItems(foundLuggageData);
+        tableFoundLuggage.setItems(luggage);
 
     }
 
