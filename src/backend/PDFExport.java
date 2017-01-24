@@ -25,7 +25,7 @@ public class PDFExport {
     private static final File FOUND_DIR = new File(DIRECTORY + File.separator + "Found");
     //directory where lost foundLuggageData is saved.
     private static final File LOST_DIR = new File(DIRECTORY + File.separator + "Lost");
-
+    private static final float OUTLINE = 100;
     /**
      * Generate .pdf files for all foundLuggageData items in the given list.
      *
@@ -54,7 +54,7 @@ public class PDFExport {
             contentStream.beginText();
             contentStream.setFont(font, 12);
             contentStream.setLeading(14.5f);
-            contentStream.newLineAtOffset(100, 700);
+            contentStream.newLineAtOffset(OUTLINE, 700);
 
             //generate the text in the .pdf file
             contentStream.showText("Luggage item: #" + luggage.get(i).getLuggageID()
@@ -62,48 +62,48 @@ public class PDFExport {
             contentStream.newLine();
             contentStream.newLine();
             contentStream.showText("labelNumber: ");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(OUTLINE, 0);
             contentStream.showText(luggage.get(i).getLabelNumber());
-            contentStream.newLineAtOffset(-100, -14.5f);
+            contentStream.newLineAtOffset(-OUTLINE, -14.5f);
 
             contentStream.showText("flightNumber: ");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(OUTLINE, 0);
             contentStream.showText(luggage.get(i).getFlightNumber());
-            contentStream.newLineAtOffset(-100, -14.5f);
+            contentStream.newLineAtOffset(-OUTLINE, -14.5f);
 
             contentStream.showText("airport: ");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(OUTLINE, 0);
             contentStream.showText(luggage.get(i).getAirport());
-            contentStream.newLineAtOffset(-100, -14.5f);
+            contentStream.newLineAtOffset(-OUTLINE, -14.5f);
 
             if (luggage.get(i) instanceof FoundLuggage) {
                 contentStream.showText("lostFoundID: ");
-                contentStream.newLineAtOffset(100, 0);
+                contentStream.newLineAtOffset(OUTLINE, 0);
                 contentStream.showText(LuggageListController.foundLuggageData.get(i).getLostFoundID());
-                contentStream.newLineAtOffset(-100, -14.5f);
+                contentStream.newLineAtOffset(-OUTLINE, -14.5f);
             }
             contentStream.showText("destination: ");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(OUTLINE, 0);
             contentStream.showText(luggage.get(i).getDestination());
-            contentStream.newLineAtOffset(-100, -14.5f);
+            contentStream.newLineAtOffset(-OUTLINE, -14.5f);
 
             contentStream.showText("type: ");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(OUTLINE, 0);
             contentStream.showText(luggage.get(i).getType());
-            contentStream.newLineAtOffset(-100, -14.5f);
+            contentStream.newLineAtOffset(-OUTLINE, -14.5f);
 
             contentStream.showText("brand: ");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(OUTLINE, 0);
             contentStream.showText(luggage.get(i).getBrand());
-            contentStream.newLineAtOffset(-100, -14.5f);
+            contentStream.newLineAtOffset(-OUTLINE, -14.5f);
 
             contentStream.showText("color: ");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(OUTLINE, 0);
             contentStream.showText(luggage.get(i).getColor());
-            contentStream.newLineAtOffset(-100, -14.5f);
+            contentStream.newLineAtOffset(-OUTLINE, -14.5f);
 
             contentStream.showText("date: ");
-            contentStream.newLineAtOffset(100, 0);
+            contentStream.newLineAtOffset(OUTLINE, 0);
             contentStream.showText(luggage.get(i).getDate());
             contentStream.newLine();
 

@@ -9,7 +9,7 @@ package backend;
 public class LostLuggage extends Luggage {
 
     /**
-     *
+     * @param luggageID The ID of this entry in the database.
      * @param labelNumber The label number or ID found that was given to the
      * luggage.
      * @param flightNumber The flightnubmer of the airplane the luggage was on.

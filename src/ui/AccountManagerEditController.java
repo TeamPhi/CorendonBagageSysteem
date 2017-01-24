@@ -170,7 +170,7 @@ public class AccountManagerEditController implements Initializable {
                     /*
                     Depending whether the user is editing an account or adding one,
                     add or replace the temp account in the database.
-                    */
+                     */
                     if (this.addMode) {
                         /*
                         First check if the user made an original username.
@@ -194,7 +194,13 @@ public class AccountManagerEditController implements Initializable {
                             preparedStatement.setString(5, this.textFieldSurname.getText());
                             preparedStatement.setString(6, this.textFieldEmailAdress.getText());
                             preparedStatement.executeUpdate();
-                            //if the data is put in the database, add it to the tableview.
+                            /*
+                            if the data is put in the database, the data can be put in the tableview.
+                            First the newly assigned userID has to retrieved.
+                            */
+                            rs = conn.createStatement().executeQuery("SELECT userID FROM account WHERE username = \'"
+                                    + temp.getUsername() + "\';");
+                            temp.setUserID(rs.getInt(1));
                             AccountManagerController.accountData.add(temp);
                         } else {
                             //error message
@@ -233,15 +239,17 @@ public class AccountManagerEditController implements Initializable {
                 }
             } else {
                 //error message
-                UIClass.showPopup("errorRegistrationTitle","errorTooManyCharsDesc");
+                UIClass.showPopup("errorRegistrationTitle", "errorTooManyCharsDesc");
             }
         } else {
             //error message
-            UIClass.showPopup("errorRegistrationTitle","errorEmptyFieldsDesc");
+            UIClass.showPopup("errorRegistrationTitle", "errorEmptyFieldsDesc");
         }
     }
-    /**Futher prepares the window by putting passed data in the correct fields.
-     * 
+
+    /**
+     * Futher prepares the window by putting passed data in the correct fields.
+     *
      * @param account The Account to edit, if any.
      * @param addMode Whether the screen should start in add mode or edit mode.
      */

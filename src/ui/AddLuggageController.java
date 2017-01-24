@@ -299,6 +299,7 @@ public class AddLuggageController implements Initializable {
                         int replaceIndex = LuggageListController.foundLuggageData.indexOf(this.editableLuggage);
                         LuggageListController.foundLuggageData.remove(replaceIndex);
                         LuggageListController.foundLuggageData.add(replaceIndex, newLuggage);
+                        //LuggageListController.foundLuggageData.get(LuggageListController.foundLuggageData.indexOf(this.editableLuggage)).setLabelNumber(this.textFieldLabelId.getText());
                     }
 
                 } else {//lost mode

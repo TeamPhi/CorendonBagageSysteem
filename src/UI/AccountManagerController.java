@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -151,6 +150,7 @@ public class AccountManagerController implements Initializable {
      * Method/event for removing an account from the table and the database.
      *
      */
+    @FXML
     public void deleteAccount() {
         /*
         First check whether the user has selected an editable account.
