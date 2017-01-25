@@ -367,7 +367,7 @@ public class LuggageListController implements Initializable {
     @FXML
     private void searchActionLost(ActionEvent event) {
         this.tableLostLuggage.setItems((ObservableList) FXCollections.observableArrayList(LuggageSearchBarLogic.interpretSearchString(this.textFieldLostSearch.getText(),
-                new ArrayList<>(LuggageListController.foundLuggageData), false)));
+                new ArrayList<>(LuggageListController.lostLuggageData), false)));
     }
 
     @FXML

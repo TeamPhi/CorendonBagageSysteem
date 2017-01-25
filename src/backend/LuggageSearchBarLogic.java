@@ -13,9 +13,9 @@ public class LuggageSearchBarLogic {
 
     //These are the keys we use to get a translation of the specific keyword for FoundLuggage.
     public static final String[] TRANSLATION_KEYS_OF_POSSIBLE_SEARCH_KEYWORDS_FOUND = {"labelDate",
-        "labelAirport", "labelLAFID", "labelLuggageID", "labelStatus",
+        "labelAirport", "labelLuggageID", "labelStatus",
         "labelFlightnumber", "labelDestination", "labelType", "labelBrand",
-        "labelColor", "labelFeatures", "labelName", "labelAddress", "labelCity",
+        "labelColor", "labelFeatures", "labelLAFID", "labelName", "labelAddress", "labelCity",
         "labelZipCode", "labelCountry", "labelPhoneNumber", "labelEmail"};
     //Extra strings that count as another keyword.
     public static final String[] SUPPLEMENTARY_ALLOWED_SEARCH_KEYWORDS_FOUND = {
@@ -146,31 +146,31 @@ public class LuggageSearchBarLogic {
                 searchableList = checkAirport(searchableList, searchString);
                 break;
             case 2:
-                searchableList = checkLAFID(searchableList, searchString);
-                break;
-            case 3:
                 searchableList = checkLuggageID(searchableList, searchString);
                 break;
-            case 4:
+            case 3:
                 searchableList = checkStatus(searchableList, searchString);
                 break;
-            case 5:
+            case 4:
                 searchableList = checkFlightnumber(searchableList, searchString);
                 break;
-            case 6:
+            case 5:
                 searchableList = checkDestination(searchableList, searchString);
                 break;
-            case 7:
+            case 6:
                 searchableList = checkType(searchableList, searchString);
                 break;
-            case 8:
+            case 7:
                 searchableList = checkBrand(searchableList, searchString);
                 break;
-            case 9:
+            case 8:
                 searchableList = checkColor(searchableList, searchString);
                 break;
-            case 10:
+            case 9:
                 searchableList = checkFeatures(searchableList, searchString);
+                break;
+            case 10:
+                searchableList = checkLAFID(searchableList, searchString);
                 break;
             case 11:
                 break;
@@ -323,19 +323,6 @@ public class LuggageSearchBarLogic {
         return newList;
     }
 
-    public static ArrayList<Luggage> checkLAFID(ArrayList<Luggage> searchable, String term) {
-        ArrayList<Luggage> newList = new ArrayList<>();
-        FoundLuggage temp;
-        Iterator searcher = searchable.iterator();
-        while (searcher.hasNext()) {
-            temp = ((FoundLuggage) searcher.next());
-            if (temp.getLostFoundID().contains(term)) {
-                newList.add(temp);
-            }
-        }
-        return newList;
-    }
-
     public static ArrayList<Luggage> checkLuggageID(ArrayList<Luggage> searchable, String term) {
         ArrayList<Luggage> newList = new ArrayList<>();
         Luggage temp;
@@ -430,6 +417,19 @@ public class LuggageSearchBarLogic {
     public static ArrayList<Luggage> checkFeatures(ArrayList<Luggage> searchable, String term) {
         System.out.println("Searching on features is not possible yet");
         return searchable;
+    }
+    
+    public static ArrayList<Luggage> checkLAFID(ArrayList<Luggage> searchable, String term) {
+        ArrayList<Luggage> newList = new ArrayList<>();
+        FoundLuggage temp;
+        Iterator searcher = searchable.iterator();
+        while (searcher.hasNext()) {
+            temp = ((FoundLuggage) searcher.next());
+            if (temp.getLostFoundID().contains(term)) {
+                newList.add(temp);
+            }
+        }
+        return newList;
     }
     /*
     public void checkTraveller(){
