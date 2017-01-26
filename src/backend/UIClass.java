@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
 /**Provides extra methods for the User Interface
@@ -52,5 +53,15 @@ public abstract class UIClass {
         alert.setHeaderText(null);
         alert.setContentText(I18N.getTranslation(promptKey));
         alert.showAndWait();
+    }
+    
+    /**
+     * Check if the table has a selected item.
+     *
+     * @param table The tableView to check.
+     * @return true if there is a selection, false otherwise.
+     */
+    public static boolean isTableSelection(TableView table) {
+        return (table.getSelectionModel().getSelectedItem() != null);
     }
 }

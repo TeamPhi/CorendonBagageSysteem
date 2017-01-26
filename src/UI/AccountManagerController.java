@@ -122,7 +122,7 @@ public class AccountManagerController implements Initializable {
         The window is only shown if the list contains at least one account and
         at least one is selected.
          */
-        if (this.tableAccount.getSelectionModel().getSelectedItem() != null) {
+        if (UIClass.isTableSelection(this.tableAccount)) {
             if (!Account.isEqualAccount(Account.getUser(),
                     this.tableAccount.getSelectionModel().getSelectedItem())) {
                 showAccountManagerEdit(this.tableAccount.getSelectionModel().getSelectedItem(), false);

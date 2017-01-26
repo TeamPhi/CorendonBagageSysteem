@@ -36,14 +36,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
- * FXML
+ * The controller class of the luggage list.
  *
- * @author Elwin Slokker & Jordy Quak
+ * @author Elwin Slokker
+ * @author Jordy Quak
+ * @author Mark Steneker
  */
 public class LuggageListController implements Initializable {
 
@@ -90,6 +91,8 @@ public class LuggageListController implements Initializable {
     @FXML
     private Button buttonFoundExport;
     @FXML
+    private Button buttonFoundExportAll;
+    @FXML
     private Button buttonFoundImport;
     @FXML
     private Button buttonFoundEdit;
@@ -129,6 +132,8 @@ public class LuggageListController implements Initializable {
     private Button buttonLostMatch;
     @FXML
     private Button buttonLostExport;
+    @FXML
+    private Button buttonLostExportAll;
     @FXML
     private Button buttonLostImport;
     @FXML
@@ -241,7 +246,7 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void deleteFoundLuggage(ActionEvent event) {
-        if (isTableSelection(this.tableFoundLuggage)) {
+        if (UIClass.isTableSelection(this.tableFoundLuggage)) {
             if (UIClass.promptDelete()) {
                 int itemID = Integer.parseInt(this.tableFoundLuggage.getSelectionModel().getSelectedItem().getLuggageID());
                 try {
@@ -277,7 +282,7 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void deleteLostLuggage(ActionEvent event) {
-        if (isTableSelection(this.tableLostLuggage)) {
+        if (UIClass.isTableSelection(this.tableLostLuggage)) {
             if (UIClass.promptDelete()) {
                 int itemID = Integer.parseInt(this.tableLostLuggage.getSelectionModel().getSelectedItem().getLuggageID());
                 try {
@@ -324,8 +329,20 @@ public class LuggageListController implements Initializable {
     }
 
     @FXML
-    private void exportFoundButtonClicked(ActionEvent event) throws IOException {
-        PDFExport.generateLuggagePDF(foundLuggageData);
+    private void exportFound(ActionEvent event) throws IOException {
+        if (UIClass.isTableSelection(this.tableFoundLuggage)) {
+            PDFExport.generateLuggagePDF(this.tableFoundLuggage.getSelectionModel().getSelectedItem());
+        } else {
+            //error message that there is no selection.
+            UIClass.showPopup("errorNoSelectionTitle", "errorNSLEDesc");
+        }
+    }
+
+    @FXML
+    private void exportAllFound(ActionEvent event) throws IOException {
+        for (FoundLuggage luggage : LuggageListController.foundLuggageData) {
+            PDFExport.generateLuggagePDF(luggage);
+        }
     }
 
     @FXML
@@ -341,7 +358,7 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void editFoundButtonClicked(ActionEvent event) {
-        if (isTableSelection(this.tableFoundLuggage)) {
+        if (UIClass.isTableSelection(this.tableFoundLuggage)) {
 
             FXMLLoader loader = showAddFoundLuggage();
             try {
@@ -376,13 +393,25 @@ public class LuggageListController implements Initializable {
     }
 
     @FXML
-    private void exportLostButtonClicked(ActionEvent event) throws IOException {
-        PDFExport.generateLuggagePDF(lostLuggageData);
+    private void matchRefresh(ActionEvent event) {
+        loadMatches();
     }
 
     @FXML
-    private void matchRefresh(ActionEvent event) {
-        loadMatches();
+    private void exportLost(ActionEvent event) throws IOException {
+        if (UIClass.isTableSelection(this.tableLostLuggage)) {
+            PDFExport.generateLuggagePDF(this.tableLostLuggage.getSelectionModel().getSelectedItem());
+        } else {
+            //error message that there is no selection.
+            UIClass.showPopup("errorNoSelectionTitle", "errorNSLEDesc");
+        }
+    }
+
+    @FXML
+    private void exportAllLost(ActionEvent event) throws IOException {
+        for (LostLuggage luggage : LuggageListController.lostLuggageData) {
+            PDFExport.generateLuggagePDF(luggage);
+        }
     }
 
     @FXML
@@ -398,7 +427,7 @@ public class LuggageListController implements Initializable {
 
     @FXML
     private void editLostButtonClicked(ActionEvent event) {
-        if (isTableSelection(this.tableLostLuggage)) {
+        if (UIClass.isTableSelection(this.tableLostLuggage)) {
 
             FXMLLoader loader = showAddLostLuggage();
             try {
@@ -643,16 +672,6 @@ public class LuggageListController implements Initializable {
 
         return loader;
 
-    }
-
-    /**
-     * Check if the table has a selected item.
-     *
-     * @param table The tableView to check.
-     * @return true if there is a selection, false otherwise.
-     */
-    private boolean isTableSelection(TableView table) {
-        return (table.getSelectionModel().getSelectedItem() != null);
     }
 
 }

@@ -15,7 +15,7 @@
                <children>
                   <TextField fx:id="textFieldFoundSearch" layoutX="14.0" layoutY="10.0" onAction="#searchActionFound" />
                   <Button fx:id="buttonFoundSearch" layoutX="173.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchActionFound" text="buttonSearch" />
-                  <TableView fx:id="tableFoundLuggage" layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
+                  <TableView fx:id="tableFoundLuggage" layoutX="14.0" layoutY="49.0" prefHeight="345.0" prefWidth="901.0" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="70.0">
                      <columns>
                         <TableColumn fx:id="columnFoundLabelnumber" prefWidth="98.0" text="tableColumnLabel" />
                         <TableColumn fx:id="columnFoundAirport" prefWidth="99.0" text="tableColumnAirport" />
@@ -29,12 +29,13 @@
                         <TableColumn fx:id="columnFoundStatus" prefWidth="109.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
-                  <Button fx:id="buttonFoundMatch" layoutX="316.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchFoundButtonClicked" text="buttonMatch" />
-                  <Button fx:id="buttonFoundEdit" layoutX="746.0" layoutY="10.0" mnemonicParsing="false" onAction="#editFoundButtonClicked" text="buttonEdit" />
-                  <Button fx:id="buttonFoundAdd" layoutX="870.0" layoutY="10.0" mnemonicParsing="false" onAction="#addFoundButtonClicked" text="buttonAdd" />
-                  <Button fx:id="buttonFoundImport" layoutX="598.0" layoutY="10.0" mnemonicParsing="false" onAction="#importFoundButtonClicked" text="buttonImport" />
-                  <Button fx:id="buttonFoundExport" layoutX="458.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportFoundButtonClicked" text="buttonExport" />
-                  <Button fx:id="buttonFoundDelete" layoutX="989.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteFoundLuggage" text="buttonDelete" />
+                  <Button fx:id="buttonFoundMatch" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#matchFoundButtonClicked" text="buttonMatch" />
+                  <Button fx:id="buttonFoundEdit" layoutX="334.0" layoutY="40.0" mnemonicParsing="false" onAction="#editFoundButtonClicked" text="buttonEdit" />
+                  <Button fx:id="buttonFoundAdd" layoutX="334.0" layoutY="10.0" mnemonicParsing="false" onAction="#addFoundButtonClicked" text="buttonAdd" />
+                  <Button fx:id="buttonFoundImport" layoutX="494.0" layoutY="40.0" mnemonicParsing="false" onAction="#importFoundButtonClicked" text="buttonImport" />
+                  <Button fx:id="buttonFoundExport" layoutX="173.0" layoutY="40.0" mnemonicParsing="false" onAction="#exportFound" text="buttonExport" />
+                  <Button fx:id="buttonFoundDelete" layoutX="494.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteFoundLuggage" text="buttonDelete" />
+                  <Button fx:id="buttonFoundExportAll" layoutX="654.0" layoutY="40.0" mnemonicParsing="false" onAction="#exportAllFound" text="buttonExportAll" />
                </children>
             </AnchorPane>
          </content>
@@ -44,13 +45,13 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="950.0">
                <children>
                   <TextField fx:id="textFieldLostSearch" layoutX="14.0" layoutY="10.0" onAction="#searchActionLost" />
-                  <Button fx:id="buttonLostSearch" layoutX="164.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchActionLost" text="buttonSearch" />
-                  <Button fx:id="buttonLostExport" layoutX="456.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportLostButtonClicked" text="buttonExport" />
-                  <Button fx:id="buttonLostImport" layoutX="599.0" layoutY="10.0" mnemonicParsing="false" onAction="#importLostButtonClicked" text="buttonImport" />
-                  <Button fx:id="buttonLostAdd" layoutX="877.0" layoutY="10.0" mnemonicParsing="false" onAction="#addLostButtonClicked" text="buttonAdd" />
-                  <Button fx:id="buttonLostEdit" layoutX="761.0" layoutY="10.0" mnemonicParsing="false" onAction="#editLostButtonClicked" text="buttonEdit" />
-                  <Button fx:id="buttonLostMatch" layoutX="302.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchLostButtonClicked" text="buttonMatch" />
-                  <TableView fx:id="tableLostLuggage" layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0">
+                  <Button fx:id="buttonLostSearch" layoutX="173.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchActionLost" text="buttonSearch" />
+                  <Button fx:id="buttonLostExport" layoutX="173.0" layoutY="40.0" mnemonicParsing="false" onAction="#exportLost" text="buttonExport" />
+                  <Button fx:id="buttonLostImport" layoutX="494.0" layoutY="40.0" mnemonicParsing="false" onAction="#importLostButtonClicked" text="buttonImport" />
+                  <Button fx:id="buttonLostAdd" layoutX="334.0" layoutY="10.0" mnemonicParsing="false" onAction="#addLostButtonClicked" text="buttonAdd" />
+                  <Button fx:id="buttonLostEdit" layoutX="334.0" layoutY="40.0" mnemonicParsing="false" onAction="#editLostButtonClicked" text="buttonEdit" />
+                  <Button fx:id="buttonLostMatch" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#matchLostButtonClicked" text="buttonMatch" />
+                  <TableView fx:id="tableLostLuggage" layoutX="14.0" layoutY="49.0" prefHeight="401.0" prefWidth="901.0" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="70.0">
                      <columns>
                         <TableColumn fx:id="columnLostLabelnumber" prefWidth="98.0" text="tableColumnLabel" />
                         <TableColumn fx:id="columnLostAirport" prefWidth="99.0" text="tableColumnAirport" />
@@ -63,7 +64,8 @@
                         <TableColumn fx:id="columnLostStatus" prefWidth="109.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
-                  <Button fx:id="buttonLostDelete" layoutX="996.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteLostLuggage" text="buttonDelete" />
+                  <Button fx:id="buttonLostDelete" layoutX="494.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteLostLuggage" text="buttonDelete" />
+                  <Button fx:id="buttonLostExportAll" layoutX="654.0" layoutY="40.0" mnemonicParsing="false" onAction="#exportAllLost" text="buttonExportAll" />
                </children>
             </AnchorPane>
          </content>

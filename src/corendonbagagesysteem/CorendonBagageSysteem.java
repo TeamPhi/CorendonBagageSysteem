@@ -17,7 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 /**
- * 
+ * The entry point of the CorendonLuggageSystem.
  * @author Jordy
  * @author Elwin
  * @author Mark
