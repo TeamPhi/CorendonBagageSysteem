@@ -376,7 +376,7 @@ public class LuggageListController implements Initializable {
             UIClass.showPopup("errorNoEntriesTitle", "errorNELuggageDesc");
         } else {
             //error if here is no selection.
-            UIClass.showPopup("errorNoSelectionTitle", "errorNSLugaggeDesc");
+            UIClass.showPopup("errorNoSelectionTitle", "errorNSLuggageDesc");
         }
 
     }

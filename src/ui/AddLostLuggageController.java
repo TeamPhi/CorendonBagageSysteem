@@ -171,16 +171,6 @@ public class AddLostLuggageController implements Initializable {
     }
 
     @FXML
-    public void setEdit(boolean edit) {
-        this.edit = edit;
-    }
-
-    @FXML
-    public void setLuggageID(String luggageID) {
-        this.luggageID = luggageID;
-    }
-
-    @FXML
     private void cancel(ActionEvent event) {
         //useless beacause of the x button?
         Stage stage = (Stage) this.buttonCancel.getScene().getWindow();
@@ -269,7 +259,7 @@ public class AddLostLuggageController implements Initializable {
                     + "SET labelID='" + this.textFieldLabelId.getText() + "', `type`='" + this.textFieldType.getText() + "', brand='" + this.textFieldBrand.getText() + "', color='" + this.textFieldColor.getText() + "', \n"
                     + "features='" + this.textAreaFeatures.getText() + "', flightID='" + this.textFieldFlightId.getText() + "'\n"
                     + "WHERE luggageID='" + luggageID + "';";
-
+            //confusing name?
             String SQL_INSERT_LUGGAGE_FOUND = "UPDATE `corendon_bagage`.`lostluggage` \n"
                     + "SET `date`='" + this.textFieldDate.getText() + "', `time`='" + this.textFieldTime.getText() + "', airport='" + this.textFieldAirport.getText() + "'\n"
                     + "WHERE luggageID='" + luggageID + "';";
@@ -397,15 +387,6 @@ public class AddLostLuggageController implements Initializable {
             UIClass.showPopup("errorRegistrationTitle", "errorEmptyFieldsDesc");
             return check;
         } else {
-            /*
-            For all text fields, check if they do not contain too many characters.
-            if(this.textFieldDate.getText().length() > 45){
-                this.setTextFieldIndicatorBorder(this.textFieldDate, check)
-                check = false;
-            }else{
-                this.setTextFieldIndicatorBorder(this.textFieldDate, !check)
-            }
-             */
         }
         if (!check) {
             UIClass.showPopup("errorRegistrationTitle", "errorTooManyCharsDesc");
@@ -449,6 +430,14 @@ public class AddLostLuggageController implements Initializable {
         } else {
             textField.setStyle("-fx-border-color: darkgrey");
         }
+    }
+    
+    public void setEdit(boolean edit) {
+        this.edit = edit;
+    }
+
+    public void setLuggageID(String luggageID) {
+        this.luggageID = luggageID;
     }
 
 }
