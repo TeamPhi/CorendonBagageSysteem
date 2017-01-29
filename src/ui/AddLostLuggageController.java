@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ui;
 
 import backend.DBConnection;
@@ -10,19 +5,26 @@ import backend.I18N;
 import backend.UIClass;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -39,10 +41,10 @@ public class AddLostLuggageController implements Initializable {
     private static boolean textFieldTimeIncorrectInput = false;
     private static boolean textFieldLabelIdIncorrectInput = false;
     private static boolean textFieldPhoneNumIncorrectInput = false;
+    private static final String DATE_FORMAT_STRING = "yyyy-MM-dd";
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat(DATE_FORMAT_STRING);
 
-    @FXML
     private boolean edit = true;
-    @FXML
     private String luggageID = "1";
 
     @FXML
@@ -94,10 +96,10 @@ public class AddLostLuggageController implements Initializable {
     @FXML
     private Label labelOnlyNumericPhoneNum;
     @FXML
-    private Label labelRequiredDateFormat;
-    @FXML
     private Label labelRequiredTimeFormat;
 
+    @FXML
+    private DatePicker datePicker;
     @FXML
     private TextField textFieldTime;
     @FXML
@@ -114,8 +116,6 @@ public class AddLostLuggageController implements Initializable {
     private TextField textFieldBrand;
     @FXML
     private TextField textFieldColor;
-    @FXML
-    private TextField textFieldDate;
     @FXML
     private TextField textFieldType;
     @FXML
@@ -180,7 +180,6 @@ public class AddLostLuggageController implements Initializable {
         I18N.bindText(this.buttonSend.getText(), this.buttonSend, (Object[]) null);
         I18N.bindText(this.buttonCancel.getText(), this.buttonCancel, (Object[]) null);
         I18N.bindText(this.buttonSave.getText(), this.buttonSave, (Object[]) null);
-
     }
 
     @FXML
@@ -191,36 +190,16 @@ public class AddLostLuggageController implements Initializable {
     }
 
     /**
-     * Checks if the input in textFieldDate is correct and notifies the user if
-     * it isn't
-     *
-     */
-    @FXML
-    private void textFieldDateInputChecker() {
-        textFieldDate.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!textFieldDate.getText().matches("^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$")) {
-                labelRequiredDateFormat.setVisible(true);
-                setTextFieldIndicatorBorder(textFieldDate, true);
-                textFieldDateIncorrectInput = true;
-            } else {
-                labelRequiredDateFormat.setVisible(false);
-                setTextFieldIndicatorBorder(textFieldDate, false);
-                textFieldDateIncorrectInput = false;
-            }
-        });
-    }
-
-    /**
      * Checks if the input in textFieldTime is correct and notifies the user if
      * it isn't
      *
      */
-    @FXML
     private void textFieldTimeInputChecker() {
         textFieldTime.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!textFieldTime.getText().matches("^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d)$")) {
+            //if (!textFieldTime.getText().matches("^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d)$")) {
+            if (!textFieldTime.getText().matches("^([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$")) {
                 labelRequiredTimeFormat.setVisible(true);
-                setTextFieldIndicatorBorder(textFieldTime, true);
+                setTextFieldIndicatorBorder(textFieldTime, true);//odd
                 textFieldTimeIncorrectInput = true;
             } else {
                 labelRequiredTimeFormat.setVisible(false);
@@ -235,7 +214,6 @@ public class AddLostLuggageController implements Initializable {
      * if it isn't
      *
      */
-    @FXML
     private void textFieldLabelIDInputChecker() {
         textFieldLabelId.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!textFieldLabelId.getText().matches("\\d+")) {
@@ -255,7 +233,6 @@ public class AddLostLuggageController implements Initializable {
      * if it isn't
      *
      */
-    @FXML
     private void textFieldPhoneNumInputChecker() {
         textFieldPhoneNumber.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!textFieldPhoneNumber.getText().matches("\\d+")) {
@@ -272,14 +249,20 @@ public class AddLostLuggageController implements Initializable {
 
     @FXML
     private void saveButtonClicked(ActionEvent event) {
-        try {
-            if (this.edit) {
-                edit(this.luggageID);
-            } else {
-                save();
+        if (datePicker.getValue() == null) {
+            this.datePicker.setStyle("-fx-border-color: red");
+            UIClass.showPopup("errorRegistrationTitle", "errorIncorrectInput");
+        } else {
+            this.datePicker.setStyle("-fx-border-color: darkgrey");
+            try {
+                if (this.edit) {
+                    edit(this.luggageID);
+                } else {
+                    save();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AddLostLuggageController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(AddLostLuggageController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -287,7 +270,11 @@ public class AddLostLuggageController implements Initializable {
         if (this.isFilledCorrectly() && !textFieldDateIncorrectInput
                 && !textFieldTimeIncorrectInput && !textFieldLabelIdIncorrectInput
                 && !textFieldPhoneNumIncorrectInput) {
-
+            
+            LocalDate localDate = datePicker.getValue();
+            Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+            Date date = Date.from(instant);
+            
             Connection conn = DBConnection.connectDb();
 
             String SQL_INSERT_PASSAGER = "INSERT INTO `corendon_bagage`.`passager` (`naam`, `adres`, `woonplaats`, `postalcode`, `country`, `telephone`, `email`) \n"
@@ -302,7 +289,7 @@ public class AddLostLuggageController implements Initializable {
                     + " '" + this.textAreaFeatures.getText() + "', LAST_INSERT_ID(), '" + this.textFieldFlightId.getText() + "');";
 
             String SQL_INSERT_LUGGAGE_LOST = "INSERT INTO `corendon_bagage`.`lostluggage` (`luggageID`, `date`, `time`, `airport`) \n"
-                    + "VALUES (LAST_INSERT_ID(), '" + this.textFieldDate.getText() + "', '" + this.textFieldTime.getText() + "', '" + this.textFieldAirport.getText() + "');";
+                    + "VALUES (LAST_INSERT_ID(), '" + DATE_FORMAT.format(date) + "', '" + this.textFieldTime.getText() + "', '" + this.textFieldAirport.getText() + "');";
 
             Boolean insertSucces = false;
             Statement statement;
@@ -343,6 +330,10 @@ public class AddLostLuggageController implements Initializable {
                 && !textFieldTimeIncorrectInput && !textFieldLabelIdIncorrectInput
                 && !textFieldPhoneNumIncorrectInput) {
 
+            LocalDate localDate = datePicker.getValue();
+            Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+            Date date = Date.from(instant);
+            
             String SQL_INSERT_FLIGHT = "INSERT IGNORE INTO `corendon_bagage`.`flight` (`flightID`, `destination`) \n"
                     + "VALUES ('" + this.textFieldFlightId.getText() + "', '" + this.textFieldDestination.getText() + "');";
 
@@ -358,7 +349,7 @@ public class AddLostLuggageController implements Initializable {
                     + "WHERE luggageID='" + luggageID + "';";
             //confusing name?
             String SQL_INSERT_LUGGAGE_FOUND = "UPDATE `corendon_bagage`.`lostluggage` \n"
-                    + "SET `date`='" + this.textFieldDate.getText() + "', `time`='" + this.textFieldTime.getText() + "', airport='" + this.textFieldAirport.getText() + "'\n"
+                    + "SET `date`='" + DATE_FORMAT.format(date) + "', `time`='" + this.textFieldTime.getText() + "', airport='" + this.textFieldAirport.getText() + "'\n"
                     + "WHERE luggageID='" + luggageID + "';";
 
             Connection conn = DBConnection.connectDb();
@@ -415,7 +406,9 @@ public class AddLostLuggageController implements Initializable {
             ResultSet rs = conn.createStatement().executeQuery(SQL_SELECT_LUGGAGE);
 
             if (rs.next()) {
-                this.textFieldDate.setText(rs.getString(1));
+                //this.textFieldDate.setText(rs.getString(1));
+                DateTimeFormatter format = DateTimeFormatter.ofPattern(DATE_FORMAT_STRING);
+                this.datePicker.setValue(LocalDate.parse(rs.getString(1), format));
                 this.textFieldTime.setText(rs.getString(2));
                 this.textFieldAirport.setText(rs.getString(3));
 
@@ -448,7 +441,7 @@ public class AddLostLuggageController implements Initializable {
     private boolean isFilledCorrectly() {
         boolean check = true;
         check = this.isEmptyTextField(this.textFieldTime, check);
-        check = this.isEmptyTextField(this.textFieldDate, check);
+        //check = this.isEmptyTextField(this.textFieldDate, check);
         check = this.isEmptyTextField(this.textFieldType, check);
         check = this.isEmptyTextField(this.textFieldColor, check);
         check = this.isEmptyTextField(this.textFieldName, check);
@@ -460,7 +453,7 @@ public class AddLostLuggageController implements Initializable {
         check = this.isEmptyTextField(this.textFieldEmail, check);
 
         //REGEX
-        check = this.isEmptyTextField(this.textFieldDate, this.textFieldDate.getText().matches("^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$"));
+        //check = this.isEmptyTextField(this.textFieldDate, this.textFieldDate.getText().matches("^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$"));
         check = this.isEmptyTextField(this.textFieldTime, this.textFieldTime.getText().matches("^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d)$"));
         check = this.isValidTextField(this.textFieldAirport, this.textFieldAirport.getText().matches("^.{0," + DBConnection.LENGTH_OF_AIRPORT + "}$"));
 
@@ -532,7 +525,7 @@ public class AddLostLuggageController implements Initializable {
 
     public void setEdit(boolean edit) {
         this.edit = edit;
-        textFieldDateInputChecker();
+        //textFieldDateInputChecker();
         textFieldTimeInputChecker();
         textFieldLabelIDInputChecker();
         textFieldPhoneNumInputChecker();
@@ -540,10 +533,10 @@ public class AddLostLuggageController implements Initializable {
 
     public void setLuggageID(String luggageID) {
         this.luggageID = luggageID;
-        textFieldDateInputChecker();
-        textFieldTimeInputChecker();
-        textFieldLabelIDInputChecker();
-        textFieldPhoneNumInputChecker();
+        //textFieldDateInputChecker();
+        //textFieldTimeInputChecker();
+        //textFieldLabelIDInputChecker();
+        //textFieldPhoneNumInputChecker();
     }
 
 }
