@@ -35,6 +35,11 @@ import javafx.stage.Stage;
  */
 public class AddLostLuggageController implements Initializable {
 
+    private static boolean textFieldDateIncorrectInput = false;
+    private static boolean textFieldTimeIncorrectInput = false;
+    private static boolean textFieldLabelIdIncorrectInput = false;
+    private static boolean textFieldPhoneNumIncorrectInput = false;
+
     @FXML
     private boolean edit = true;
     @FXML
@@ -84,6 +89,14 @@ public class AddLostLuggageController implements Initializable {
     private Label labelPhoneNumber;
     @FXML
     private Label labelEmail;
+    @FXML
+    private Label labelOnlyNumericLuggageID;
+    @FXML
+    private Label labelOnlyNumericPhoneNum;
+    @FXML
+    private Label labelRequiredDateFormat;
+    @FXML
+    private Label labelRequiredTimeFormat;
 
     @FXML
     private TextField textFieldTime;
@@ -177,8 +190,88 @@ public class AddLostLuggageController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Checks if the input in textFieldDate is correct and notifies the user if
+     * it isn't
+     *
+     */
     @FXML
-    private void saveRegular(ActionEvent event) {
+    private void textFieldDateInputChecker() {
+        textFieldDate.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!textFieldDate.getText().matches("^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$")) {
+                labelRequiredDateFormat.setVisible(true);
+                setTextFieldIndicatorBorder(textFieldDate, true);
+                textFieldDateIncorrectInput = true;
+            } else {
+                labelRequiredDateFormat.setVisible(false);
+                setTextFieldIndicatorBorder(textFieldDate, false);
+                textFieldDateIncorrectInput = false;
+            }
+        });
+    }
+
+    /**
+     * Checks if the input in textFieldTime is correct and notifies the user if
+     * it isn't
+     *
+     */
+    @FXML
+    private void textFieldTimeInputChecker() {
+        textFieldTime.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!textFieldTime.getText().matches("^(?:(?:([01]?\\d|2[0-3]):)?([0-5]?\\d):)?([0-5]?\\d)$")) {
+                labelRequiredTimeFormat.setVisible(true);
+                setTextFieldIndicatorBorder(textFieldTime, true);
+                textFieldTimeIncorrectInput = true;
+            } else {
+                labelRequiredTimeFormat.setVisible(false);
+                setTextFieldIndicatorBorder(textFieldTime, false);
+                textFieldTimeIncorrectInput = false;
+            }
+        });
+    }
+
+    /**
+     * Checks if the input in textFieldLabelId is correct and notifies the user
+     * if it isn't
+     *
+     */
+    @FXML
+    private void textFieldLabelIDInputChecker() {
+        textFieldLabelId.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!textFieldLabelId.getText().matches("\\d+")) {
+                labelOnlyNumericLuggageID.setVisible(true);
+                setTextFieldIndicatorBorder(textFieldLabelId, true);
+                textFieldLabelIdIncorrectInput = true;
+            } else {
+                labelOnlyNumericLuggageID.setVisible(false);
+                setTextFieldIndicatorBorder(textFieldLabelId, false);
+                textFieldLabelIdIncorrectInput = false;
+            }
+        });
+    }
+
+    /**
+     * Checks if the input in textFieldLabelId is correct and notifies the user
+     * if it isn't
+     *
+     */
+    @FXML
+    private void textFieldPhoneNumInputChecker() {
+        textFieldPhoneNumber.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!textFieldPhoneNumber.getText().matches("\\d+")) {
+                labelOnlyNumericPhoneNum.setVisible(true);
+                setTextFieldIndicatorBorder(textFieldPhoneNumber, true);
+                textFieldPhoneNumIncorrectInput = true;
+            } else {
+                labelOnlyNumericPhoneNum.setVisible(false);
+                setTextFieldIndicatorBorder(textFieldPhoneNumber, false);
+                textFieldPhoneNumIncorrectInput = false;
+            }
+        });
+    }
+
+    @FXML
+    private void saveButtonClicked(ActionEvent event) {
         try {
             if (this.edit) {
                 edit(this.luggageID);
@@ -191,8 +284,9 @@ public class AddLostLuggageController implements Initializable {
     }
 
     private String save() throws SQLException {
-
-        if (this.isFilledCorrectly()) {
+        if (this.isFilledCorrectly() && !textFieldDateIncorrectInput
+                && !textFieldTimeIncorrectInput && !textFieldLabelIdIncorrectInput
+                && !textFieldPhoneNumIncorrectInput) {
 
             Connection conn = DBConnection.connectDb();
 
@@ -236,15 +330,18 @@ public class AddLostLuggageController implements Initializable {
                 stage.close();
 
             }
+            return "saved";
+        } else {
+            UIClass.showPopup("errorRegistrationTitle", "errorIncorrectInput");
 
         }
-
-        return "saved";
-
+        return "saving failed";
     }
 
     private void edit(String luggageID) throws SQLException {
-        if (this.isFilledCorrectly()) {
+        if (this.isFilledCorrectly() && !textFieldDateIncorrectInput
+                && !textFieldTimeIncorrectInput && !textFieldLabelIdIncorrectInput
+                && !textFieldPhoneNumIncorrectInput) {
 
             String SQL_INSERT_FLIGHT = "INSERT IGNORE INTO `corendon_bagage`.`flight` (`flightID`, `destination`) \n"
                     + "VALUES ('" + this.textFieldFlightId.getText() + "', '" + this.textFieldDestination.getText() + "');";
@@ -293,8 +390,9 @@ public class AddLostLuggageController implements Initializable {
 
             }
 
+        } else {
+            UIClass.showPopup("errorRegistrationTitle", "errorIncorrectInput");
         }
-
     }
 
     public void fillFields(String luggageID) throws SQLException {
@@ -431,13 +529,21 @@ public class AddLostLuggageController implements Initializable {
             textField.setStyle("-fx-border-color: darkgrey");
         }
     }
-    
+
     public void setEdit(boolean edit) {
         this.edit = edit;
+        textFieldDateInputChecker();
+        textFieldTimeInputChecker();
+        textFieldLabelIDInputChecker();
+        textFieldPhoneNumInputChecker();
     }
 
     public void setLuggageID(String luggageID) {
         this.luggageID = luggageID;
+        textFieldDateInputChecker();
+        textFieldTimeInputChecker();
+        textFieldLabelIDInputChecker();
+        textFieldPhoneNumInputChecker();
     }
 
 }

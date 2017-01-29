@@ -65,6 +65,10 @@
       <TextField fx:id="textFieldEmail" layoutX="609.0" layoutY="218.0" />
       <Button fx:id="buttonSend" layoutX="28.0" layoutY="624.0" mnemonicParsing="false" text="buttonMakeDeliveryForm" />
       <Button fx:id="buttonCancel" layoutX="450.0" layoutY="624.0" mnemonicParsing="false" onAction="#cancel" text="buttonCancel" />
-      <Button fx:id="buttonSave" layoutX="810.0" layoutY="624.0" mnemonicParsing="false" onAction="#saveRegular" text="buttonSave" />
+      <Button fx:id="buttonSave" layoutX="810.0" layoutY="624.0" mnemonicParsing="false" onAction="#saveButtonClicked" text="buttonSave" />
+      <Label fx:id="labelRequiredDateFormat" layoutX="359.0" layoutY="56.0" text="This field requires date format: YYYY-MM-DD" visible="false" />
+      <Label fx:id="labelRequiredTimeFormat" layoutX="359.0" layoutY="85.0" text="This field requires time format: HH:MM:SS" visible="false" />
+      <Label fx:id="labelOnlyNumericLuggageID" layoutX="359.0" layoutY="231.0" text="This field only accepts numeric input" visible="false" />
+      <Label fx:id="labelOnlyNumericPhoneNum" layoutX="796.0" layoutY="195.0" text="This field only accepts numeric input" visible="false" />
    </children>
 </AnchorPane>
