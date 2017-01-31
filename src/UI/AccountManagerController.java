@@ -93,7 +93,10 @@ public class AccountManagerController implements Initializable {
                 new PropertyValueFactory<>("surname"));
         this.columnEmail.setCellValueFactory(
                 new PropertyValueFactory<>("email"));
-
+        
+        //Clears the Observable array before filling it to prevent duplicate rows
+        accountData.clear();
+        
         this.tableAccount.setItems(AccountManagerController.accountData);
         loadAccounts();
     }
@@ -109,6 +112,7 @@ public class AccountManagerController implements Initializable {
                         rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
                 temp.setUserID(rs.getInt(1));
                 //Add the temp account to the list.
+              
                 AccountManagerController.accountData.add(temp);
             }
         } catch (SQLException ex) {

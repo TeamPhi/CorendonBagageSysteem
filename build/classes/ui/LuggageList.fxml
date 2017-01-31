@@ -15,7 +15,7 @@
                <children>
                   <TextField fx:id="textFieldFoundSearch" layoutX="14.0" layoutY="10.0" onAction="#searchActionFound" />
                   <Button fx:id="buttonFoundSearch" layoutX="173.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchActionFound" text="buttonSearch" />
-                  <TableView fx:id="tableFoundLuggage" layoutX="14.0" layoutY="49.0" prefHeight="345.0" prefWidth="901.0" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="70.0">
+                  <TableView fx:id="tableFoundLuggage" layoutX="14.0" layoutY="49.0" prefHeight="393.0" prefWidth="976.0" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="70.0">
                      <columns>
                         <TableColumn fx:id="columnFoundLabelnumber" prefWidth="98.0" text="tableColumnLabel" />
                         <TableColumn fx:id="columnFoundAirport" prefWidth="99.0" text="tableColumnAirport" />
@@ -80,14 +80,14 @@
                      <columns>
                         <TableColumn fx:id="columnMatchedLostLabel" prefWidth="142.0" text="Lost Label" />
                         <TableColumn fx:id="columnMatchedFoundLabel" minWidth="0.0" prefWidth="179.0" text="Found Label" />
-                        <TableColumn fx:id="columnMatchedLAFID" prefWidth="156.0" text="Lost-and-Found" />
-                        <TableColumn fx:id="columnMatchedStatus" prefWidth="117.0" text="Status" />
+                        <TableColumn fx:id="columnMatchedLAFID" prefWidth="156.0" text="tableColumnLostFoundID" />
+                        <TableColumn fx:id="columnMatchedStatus" prefWidth="117.0" text="tableColumnStatus" />
                      </columns>
                   </TableView>
                   <Button fx:id="buttonMatchMatch" layoutX="335.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchMain" text="buttonMatch" />
                   <Button fx:id="buttonMatchImport" layoutX="622.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchRefresh" text="Refresh" />
                   <Button fx:id="buttonMatchExport" layoutX="480.0" layoutY="10.0" mnemonicParsing="false" text="buttonExport" />
-                  <Button fx:id="buttonMatchForm" layoutX="750.0" layoutY="10.0" mnemonicParsing="false" text="buttonMakeDeliveryForm" />
+                  <Button fx:id="buttonMatchForm" layoutX="750.0" layoutY="10.0" mnemonicParsing="false" onAction="#matchDeliver" text="Deliver" />
                </children>
             </AnchorPane>
          </content>

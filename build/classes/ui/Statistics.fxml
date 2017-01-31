@@ -13,17 +13,17 @@
       <AnchorPane layoutX="600.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" />
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label fx:id="labelRegisteredLuggage" layoutX="64.0" layoutY="173.0" text="labelRegistered" />
+            <Label fx:id="labelRegisteredLuggage" layoutX="59.0" layoutY="186.0" text="labelRegistered" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="600.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ComboBox fx:id="comboBoxSelectedTime" layoutX="57.0" layoutY="61.0" prefHeight="39.0" prefWidth="129.0" promptText="alltime" />
+            <ComboBox fx:id="comboBoxSelectedTime" disable="true" layoutX="57.0" layoutY="61.0" prefHeight="39.0" prefWidth="129.0" promptText="alltime" visible="false" />
          </children>
       </AnchorPane>
       <DatePicker fx:id="datumPicker" layoutX="200.0" layoutY="61.0" prefHeight="39.0" prefWidth="229.0" />
       <ComboBox fx:id="comboBoxAlleLuchthavens" layoutX="441.0" layoutY="61.0" prefHeight="39.0" prefWidth="200.0" promptText="Alle luchthavens" />
-      <LineChart fx:id="graphRegisteredLuggage" layoutX="51.0" layoutY="200.0">
+      <LineChart fx:id="graphRegisteredLuggage" layoutX="33.0" layoutY="213.0" prefHeight="336.0" prefWidth="401.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

@@ -16,6 +16,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
@@ -229,12 +231,16 @@ public class LuggageListController implements Initializable {
         I18N.bindText(this.buttonLostEdit.getText(), this.buttonLostEdit, (Object[]) null);
         I18N.bindText(this.buttonLostAdd.getText(), this.buttonLostAdd, (Object[]) null);
         I18N.bindText(this.buttonLostDelete.getText(), this.buttonLostDelete, (Object[]) null);
+        
         //make the list.
         //LuggageListController.lostLuggageData = FXCollections.observableArrayList();
         /* The section of the matched foundLuggageData initialization.
         First all the controls are bound the translation.
          */
+        
         I18N.bindTabText(this.tabMatches.getText(), this.tabMatches, (Object[]) null);
+        I18N.bindTableText(this.columnMatchedStatus.getText(), this.columnMatchedStatus, (Object[]) null);
+        I18N.bindTableText(this.columnMatchedLAFID.getText(), this.columnMatchedLAFID, (Object[]) null);
 
         loadMatches();
     }
@@ -447,6 +453,63 @@ public class LuggageListController implements Initializable {
             UIClass.showPopup("errorNoSelectionTitle", "errorNSLuggageDesc");//ripe for translation
         }
     }
+    
+    @FXML
+    private void matchDeliver(ActionEvent event) {
+        if(this.tableMatchedFoundLuggage.getSelectionModel().getSelectedItem() != null){
+            String lostLableID = this.tableMatchedFoundLuggage.getSelectionModel().getSelectedItem().getLostLabelID();
+            String foundLableID = this.tableMatchedFoundLuggage.getSelectionModel().getSelectedItem().getFoundLabelID();
+
+
+            String sql="UPDATE `corendon_bagage`.`match` \n" +
+"    SET sentLuggage=1, sentDate='" + LocalDate.now() + "'\n" +
+"    WHERE lostluggage=(SELECT los.luggageID FROM lostLuggage los JOIN luggage lug ON los.luggageID=lug.luggageID WHERE lug.labelID=" + lostLableID + ")\n" +
+"    AND foundluggage=(SELECT fou.luggageID FROM foundluggage fou JOIN luggage lug ON fou.luggageID=lug.luggageID WHERE lug.labelID=" + lostLableID + ");";
+                
+                
+                Connection conn = DBConnection.connectDb();
+                
+                try {
+                    PreparedStatement pStmnt = conn.prepareStatement(sql);
+                    pStmnt.executeUpdate(sql);
+                    
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(LuggageListController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            refresh();
+        }
+    }
+    
+    /*@FXML
+    private void deliver(ActionEvent event) {
+        
+        System.out.println("Triggered");
+        
+        /*String lostLableID = this.tableMatchedFoundLuggage.getSelectionModel().getSelectedItem().getLostLabelID();
+        String foundLableID = this.tableMatchedFoundLuggage.getSelectionModel().getSelectedItem().getFoundLabelID();
+        
+        System.out.println(lostLableID);
+        System.out.println(foundLableID);
+        
+        String sql="UPDATE `match`\n" +
+"SET sentLuggage=1, sentDate='" + LocalDate.now() + "'\n" +
+"WHERE lostluggage=" + lostLableID + " AND foundluggage="+ foundLableID +";";
+        
+         Connection conn = DBConnection.connectDb();
+        
+        try {
+           
+            ResultSet rs = conn.createStatement().executeQuery(sql);
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(LuggageListController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        refresh();*/
+        
+    /*}*/
 
     @FXML
     private void matchMain(ActionEvent event) {
@@ -487,13 +550,26 @@ public class LuggageListController implements Initializable {
 
         try {
             ResultSet rs = conn.createStatement().executeQuery(
-                    "SELECT l.luggageID, labelID, fl.flightID, airport, lostAndFoundID, destination, type, brand, color, date\n"
-                    + "FROM luggage l INNER JOIN foundluggage f ON f.luggageID=l.luggageID INNER JOIN flight fl ON l.flightID=fl.flightID;");
+                    "SELECT lug.luggageID, labelID, fli.flightID, airport, lostAndFoundID, destination, type, brand, color, `date` ,\n" +
+                    "\n" +
+                    "(SELECT\n" +
+                    "CASE \n" +
+                    "WHEN EXISTS(SELECT lostLuggage FROM `match` WHERE lostLuggage=lug.luggageID OR foundluggage=lug.luggageID)\n" +
+                    "THEN(\n" +
+                    "	SELECT\n" +
+                    "	CASE sentLuggage WHEN 1 THEN \"Sent\"\n" +
+                    "	ELSE \"Matched\" END\n" +
+                    "    FROM `match` WHERE lostLuggage=lug.luggageID OR foundluggage=lug.luggageID\n" +
+                    ")\n" +
+                    "ELSE(\"Not Matched\")\n" +
+                    "END)AS Status\n" +
+                    "\n" +
+                    "FROM luggage lug INNER JOIN foundLuggage los ON los.luggageID=lug.luggageID INNER JOIN flight fli ON lug.flightID=fli.flightID;");
             // string from database
             while (rs.next()) {
                 foundLuggageData.add(new FoundLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
-                        rs.getString(9), rs.getString(10), ""));
+                        rs.getString(9), rs.getString(10), rs.getString(11)));
                 //TODO status
             }
 
@@ -525,12 +601,25 @@ public class LuggageListController implements Initializable {
 
         try {
             ResultSet rs = conn.createStatement().executeQuery(
-                    "SELECT lug.luggageID, labelID, fli.flightID, airport, destination, type, brand, color, date\n"
-                    + "FROM luggage lug INNER JOIN lostluggage los ON los.luggageID=lug.luggageID INNER JOIN flight fli ON lug.flightID=fli.flightID;");
+                    "SELECT lug.luggageID, labelID, fli.flightID, airport, destination, type, brand, color, date, \n" +
+                    "\n" +
+                    "(SELECT\n" +
+                    "CASE \n" +
+                    "WHEN EXISTS(SELECT lostLuggage FROM `match` WHERE lostLuggage=lug.luggageID OR foundluggage=lug.luggageID)\n" +
+                    "THEN(\n" +
+                    "	SELECT\n" +
+                    "	CASE sentLuggage WHEN 1 THEN \"Sent\"\n" +
+                    "	ELSE \"Matched\" END\n" +
+                    "    FROM `match` WHERE lostLuggage=lug.luggageID OR foundluggage=lug.luggageID\n" +
+                    ")\n" +
+                    "ELSE(\"Not Matched\")\n" +
+                    "END)AS Status\n" +
+                    "\n" +
+                    "FROM luggage lug INNER JOIN lostluggage los ON los.luggageID=lug.luggageID INNER JOIN flight fli ON lug.flightID=fli.flightID;");
             // string from database
             while (rs.next()) {
                 lostLuggageData.add(new LostLuggage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), ""));
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10)));
                 //TODO status
             }
 
@@ -578,10 +667,10 @@ public class LuggageListController implements Initializable {
                 alert.setContentText("Luggage Matched");//ripe for translation
                 alert.showAndWait();
 
-                String query = "INSERT INTO `corendon_bagage`.`match` (`lostLuggage`, `foundLuggage`) VALUES ('" + luggageID + "', '" + rs.getString(1) + "');";
+                String query = "INSERT INTO `corendon_bagage`.`match` (`lostLuggage`, `foundLuggage`, `matchDate`) VALUES ('" + luggageID + "', '" + rs.getString(1) + "', '" + LocalDate.now() + "');";
 
                 if (found) {
-                    query = "INSERT INTO `corendon_bagage`.`match` (`lostLuggage`, `foundLuggage`) VALUES ('" + rs.getString(1) + "', '" + luggageID + "');";
+                    query = "INSERT INTO `corendon_bagage`.`match` (`lostLuggage`, `foundLuggage`, `matchDate`) VALUES ('" + rs.getString(1) + "', '" + luggageID + "', '" + LocalDate.now() + "');";
                 }
 
                 int rs2 = conn.createStatement().executeUpdate(query);
@@ -595,6 +684,8 @@ public class LuggageListController implements Initializable {
             }
 
             conn.close();
+            
+            refresh();
 
         } catch (SQLException ex) {
             System.err.println("Error" + ex);
@@ -608,12 +699,18 @@ public class LuggageListController implements Initializable {
 
         try {
             ResultSet rs = conn.createStatement().executeQuery(
-                    "SELECT loslug.labelID, foulug.labelID, foulug.lostAndFoundID FROM `match` mat\n"
-                    + "JOIN luggage loslug ON mat.lostLuggage=loslug.luggageID \n"
-                    + "JOIN luggage foulug ON mat.foundLuggage=foulug.luggageID;");
+                    "SELECT loslug.labelID, foulug.labelID, foulug.lostAndFoundID, " +
+                    "\n" +       
+                    "(SELECT CASE sentLuggage WHEN 1 THEN \"Sent\"\n" +
+                                             "ELSE \"Matched\" END)\n" +
+                    "AS `Status` \n" +
+                    "\n" +
+                    "FROM `match` mat\n" +
+                        "JOIN luggage loslug ON mat.lostLuggage=loslug.luggageID \n" +
+                        "JOIN luggage foulug ON mat.foundLuggage=foulug.luggageID;");
             // string from database
             while (rs.next()) {
-                matchedFoundLuggageData.add(new Match(rs.getString(1), rs.getString(2), rs.getString(3), ""));
+                matchedFoundLuggageData.add(new Match(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
             }
 
             conn.close();
@@ -672,6 +769,12 @@ public class LuggageListController implements Initializable {
 
         return loader;
 
+    }
+    
+    public void refresh(){
+        loadLostLuggage();
+        loadFoundLuggage();
+        loadMatches();
     }
 
 }
